@@ -1,4 +1,30 @@
 app
+// for getting the cars list
+.service('VehicleService', ['$q', function($q) {
+
+    var service = {
+        getVehicles: getVehicles
+    }
+
+    return service;
+
+    function getVehicles(value) {
+        var def = $q.defer();
+        var Vehicle = Parse.Object.extend("Vehicle");
+        var query = new Parse.Query(Vehicle);
+
+        // query.startsWith('name', value);
+        query.find().then(function (list) {
+            /* body... */
+            def.resolve(JSON.parse(JSON.stringify(list)));
+        }, function(error) {
+            console.log(error)
+            return def.reject(error)
+        });
+
+        return def.promise;
+    };
+}])
 // search functionality using autocomplete
 .service('InstanceSearchHistory', ['$http', function($http) {
 
