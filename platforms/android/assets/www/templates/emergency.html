@@ -1,0 +1,50 @@
+<style>
+.loading-container .loading{
+    padding: 0px;
+}
+.backdrop{
+    background: none;
+}
+</style>
+<ion-view view-title="Emergency Contacts">
+    <ion-content class="im-wrapper2">
+        <div class="row">
+            <div class="col text-center">
+                <h4>
+                    Emergency contact
+                </h4>
+            </div>
+        </div>
+        <div class="row pad"> <!-- row start -->
+            <div class="col pad"> <!-- col start -->
+                <form role="form" name="EmergencyForm" ng-submit="SaveEmergenctDetails()">
+                    <div class="list">
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Guardian name</span>
+                            <input type="text" class="form-control" placeholder="Guardian name" ng-model="emrdata.guardianname" name="guardianname" required="">
+                            <span ng-show="EmergencyForm.guardianname.$invalid &amp;&amp; !EmergencyForm.guardianname.$pristine" class="help-block">Your guardian name is required.</span>
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Mention relationship</span>
+                            <input type="text" class="form-control" placeholder="Mention relationship" ng-model="emrdata.relationship" name="relationshipname" required="">
+                            <span ng-show="EmergencyForm.relationshipname.$invalid &amp;&amp; !EmergencyForm.relationshipname.$pristine" class="help-block ng-hide">Mention relationship name is required.</span>
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Phone No</span>
+                            <input type="number" class="form-control" placeholder="Phone No" ng-model="emrdata.emergencyphone" name="emergencyphone" required="" ng-minlength="10" ng-maxlength="14">
+                            <span ng-show="EmergencyForm.emergencyphone.$error.required" class="help-block ng-hide">Your phone Number is required.</span>
+                            <p ng-show="EmergencyForm.emergencyphone.$error.minlength" class="help-block ng-hide">Your phone Number must be minimum 10 characters</p>
+                            <p ng-show="EmergencyForm.emergencyphone.$error.maxlength" class="help-block ng-hide">Sorry You are Exceeding the Limit</p>
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Address details</span>
+                            <input type="text" class="form-control" placeholder="Address details" ng-model="emrdata.emergencyaddress" name="emergencyaddress" required="">
+                            <span ng-show="EmergencyForm.emergencyaddress.$invalid &amp;&amp; !EmergencyForm.emergencyaddress.$pristine" class="help-block ng-hide">Your address is required.</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="button button-small button-royal btn-rm" ng-disabled="EmergencyForm.$invalid || loginDisable" disabled="disabled">SAVE</button>
+                </form>
+            </div> <!-- col end -->
+        </div> <!-- row end -->
+    </ion-content>
+</ion-view>

@@ -1,0 +1,42 @@
+<style>
+/*.bar .button.button-clear{
+    display: none;
+}*/
+</style>
+<ion-view view-title="Rent details">
+    <!-- loading spinner -->
+    <!-- <ion-spinner ng-if="load" icon="ripple" class="spinner-assertive icon-loder"></ion-spinner> -->
+    <!-- loading spinner -->
+    <ion-content class="im-wrapper">
+        <div class="row input-row pad-mar" ng-if="properties.length"> <!-- row start -->
+            <div class="col pad-mar"> <!-- col start -->
+                <input type="hidden" ng-model="searchText" type="text" placeholder="Search Properties ..." class="input-pay-rent"/>
+
+                <input ng-model="$parent.searchText" type="text" class="input-pay-rent" placeholder="Search properties..">
+            </div> <!-- col end -->
+        </div> <!-- row end -->
+        <div class="row main-pay-rent pad-mar" ng-repeat="property in properties | filter: searchText | orderBy: 'propertyname'"> <!-- row start -->
+            <a ng-href="#/app/prty-fut-dts/{{ property.tenantpropertyid }}" class="all-pro">
+                <div class="col pad-mar col-bill-main"> <!-- col start -->
+                    <h3 class="property-name">
+                      {{property.propertyname}}
+                    </h3>
+                    <p class="button button-small button-royal btn-apt btn-pay-rent">
+                        Details
+                    </p>
+                    <p class="apt-address apt-location">
+                        <i class="ion-ios-location"></i>
+                        <em>{{property.address}}</em>
+                    </p>
+                </div> <!-- col end -->
+            </a>
+        </div> <!-- row end -->
+        <div class="row" ng-if="!properties.length && !load">
+            <div class="col">
+                <p class="text-center property-name">
+                    Oops...! Hurry up to rent/lease a property.
+                </p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

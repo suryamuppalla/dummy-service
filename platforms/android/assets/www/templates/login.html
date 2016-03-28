@@ -1,0 +1,79 @@
+<style type="text/css">
+.login-bar{
+    display: none;
+}
+.top-bar-header{
+    top: 0px;
+}
+.spinner svg{
+    width: 20%;
+    height: 80px;
+    margin: auto;
+    display: table;
+}
+form > p {
+    background: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 0px;
+    position: relative;
+    z-index: 999;
+}
+.spinner.spinner-assertive{
+    stroke: #fff;
+    fill: #fff;
+}
+.ionic_toast {
+    padding: 15px 25px !important;
+}
+a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 0.6px;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+    font-size: 15px;
+}
+</style>
+<ion-view class="main-wraper" view-title="Login">
+
+    <ion-content class="top-bar-header" delegate-handle="mainScroll">
+        <form name="myForm" ng-submit="UserLogin()"> <!-- login form start -->
+            <div class="min-form-all"> 
+                <div class="row">
+                    <div class="col col-offset-33 col-33">
+                        <img src="img/logo.png" class="text-center" style="display: table-cell;" />
+                    </div>
+                </div>
+                <h2 style="margin-top: 0;" class="log-hed">rent<strong>app</strong></h2>
+        
+                <h5 class="mgn-btm"></h5>
+                <div class="row" style="padding: 20px;"> <!-- first row start -->
+                    <div class="col"> <!-- first col start -->
+                        <div class="list"> <!-- list start -->
+                            <label class="item item-input item-log-txt">
+                                <input name="email" type="email" class="form-control filds-inputs email-field" id="email" placeholder="Email" ng-model="formData.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required autocomplete="off" ng-class="{ 'has-error': myForm.email.$invalid && myForm.email.$dirty }">
+                            </label>
+                            <label class="item item-input item-log-pas">
+                                <input type="password" class="form-control filds-inputs password-field" id="pwd" placeholder="Password" ng-model="formData.password" name="password" required autocomplete="off" ng-class="{ 'has-error': myForm.password.$invalid && myForm.password.$dirty }">
+                            </label>
+                            <button ng-disabled="!myForm.$valid || loginDisable" class="button button-small btn-login">
+                                LOGIN
+                            </button>
+                        </div> <!-- list end -->
+                    </div> <!-- first col end -->
+                </div> <!-- first row end -->
+
+                <div class="row">
+                    <div class="col text-center">
+                        <p>
+                            <a ng-href="#/app/signup">
+                                Signup with us
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div> <!-- main div form end -->
+        </form> <!-- login form end -->
+    </ion-content><!-- ionic content -->
+</ion-view>

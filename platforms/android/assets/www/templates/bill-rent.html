@@ -1,0 +1,153 @@
+<style type="text/css">
+.im-wrapper{
+    bottom: 40px;
+}
+</style>
+<ion-view view-title="Bill Payment">
+    <!-- loading spinner -->
+
+    <!-- loading spinner -->
+    <ion-content class="im-wrapper">
+        <span ng-if="details">
+            <div class="row pad-mar">
+                <div class="col pad-mar">
+                    <h3 class="property-name" style="text-transform:capitalize;">
+                        {{ details.tenantProperty.property.name }}
+                    </h3>
+                    <p class="">
+                        <i class="ion-ios-location"></i>
+                        <em>{{ details.tenantProperty.property.address }}</em>
+                    </p>
+                </div>
+            </div>
+            <div class="row bill-row-main pad-mar"> <!-- row start -->
+                <div class="col col-60 text-left pad-mar col-bill-main"> <!-- col start -->
+                    <p class="bill-name">
+                        <em>
+                            Rent Value
+                        </em>
+                    </p>
+                </div> <!-- col end -->
+                <div class="col col-40 text-right pad-mar col-bill-main"> <!-- col start -->
+                    <p class="bill-amount">
+                        <em>
+                            {{ details.tenantProperty.rentValue | currency : "AED " }}
+                        </em>
+                    </p>
+                </div> <!-- col end -->
+            </div> <!-- row end -->
+
+            <div class="row bill-row-main pad-mar"> <!-- row start -->
+                <div class="col col-60 text-left pad-mar col-bill-main"> <!-- col start -->
+                    <p class="bill-name">
+                        <em>
+                            Start Date
+                        </em>
+                    </p>
+                </div> <!-- col end -->
+                <div class="col col-40 text-right pad-mar col-bill-main"> <!-- col start -->
+                    <p class="bill-amount">
+                        <em>
+                            {{ details.tenantProperty.startDate.iso | date:'MM/dd/yyyy'}}
+                        </em>
+                    </p>
+                </div> <!-- col end -->
+            </div> <!-- row end -->
+
+            <div class="row bill-row-main pad-mar"> <!-- row start -->
+                <div class="col col-60 text-left pad-mar col-bill-main"> <!-- col start -->
+                    <p class="bill-name">
+                        <em>
+                            End Date
+                        </em>
+                    </p>
+                </div> <!-- col end -->
+                <div class="col col-40 text-right pad-mar col-bill-main"> <!-- col start -->
+                    <p class="bill-amount">
+                        <em>
+                            {{ details.tenantProperty.endDate.iso | date:'MM/dd/yyyy'}}
+                        </em>
+                    </p>
+                </div> <!-- col end -->
+            </div> <!-- row end -->
+
+            <div class="row bill-row-main pad-mar"> <!-- row start -->
+                <div class="col col-60 text-left pad-mar col-bill-main"> <!-- col start -->
+                    <p class="bill-name">
+                        <em>
+                            Payment Cycle
+                        </em>
+                    </p>
+                </div> <!-- col end -->
+                <div class="col col-40 text-right pad-mar col-bill-main"> <!-- col start -->
+                    <p class="bill-amount" style="margin-bottom:0px;">
+                        <em>
+                            <b ng-if="details.tenantProperty.paymentFreaquency == 365"> Daily</b>
+                            <b ng-if="details.tenantProperty.paymentFreaquency == 52"> Weekly</b>
+                            <b ng-if="details.tenantProperty.paymentFreaquency == 1"> Monthly</b>
+                            <b ng-if="details.tenantProperty.paymentFreaquency == 3"> Quaterly</b>
+                            <b ng-if="details.tenantProperty.paymentFreaquency == 6"> Bi-Anually</b>
+                            <b ng-if="details.tenantProperty.paymentFreaquency == 12"> Anually</b>
+                        </em>
+                    </p>
+                </div> <!-- col end -->
+            </div> <!-- row end -->
+
+            <div class="row bill-row-main pad-mar"> <!-- row start -->
+                <div class="col col-60 text-left pad-mar col-bill-main"> <!-- col start -->
+                    <p class="bill-name">
+                        <em>
+                            Amount To Be Paid
+                        </em>
+                    </p>
+                </div> <!-- col end -->
+                <div class="col col-40 text-right pad-mar col-bill-main"> <!-- col start -->
+                    <p class="bill-amount">
+                        <!--<em>
+                            {{amountobepaid.amountdata.pendingAmount + duerent.duedata.dueamount | currency : "AED "}}
+                        </em>-->
+                        <em>
+                            {{ details.amountToBePaid | currency : "AED " }}
+                        </em>
+                    </p>
+                </div> <!-- col end -->
+            </div> <!-- row end -->
+
+            <div class="row bill-row-main pad-mar"> <!-- row start -->
+                <div class="col col-60 text-left pad-mar col-bill-main"> <!-- col start -->
+                    <p class="bill-name">
+                        <em>
+                            Rent Due
+                        </em>
+                    </p>
+                </div> <!-- col end -->
+                <div class="col col-40 text-right pad-mar col-bill-main"> <!-- col start -->
+                    <p class="bill-amount">
+                        <em>
+                            {{ details.tenantProperty.rentValue - details.tenantProperty.rentPaid | currency : "AED " }}
+                        </em>
+                        <!--<em>
+                            {{ details.tenantProperty.rentPaid }}
+                        </em>-->
+                    </p>
+                </div> <!-- col end -->
+            </div> <!-- row end -->
+        </span>
+    </ion-content>
+    <div class="bar bar-footer bar-royal-900 footer-bar">
+        <div class="row pad-mar">
+            <div class="col col-60 pad-mar">
+                <button ng-click="goBack(tpId)" class="cancel-button" style="width:100%;">
+                    Cancel
+                </button>
+            </div>
+             <div class="col col-40 pad-mar">
+                <button ng-click="goPaymentUrl()" class="pay-button" style="width:100%;">
+                    <a>
+                        Pay
+                    </a>
+                </button>
+            </div>
+        </div>
+    </div>
+</ion-view>

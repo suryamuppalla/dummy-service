@@ -1,0 +1,87 @@
+﻿<style type="text/css">
+    .item{
+        border-color:rgba(31, 29, 29, 0.05) !important;
+    }
+    .avatar, .item-avatar .avatar {
+        border-radius: 0px;
+    }
+</style>
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-assertive login-bar">
+            <ion-nav-back-button class="no-text">
+            </ion-nav-back-button>
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+            </ion-nav-buttons>
+            <ion-nav-buttons side="right">
+                <!-- <button class="button button-icon button-clear ion-android-more-vertical" id="menu-popover" ng-click="popover.show($event)"></button> -->
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <!-- <button id="fab" class="button button-positive button-fab button-fab-bottom-right" >
+            <i class="icon ion-social-twitter"></i>
+        </button> -->
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left" ng-if="isAuthenticated()">
+        <ion-header-bar class="expanded">
+            <img src="img/logo.png" class="avatar motion spin fade">
+            <div class="menu-bottom">
+                {{ user.username }}
+            </div>
+            <div class="menu-bottom-right" ng-click="logout()">
+                Logout
+            </div>
+        </ion-header-bar>
+        <ion-content class="stable-bg has-expanded-header">
+            <ion-list>
+                <ion-item nav-clear menu-close ng-href="#/app/view-properties">
+                <i class="ion-android-home"></i>&nbsp;
+                    My Properties
+                </ion-item>
+
+                <ion-item nav-clear menu-close href="#/app/add-car">
+                <i class="ion-edit"></i>&nbsp;
+                    Add car
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/my-rent">
+                <i class="ion-ionic"></i>&nbsp;
+                    My Rent
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/mypayment">
+                <i class="ion-cash"></i>&nbsp;
+                    My Payment
+                </ion-item>
+                <!--<ion-item nav-clear menu-close href="#/app/paymenthistory">
+                <i class="ion-help-buoy"></i>&nbsp;
+                    Payment History
+                </ion-item>-->
+                
+                <ion-item nav-clear menu-close href="#/app/change-password">
+                <i class="ion-ios-unlocked"></i>&nbsp;
+                    Change Password
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/emergency">
+                <i class="ion-eject"></i>&nbsp;
+                    Emergency Contacts
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/aboutus">
+                <i class="ion-clipboard"></i>&nbsp;
+                    About Us
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/contactus">
+                <i class="ion-android-contact"></i>&nbsp;
+                    Contact Us
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/rating">
+                <i class="ion-ios-star"></i>&nbsp;
+                    Rate the App
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/subscribenow">
+                <i class="ion-thumbsup"></i>&nbsp;
+                    Subscribe now
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

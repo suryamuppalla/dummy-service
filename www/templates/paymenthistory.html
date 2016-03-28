@@ -1,0 +1,42 @@
+<style type="text/css">
+.has-header{
+    top: 44px;
+}
+</style>>
+<ion-view view-title="Payment History">
+    <!-- loading spinner -->
+    <ion-spinner ng-if="load" icon="ripple" class="spinner-assertive icon-loder"></ion-spinner>
+    <!-- loading spinner -->
+    <ion-content>
+        <span ng-if="paymentlist.length">
+            <div class="row third-row row-space-width" style="margin-top:0px;background: #f5f5f5;" ng-repeat="history in paymentlist" ng-show = "paymentlist.length"> <!-- third row start -->
+                <div class="col col-10 date-col"> <!-- first col start -->
+                    <p class="date-frm">{{$index + 1}}</p>
+                    <span class="mth-box">INS<span>
+                </div> <!-- first col end -->
+                <div class="col col-40 second-col-months"> <!-- second col start -->
+                    <!-- <p>3 Months</p> -->
+                    <strong class="str-color-amount" style="padding-left:10px;font-size:13px;">{{history.propertyname}}</strong>
+                    <p style="font-size:10px;">{{history.paiddate | date}}</p>
+                </div> <!-- second col end -->
+                <div class="col col-25" style="padding-top: 10px;"> <!-- third col start -->
+                        <strong class="str-color-amount">{{history.paidamount | currency: "AED "}}</strong>
+                    </div> <!-- third col end -->
+                <div class="col col-25 second-col-btn"> <!-- second col start -->
+                    <!-- <p>3 Months</p> -->
+                    <button class="button button-small btn-red-cor btn-apt" style="margin-top:5px;width:100%;" value="{{history.transactionstatus}}">
+                        DUE
+                    </button>
+                </div> <!-- second col end -->
+            </div> <!-- third row end -->
+        </span>
+        <div class="row" ng-if="!paymentlist.length && !load">
+            <div class="col">
+                <p class="text-center property-name">
+                    Oops...! Please pay the bills if any...!
+                </p>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

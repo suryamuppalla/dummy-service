@@ -1,0 +1,63 @@
+<style>
+.tooltipster-base{
+    margin: 15px 0px 0px -5px;
+}
+.tooltipster-default{
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #0866c6 !important;
+}
+.tooltipster-default .tooltipster-content{
+    font-size: 12px;
+    padding: 3px 10px;
+}
+</style>
+<ion-view view-title="View properties">
+    <!-- loading spinner -->
+    <!-- <ion-spinner ng-if="load" icon="ripple" class="spinner-assertive icon-loder"></ion-spinner> -->
+    <!-- loading spinner -->
+    <ion-content class="im-wrapper">
+        <div class="row input-row pad-mar" ng-if="properties.length"> <!-- row start -->
+            <div class="col pad-mar"> <!-- col start -->
+                <input type="hidden" ng-model="searchText" type="text" placeholder="Search Properties ..." class="input-pay-rent"/>
+
+
+                <input ng-model="$parent.searchText" type="text" class="input-pay-rent" placeholder="Search properties..">
+            </div> <!-- col end -->
+        </div> <!-- row end -->
+
+    <div ng-repeat="property in properties | filter:searchText | orderBy: 'propertyname'" style="border-bottom: 1px solid #ddd;">
+        <div class="row main-pay-rent pad-mar" style="border:none;"> <!-- row start -->
+            <a ng-href="#/app/property-details/{{ property.tenantpropertyid }}" class="all-pro">
+                <div class="col pad-mar col-bill-main" style="margin-bottom: 0px !important;"> <!-- col start -->
+                    <h3 class="property-name">
+                      {{property.propertyname}}
+                    </h3>
+                    <p class="button button-small button-royal btn-apt btn-pay-rent">
+                    PAY RENT
+                    </p>
+                    <p class="apt-address apt-location" style="margin-top: 10px;">
+                        <i class="ion-ios-location"></i>
+                        <em>{{property.address}}</em>
+                    </p>
+                </div> <!-- col end -->
+            </a>
+        </div> <!-- row end -->
+        <div class="row pad-mar row-pad-timeline"> <!-- second row start -->
+            <div class="col pad-mar rpt-col">
+                <span class="rpt-span">
+                    <i title="{{ data.status }} for {{ data.dueDate.iso  | date : 'd MMM yyyy' : 'UTC'}}" ng-class="{'color-grey ion-close-circled': data.status == 'due' || data.status == 'pending', 'color-green ion-checkmark-circled': data.status == 'paid'}" ng-repeat="data in property.list | orderBy: 'dueDate.iso'" ng-click="data_{{ data.objectId }} = !data_{{ data.objectId }}" class="i_for_loop tooltip" animation="fade"></i>
+                </span>
+            </div>
+        </div> <!-- second row end -->
+    </div>
+        <div class="row" ng-if="!properties.length && !load">
+            <div class="col">
+                <p style="margin-top: 4px;" class="text-center property-name">
+                    Oops...! Hurry up to rent/lease a property.
+                </p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,77 @@
+<style>
+.loading-container .loading{
+    padding: 0px;
+}
+.backdrop{
+    background: none;
+}
+</style>
+<ion-view view-title="Edit Profile">
+    <ion-content class="im-wrapper2">
+        <div class="row">
+            <div class="col text-center">
+                <h4>
+                    Editing profile information
+                </h4>
+            </div>
+        </div>
+        <div class="row pad"> <!-- row start -->
+            <div class="col pad"> <!-- col start -->
+                <form name="userForm" ng-submit="SavePersonalData()">
+                <div class="list">
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">First Name</span>
+                        <input type="text" class="form-control" placeholder="First Name" ng-model="perdata.firstname" name="firstname" required="" ng-class="{ 'has-error': myForm.firstname.$invalid && myForm.firstname.$dirty }">
+                        <span ng-show="userForm.firstname.$invalid &amp;&amp; !userForm.firstname.$pristine" class="help-block ng-hide">Your firstname is required.</span>
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Last Name</span>
+                        <input type="text" class="form-control" placeholder="Last Name" ng-model="perdata.lastname" name="lastname" required="" ng-class="{ 'has-error': myForm.lastname.$invalid && myForm.lastname.$dirty }">
+                        <span ng-show="userForm.lastname.$invalid &amp;&amp; !userForm.lastname.$pristine" class="help-block ng-hide">Your lastname is required.</span>
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Personal Email</span>
+                        <!-- <label>Personal Email</label> -->
+                        <p style="margin:5px 0px;">{{perdata.email}}</p>
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Phone No</span>
+                        <input type="number" class="form-control" placeholder="Phone No" ng-model="perdata.phone" name="phone" required="" ng-minlength="10" ng-maxlength="14">
+                        <span ng-show="userForm.phone.$error.required" class="help-block ng-hide">Your phone Number is required.</span>
+                        <p ng-show="userForm.phone.$error.minlength" class="help-block ng-hide">Your phone Number must be minimum 10 characters</p>
+                        <p ng-show="userForm.phone.$error.maxlength" class="help-block ng-hide">Sorry You are Exceeding the Limit</p>
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Address line1</span>
+                        <input type="text" class="form-control" placeholder="Address line1" ng-model="perdata.address1" name="address1" required="">
+                        <span ng-show="userForm.address1.$invalid &amp;&amp; !userForm.address1.$pristine" class="help-block ng-hide">Your address line1 is required.</span>
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Address line2</span>
+                        <input type="text" class="form-control" placeholder="Address line2" ng-model="perdata.address2" name="address2" required="">
+                        <span ng-show="userForm.address2.$invalid &amp;&amp; !userForm.address2.$pristine" class="help-block ng-hide">Your address line2 is required.</span>
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">City</span>
+                        <input type="text" class="form-control" placeholder="City" ng-model="perdata.city" name="city" required="">
+                        <span ng-show="userForm.city.$invalid &amp;&amp; !userForm.city.$pristine" class="help-block ng-hide">Your city is required.</span>
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Country</span>
+                        <input type="text" class="form-control" placeholder="Country" ng-model="perdata.country" name="country" required="">
+                        <span ng-show="userForm.country.$invalid &amp;&amp; !userForm.country.$pristine" class="help-block ng-hide">Your country is required.</span>
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Pobox</span>
+                        <input type="number" class="form-control" placeholder="Pobox" ng-model="perdata.pobox" name="pobox" required="">
+                        <span ng-show="userForm.pobox.$invalid &amp;&amp; !userForm.pobox.$pristine" class="help-block ng-hide">Your pobox is required.</span>
+                    </label>
+                </div>
+                    <button type="submit" class="button button-small button-royal btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">
+                        Save
+                    </button>
+                </form>
+            </div> <!-- col end -->
+        </div> <!-- row end -->
+    </ion-content>
+</ion-view>

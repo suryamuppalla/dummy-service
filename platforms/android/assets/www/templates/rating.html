@@ -1,0 +1,21 @@
+<ion-view view-title="Rating">
+    <ion-content class="im-wrapper2">
+        <div class="row pad"> <!-- row start -->
+            <div class="col pad"> <!-- col Start -->
+                <h4 class="text-center">
+                    Rate the app
+                </h4>
+                <form name="myform" ng-submit="rateapp()">
+                    <rating ng-model="data.rating" max="data.max" class="rating-min"></rating>
+                    <label class="item item-input item-stacked-label">
+                        <!-- <span class="input-label">Review</span> -->
+                        <textarea rows="4" cols="50" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-touched" placeholder="Review" ng-model="data.add_review" name="review" ng-minlength="5" required=""></textarea>
+                        <p ng-show="myform.review.$error.required &amp;&amp; myform.review.$dirty" class="help-block ng-hide">Review is required</p>
+                        <p ng-show="!myform.review.$error.required &amp;&amp; (myform.review.$error.minlength || myform.review.$error.maxlength) &amp;&amp; myform.review.$dirty" class="help-block ng-hide">Review must be minimum 5 characters</p>
+                    </label>
+                    <button type="submit" class="button button-small button-royal btn-apt btn-rm" ng-disabled="!myform.$valid || loginDisable" disabled="disabled" style="margin-top:20px;min-height:35px;">SUBMIT</button>
+                </form>
+            </div> <!-- col end -->
+        </div> <!-- row end -->
+    </ion-content>
+</ion-view>

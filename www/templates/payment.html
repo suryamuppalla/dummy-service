@@ -1,0 +1,53 @@
+<ion-view view-title="Payment">
+    <!-- loading spinner -->
+    <ion-spinner ng-if="load" icon="ripple" class="spinner-assertive icon-loder"></ion-spinner>
+    <!-- loading spinner -->
+    <ion-content class="im-wrapper2">
+        <div class="row"> <!-- row start -->
+            <div class="col text-center"> <!-- col start -->
+                <h4>Payment for {{amountobepaid.amountdata.pendingAmount + duerent.duedata.dueamount | currency : "AED "}}</h4>
+            </div> <!-- row end -->
+        </div> <!-- col end -->
+        <div class="row pad"> <!-- row start -->
+            <div class="col pad"> <!-- col start -->
+                <form role="form" name="userForm" ng-submit="Payment()">
+                    <div class="list">
+                        <label class="item item-input item-stacked-label">
+                        <!-- <span class="input-label">Card Number</span> -->
+                            <input type="number" class="form-control" placeholder="Card Number" ng-model="cardnumber" name="cardnumber" ng-required="true" ng-minlength="16" wm-block wm-block-length="cardNumber">
+
+                            <span ng-show="userForm.cardnumber.$error.required&& userForm.cardnumber.$dirty" class="help-block ng-hide">Your cardnumber is required.</span>
+                            <p ng-show="userForm.cardnumber.$error.minlength" class="help-block ng-hide">minimum 16 characters</p>
+                            <!-- <p ng-show="userForm.cardnumber.$error.maxlength" class="help-block ng-hide">maximum 16 characters</p> -->
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                        <!-- <span class="input-label">CVV</span> -->
+                            <input type="number" class="form-control" placeholder="CVV" ng-model="cvv" name="cvv" required="" ng-minlength="3" wm-block wm-block-length="cvvNumber">
+                            <span ng-show="userForm.cvv.$error.required&& userForm.cvv.$dirty" class="help-block ng-hide">Your cvv is required.</span>
+                            <p ng-show="userForm.cvv.$error.minlength" class="help-block ng-hide">minimum 3 characters</p>
+                        </label>
+                        <label class="item item-input item-stacked-label mth-year">
+                        <!-- <span class="input-label">MM</span> -->
+                            <input type="number" class="form-control" placeholder="MM" ng-model="month" name="month" required="" ng-minlength="1" wm-block wm-block-length="monthNumber" max="12">
+                            <span ng-show="userForm.month.$error.required&& userForm.month.$dirty" class="help-block ng-hide">Your month is required.</span>
+                            <p ng-show="userForm.month.$error.max" class="help-block ng-hide">Enter valid month</p>
+                        </label>
+                        <label class="item item-input item-stacked-label mth-year">
+                        <!-- <span class="input-label">YY</span> -->
+                            <input type="number" class="form-control" placeholder="YY" ng-model="year" name="year" required="" wm-block wm-block-length="yearNumber" min="16" max="99">
+                            <span ng-show="userForm.year.$error.required&& userForm.year.$dirty" class="help-block ng-hide">year is required.</span>
+                            <p ng-show="userForm.year.$error.min" class="help-block ng-hide">Enter valid year</p>
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                        <!-- <span class="input-label">Email Address</span> -->
+                            <input type="text" class="form-control" placeholder="Email Address" ng-model="email" name="email" required="" ng-minlength="3" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">
+                            <p ng-show="userForm.email.$error.required && userForm.email.$dirty" class="help-block">Email is required</p>
+                            <p ng-show="userForm.email.$error.pattern" class="help-block">Invalid email</p>
+                        </label>
+                    </div>
+                    <button type="submit" class="button button-small button-royal btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">Pay Now</button>
+                </form>
+            </div> <!-- col end -->
+        </div> <!-- row end -->
+    </ion-content>
+</ion-view>

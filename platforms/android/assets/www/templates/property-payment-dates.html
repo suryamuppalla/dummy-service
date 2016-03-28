@@ -1,0 +1,56 @@
+<style type="text/css">
+.has-header{
+    top: 44px;
+}
+</style>>
+<ion-view view-title="Previous payments">
+    <!-- loading spinner -->
+    <ion-spinner ng-if="load" icon="ripple" class="spinner-assertive icon-loder"></ion-spinner>
+    <!-- loading spinner -->
+    <ion-content>
+        <span ng-if="pastdates.length">
+           <!-- upcoming  start-->
+            <div class="row pad-mar" style="margin-top:10px;"> <!-- up comming row start -->
+                <div class="col col-33 pad-mar up-cmng text-center"> <!-- up comming col start -->
+                    <span class="up-cmng-span">Previous</span>
+                </div> <!-- up comming col end -->
+            </div> <!-- up comming row end -->
+
+            <div class="row third-row row-space-width" style="margin-top:0px;background: #f5f5f5;" ng-repeat="pastdate in pastdates |  orderBy:'count':true" ng-if="pastdates.length > 0"> <!-- third row start -->
+                <div class="col col-10 date-col"> <!-- first col start -->
+                    <p class="date-frm">{{pastdate.count}}</p>
+                    <span class="mth-box">INS<span>
+                </div> <!-- first col end -->
+                <div class="col col-40 second-col-months"> <!-- second col start -->
+                    <!-- <p>3 Months</p> -->
+                    <span>{{pastdate.past | date : "MMM d, y" : "UTC"}}</span>
+                </div> <!-- second col end -->
+                <div class="col col-25" style="padding-top: 10px;"> <!-- third col start -->
+                    <strong class="str-color-amount">{{pastdate.paidamount|currency:"AED "}}</strong>
+                </div> <!-- third col end -->
+                <div class="col col-25 second-col-btn"> <!-- second col start -->
+                    <!-- <p>3 Months</p> -->
+                    <div ng-if='pastdate.paystatus == "pending"'>
+                        <button ng-disabled="true" class="button button-small button-royal btn-apt" style="margin-top:5px;width:100%;background: rgba(255, 0, 0, 0.25) !important;" value="{{pastdate.paystatus}}">
+                        Pending
+                        </button>
+                    </div>
+                     <div ng-if='pastdate.paystatus == "paid"'>
+                        <button ng-disabled="true" class="button button-small button-royal btn-apt"
+                                style="margin-top:5px; color: #fff;width:100%;background: #228B22 !important;" value="{{pastdate.paystatus}}">
+                            paid
+                        </button>
+                    </div>
+                </div> <!-- second col end -->
+            </div> <!-- third row end -->
+        </span>
+        <div class="row" ng-if="!pastdates.length">
+            <div class="col">
+                <p class="text-center property-name">
+                    Oops...! Hurry up to rent/lease a property.
+                </p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+

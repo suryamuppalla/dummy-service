@@ -1,0 +1,25 @@
+<ion-view view-title="Subscribe Now">
+    <ion-content class="im-wrapper2">
+        <div class="row">
+            <div class="col text-center">
+                <h4>
+                    Subscribe now
+                </h4>
+            </div>
+        </div>
+        <div class="row pad"> <!-- row start -->
+            <div class="col pad"> <!-- col start -->
+                <form role="form" name="userForm" ng-submit="subscribe()">
+                    <div class="list">
+                        <label class="item item-input item-stacked-label">
+                        <!-- <span class="input-label">Enter Email</span> -->
+                            <input type="email" class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required" placeholder="Enter Email" ng-model="subdata.email" name="email" required="">
+                            <span ng-show="userForm.email.$invalid &amp;&amp; !userForm.email.$pristine" class="help-block ng-hide">Your Email address is required.</span>
+                        </label>
+                    </div>
+                    <button type="submit" name="go" class="button button-small button-royal btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">SUBSCRIBE</button>
+                </form>
+            </div> <!-- col end -->
+        </div> <!-- row end -->
+    </ion-content>
+</ion-view>

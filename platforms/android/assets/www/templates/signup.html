@@ -1,0 +1,111 @@
+<style type="text/css">
+.bar-assertive{
+    display: none;
+}
+.has-header{
+    top: 0px;
+}
+.spinner svg{
+    width: 20%;
+    height: 80px;
+    margin: auto;
+    display: table;
+}
+.spinner.spinner-assertive{
+    stroke: #fff;
+    fill: #fff;
+}
+.ionic_toast {
+    padding: 15px 25px !important;
+}
+a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 0.6px;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+    font-size: 15px;
+}
+</style>
+<ion-view class="main-wraper" view-title="Signup">
+
+    <!-- loading spinner -->
+    <!--<ion-spinner ng-if="load" icon="ripple" class="spinner-assertive"></ion-spinner>-->
+    <!-- loading spinner -->
+
+    <ion-content class="min-form-all" delegate-handle="mainScroll">
+        <div class="row">
+            <div class="col col-offset-33 col-33">
+                <img src="img/logo.png" class="text-center" style="display: table-cell;" />
+            </div>
+        </div>
+        <h2 style="margin-top: 0;" class="log-hed">rent<strong>app</strong></h2>
+        <h5 class="mgn-btm"></h5>
+        <div class="row" style="padding: 20px;"> <!-- first row start -->
+            <div class="col"> <!-- first col start -->
+                <form name="myForm" ng-submit="UserRegister()" autocomplete="off"> <!-- login form start -->
+                    <div class="list"> <!-- list start -->
+                        <label class="item item-input item-sin-cmn item-log-txt">
+                            <input name="civilid" type="text" class="form-control filds-inputs border-field" id="civilid" placeholder="Civilid" ng-model="civilid" ng-minlength="3" ng-pattern="/[A-z0-9]*$/" required auto ng-class="{ 'has-error': myForm.civilid.$invalid && myForm.civilid.$dirty }">
+                            <span ng-show="myForm.civilid.$error.required && myForm.civilid.$dirty" class="error-msg">Required</span>
+                            <span ng-show="!myForm.civilid.$error.minLength && !myForm.civilid.$error.maxLength && myForm.civilid.$error.pattern && myForm.civilid.$dirty" class="error-msg">Must start with a letter</span>
+                            <span ng-show="!myForm.civilid.$error.required && (myForm.civilid.$error.minlength || myForm.civilid.$error.maxlength) && myForm.civilid.$dirty" class="error-msg">Atleast 3 characters.</span>
+                        </label>
+                        <label class="item item-input item-sin-cmn">
+                            <input autocomplete="off" name="firstname" type="text" class="form-control filds-inputs comman-field" id="firstname" placeholder="First name" ng-model="firstname" ng-minlength="3" ng-maxlength="20" required ng-class="{ 'has-error': myForm.firstname.$invalid && myForm.firstname.$dirty }">
+                            <span ng-show="myForm.firstname.$error.required && myForm.firstname.$dirty" class="error-msg">Required</span>
+                            <span ng-show="!myForm.firstname.$error.required && (myForm.firstname.$error.minlength || myForm.firstname.$error.maxlength) && myForm.firstname.$dirty" class="error-msg" class="error-msg">Atleast 3 characters.</span>
+                        </label>
+                        <label class="item item-input item-sin-cmn">
+                            <input name="lastname" type="text" class="form-control filds-inputs comman-field" id="lastname" placeholder="Last name" ng-model="lastname" ng-minlength="3" ng-maxlength="20" required ng-class="{ 'has-error': myForm.lastname.$invalid && myForm.lastname.$dirty }">
+                            <span ng-show="myForm.lastname.$error.required && myForm.lastname.$dirty" class="error-msg">Required</span>
+                            <span ng-show="!myForm.lastname.$error.required && (myForm.lastname.$error.minlength || myForm.lastname.$error.maxlength) && myForm.lastname.$dirty" class="error-msg" class="error-msg">Atleast 3 characters.</span>
+                        </label>
+                        <label class="item item-input item-sin-cmn">
+                            <input name="email" type="email" class="form-control filds-inputs comman-field" id="email" placeholder="Email" ng-model="email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required ng-class="{ 'has-error': myForm.email.$invalid && myForm.email.$dirty }">
+                            <span ng-show="myForm.email.$error.required && myForm.email.$dirty" class="error-msg">Required</span>
+                            <span ng-show="!myForm.email.$error.required && myForm.email.$error.email && myForm.email.$dirty" class="error-msg">Invalid email</span>
+                        </label>
+                        <label class="item item-input item-sin-cmn">
+                            <input name="phone" type="number" class="form-control filds-inputs comman-field" placeholder="Phone number" ng-model="phone" ng-minlength="10" ng-maxlength="15" required ng-class="{ 'has-error': myForm.phone.$invalid && myForm.phone.$dirty }">
+                            <span ng-show="myForm.phone.$error.required && myForm.phone.$dirty" class="error-msg">Required</span>
+                            <span ng-show="!myForm.phone.$error.required && (myForm.phone.$error.minlength || myForm.phone.$error.maxlength) && myForm.phone.$dirty" class="error-msg" class="error-msg">Must be 10 to 15 digits.</span>
+                        </label>
+                        <label class="item item-input item-sin-cmn">
+                            <input class="form-control filds-inputs comman-field" type="password" id="password" name="password" ng-model="password"  required placeholder="Password" ng-minlength="5" ng-maxlength="20" ng-class="{ 'has-error': myForm.password.$invalid && myForm.password.$dirty }"/>
+                            <span ng-show="myForm.password.$error.required &amp;&amp; myForm.password.$dirty" class="error-msg ng-hide">
+                                required
+                            </span>
+                            <span ng-show="myForm.password.$error.minlength" class="error-msg ng-hide">
+                                Passwords must be between 5 and 20 characters.
+                            </span>
+                        </label>
+                        <label class="item item-input item-sin-cmn item-log-pas">
+                            <input class="form-control" type="password" id="verify" name="verify" ng-model="password_c" placeholder="Confirm password" ng-class="{ 'has-error': myForm.verify.$error.nxEqualEx }" required nx-equal-ex="password">
+                            <span class="error-msg" ng-show="myForm.verify.$error.required && myForm.verify.$dirty">Required!</span>
+                            <span class="error-msg" ng-show="myForm.verify.$error.nxEqualEx">Passwords do not match.</span>
+                        </label>
+                        <label class="item item-input item-sin-cmn item-log-pas">
+                            <input name="companyname" type="text" class="form-control filds-inputs border-bottom-field" placeholder="Company name" ng-model="companyname" ng-minlength="3" ng-maxlength="20" required ng-class="{ 'has-error': myForm.companyname.$invalid && myForm.companyname.$dirty }">
+                            <span ng-show="myForm.companyname.$error.required && myForm.companyname.$dirty" class="error-msg">Required</span>
+                            <span ng-show="!myForm.companyname.$error.required && (myForm.companyname.$error.minlength || myForm.companyname.$error.maxlength) && myForm.companyname.$dirty" class="error-msg" class="error-msg">Must be 3 to 20 characters.</span>
+                        </label>
+                        <button type="submit" style="margin-bottom: 0px;" class="button button-small btn-login" ng-disabled="!myForm.$valid || loginDisable">
+                            Sign Up
+                        </button>
+                    </div> <!-- list end -->
+                </form> <!-- login form end -->
+            </div> <!-- first col end -->
+        </div> <!-- first row end -->
+
+        <div class="row">
+            <div class="col text-center">
+                <p>
+                    <a ng-href="#/app/login">
+                        Goto Login
+                    </a>
+                </p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

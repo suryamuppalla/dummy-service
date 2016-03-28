@@ -1,0 +1,35 @@
+<ion-view view-title="Contact Us">
+    <ion-content class="im-wrapper2">
+        <div class="row">
+            <div class="col text-center">
+                <h4>
+                    Contact us
+                </h4>
+            </div>
+        </div>
+        <div class="row pad"> <!-- row start -->
+            <div class="col pad"> <!-- col start -->
+                <form role="form" name="userForm" ng-submit="contactus()">
+                    <div class="list">
+                        <label class="item item-input item-stacked-label">
+                        <!-- <span class="input-label">First Name</span> -->
+                            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" placeholder="First Name" ng-model="cdata.firstname" name="firstname" required="">
+                            <span ng-show="userForm.firstname.$invalid &amp;&amp; !userForm.firstname.$pristine" class="help-block ng-hide">Your firstname is required.</span>
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                        <!-- <span class="input-label">Last Name</span> -->
+                            <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" placeholder="Last Name" ng-model="cdata.lastname" name="lastname" required="">
+                            <span ng-show="userForm.lastname.$invalid &amp;&amp; !userForm.lastname.$pristine" class="help-block ng-hide">Your lastname is required.</span>
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                        <!-- <span class="input-label">Message</span> -->
+                            <textarea rows="4" cols="50" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" placeholder="Message" ng-model="cdata.Message" name="Message" required=""></textarea>
+                            <span ng-show="userForm.Message.$invalid &amp;&amp; !userForm.Message.$pristine" class="help-block ng-hide">Message is required.</span>
+                        </label>
+                    </div>
+                    <button type="submit" name="go" class="button button-small button-royal btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">SUBMIT</button>
+                </form>
+            </div> <!-- col end -->
+        </div> <!-- row end -->
+    </ion-content>
+</ion-view>
