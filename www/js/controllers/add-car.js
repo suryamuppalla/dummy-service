@@ -1,22 +1,8 @@
 app.controller('EditProfileCtrl', ['$scope', '$state', '$location', '$auth', '$timeout', 
 
-    '$rootScope', '$window', '$q', 'ionicToast','$ionicLoading' ,'$ionicHistory', function($scope, $state, $location, $auth, $timeout, 
-    $rootScope, $window, $q, ionicToast,$ionicLoading, $ionicHistory) {
+    '$rootScope', '$window', '$q', 'ionicToast','$ionicLoading' ,'$ionicHistory', 'CarService', function($scope, $state, $location, $auth, $timeout, 
+    $rootScope, $window, $q, ionicToast,$ionicLoading, $ionicHistory, CarService) {
 
-      $scope.items = [
-        {display: 'Hello'},
-        {display: 'Baha'},
-        {display: 'Ala'},
-        {display: 'Siwar'},
-        {display: 'Monira'},
-        {display: 'Samir'},
-        {display: 'Spange Bob'},
-        {display: 'Deneris Targariant'},
-        {display: 'Ned Stark'}
-    ];
-    $scope.onSelect = function (item) {
-        console.log('item', item);
-    };
       console.log('add car controller');
 
       var Cars = Parse.Object.extend("Cars");
@@ -25,8 +11,8 @@ app.controller('EditProfileCtrl', ['$scope', '$state', '$location', '$auth', '$t
 
       $scope.addCar = function () {
          /* body... */ 
-         query.set('name', this.car.name);
-         query.set('model', this.car.model);
+         query.set('name', this.car.name.toLowerCase());
+         query.set('model', this.car.model.toLowerCase());
          query.set('manufactured', this.car.manufactured);
          query.set('lastService', this.car.lastService);
          query.save().then(function (success) {
@@ -62,11 +48,11 @@ app.directive('ionicAutocomplete',
                 params: '=ionicAutocomplete',
                 inputSearch: '=ngModel'
             },
-            link: function ($scope, $element, $attrs) {
+            link: function ($scope, $element, $attrs, CarService) {
                 var popoverShown = false;
                 var popover = null;
                 $scope.items = $scope.params.items;
-
+                console.log('items is -->>>', $scope.items)
                 //Add autocorrect="off" so the 'change' event is detected when user tap the keyboard
                 $element.attr('autocorrect', 'off');
 

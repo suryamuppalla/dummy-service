@@ -12,15 +12,10 @@ app.controller('LoginCtrl', ['$scope', '$state', '$location', '$auth', '$timeout
     Parse.User.logIn(this.formData.email, this.formData.password)
     .then(function(user) {
 
-      var Tenant = Parse.Object.extend("Tenant");
-      var query = new Parse.Query(Tenant);
-      query.equalTo("UserPointer", user);
-      
-      query.first().then(function(obj) {
-        $scope.$apply($rootScope.firstname = obj.get("FirstName"));
+      $scope.$apply($rootScope.firstname = user.get("firstName"));
 
-        if (obj.get("active") == false){
-            // toastr.error("Please activate your account");
+        if (user.get("emailVerified") == false){
+            ionicToast.show('Please activate your account!', 'top', false, 5000);
         }
         else{
             
@@ -29,12 +24,8 @@ app.controller('LoginCtrl', ['$scope', '$state', '$location', '$auth', '$timeout
             $ionicHistory.nextViewOptions({
                 disableBack: true
             });
-            $state.go('app.view-properties');
-            // $window.location.reload();
+            $state.go('app.view-cars');
         }
-      }, function(h, error) {
-        console.log(error.code, error.message);
-      });
 
     }, function (error) {
       $scope.loginDisable = false;
