@@ -1,17 +1,17 @@
 app
 // for getting the cars list
-.service('CarService', ['$q', function($q) {
+.service('VehicleService', ['$q', function($q) {
 
     var service = {
-        getCars: getCars
+        getVehicles: getVehicles
     }
 
     return service;
 
-    function getCars(value) {
+    function getVehicles(value) {
         var def = $q.defer();
-        var Cars = Parse.Object.extend("Cars");
-        var query = new Parse.Query(Cars);
+        var Vehicle = Parse.Object.extend("Vehicle");
+        var query = new Parse.Query(Vehicle);
 
         // query.startsWith('name', value);
         query.find().then(function (list) {
