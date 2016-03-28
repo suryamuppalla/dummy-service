@@ -32,6 +32,26 @@ app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$ti
 
          console.log(this.vehicle)
       }
+
+
+    // image upload code start
+    $scope.myImage='';
+    $scope.myCroppedImage='';
+
+    var handleFileSelect=function(evt) {
+      var file=evt.currentTarget.files[0];
+      var reader = new FileReader();
+      reader.onload = function (evt) {
+        $scope.$apply(function($scope){
+          $scope.myImage=evt.target.result;
+          $(".cropArea").show();
+          $(".src-image").show();
+        });
+      };
+      reader.readAsDataURL(file);
+    };
+    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+    
 }]);
 
 app.directive('ionicAutocomplete',
