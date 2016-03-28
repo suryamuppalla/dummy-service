@@ -863,3 +863,44 @@ ul.rating{
 a{
   text-decoration: none;
 }
+.src-image{
+  padding:10px !important;
+}
+.src-image .col img{
+  margin: auto;
+  display: table;
+}
+
+.custom-file-input {
+  color: transparent;
+  line-height: 25px !important;
+  padding:0px !important;
+  margin: 0px !important;
+  width: 99% !important;
+  height: 35px !important;
+}
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'Select image';
+  color: #AAA;
+  display: inline-block;
+  padding: 5px 0px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active {
+  outline: 0;
+}
+.list-all{
+  margin-bottom: 10px !important;
+}
+.src-image-all{
+  margin: 10px;
+}
