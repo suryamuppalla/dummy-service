@@ -3,6 +3,12 @@
   top: 30%;
   left: 5%
 }
+.item-select select{
+    position: relative !important;
+    direction: initial;
+    padding:8px 0px;
+    color: #aaa;
+}
 </style>
 <ion-view view-title="Vehicle problem">
     <ion-content>
@@ -15,23 +21,24 @@
         </div>
         <div class="row pad-mar"> <!-- row start -->
             <div class="col pad-mar"> <!-- col start -->
-                <form name="userForm">
+                <form name="userForm" ng-submit="sendProblem()">
                   <div class="list">
-                      <label class="item item-input item-stacked-label">
-                        <input type="text" class="form-control" placeholder="Vehicle Name" ng-model="vehicle.name" name="vehiclename" required="" ng-class="{ 'has-error': myForm.vehiclename.$invalid && myForm.vehiclename.$dirty }" autocomplete="off">
-                        <span ng-show="userForm.vehiclename.$invalid &amp;&amp; !userForm.vehiclename.$pristine" class="help-block ng-hide">vehicle name is required.</span>
+                      <label class="item item-input item-stacked-label item-select">
+                        <select ng-init="vehicle.type = ''" ng-model="vehicle.type">
+                            <option selected="selected" value="">Select vehicle</option>
+                            <option ng-repeat="data in vehicles" value="{{ data.objectId }}">
+                              {{ data.name }}
+                            </option>
+                            
+                        </select>
                     </label>
                     <label class="item item-input item-stacked-label">
-                        <input type="text" class="form-control" placeholder="Vehicle Model" ng-model="vehicle.model" name="vehiclemodel" required="" ng-class="{ 'has-error': myForm.vehiclemodel.$invalid && myForm.vehiclemodel.$dirty }" autocomplete="off">
-                        <span ng-show="userForm.vehiclemodel.$invalid &amp;&amp; !userForm.vehiclemodel.$pristine" class="help-block ng-hide">Vehicle model is required.</span>
-                    </label>
-                      <label class="item item-input item-stacked-label">
-                          <textarea placeholder="Description" name"description" ng-model="car.description" ng-class="{ 'has-error': userForm.description.$invalid && userForm.description.$dirty }" autocomplete="off" required=""></textarea>
+                          <textarea placeholder="Description" name"description" ng-model="vehicle.description" ng-class="{ 'has-error': userForm.description.$invalid && userForm.description.$dirty }" autocomplete="off" required=""></textarea>
                           <span ng-show="userForm.description.$invalid &amp;&amp; !userForm.description.$pristine" class="help-block ng-hide">Description is required.</span>
                       </label>
                   </div>
                     <button type="submit" class="button button-small button-royal btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">
-                        Save
+                        Send request
                     </button>
                 </form>
             </div> <!-- col end -->

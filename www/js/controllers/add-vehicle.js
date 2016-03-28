@@ -1,7 +1,7 @@
 app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$timeout', 
 
-    '$rootScope', '$window', '$q', 'ionicToast','$ionicLoading' ,'$ionicHistory', 'CarService', function($scope, $state, $location, $auth, $timeout, 
-    $rootScope, $window, $q, ionicToast,$ionicLoading, $ionicHistory, CarService) {
+    '$rootScope', '$window', '$q', 'ionicToast','$ionicLoading' ,'$ionicHistory', 'VehicleService', function($scope, $state, $location, $auth, $timeout, 
+    $rootScope, $window, $q, ionicToast,$ionicLoading, $ionicHistory, VehicleService) {
 
       console.log('add Vehicle controller');
 
@@ -50,7 +50,7 @@ app.directive('ionicAutocomplete',
                 params: '=ionicAutocomplete',
                 inputSearch: '=ngModel'
             },
-            link: function ($scope, $element, $attrs, CarService) {
+            link: function ($scope, $element, $attrs, VehicleService) {
                 var popoverShown = false;
                 var popover = null;
                 $scope.items = $scope.params.items;
