@@ -20,16 +20,28 @@
                 </h4>
             </div>
         </div>
+        <!-- directive call -->
+        <!--  ionic-autocomplete="{items: items, onSelect:onSelect}" -->
         <div class="row pad"> <!-- row start -->
             <div class="col pad"> <!-- col start -->
                 <form name="userForm" ng-submit="addCar()">
                 <div class="list">
                     <label class="item item-input item-stacked-label">
-                        <input type="text" class="form-control" placeholder="First Name" ng-model="car.name" name="firstname" required="" ng-class="{ 'has-error': myForm.firstname.$invalid && myForm.firstname.$dirty }" ionic-autocomplete="{items: items, onSelect:onSelect}" autocomplete="off">
+                       <label class="item item-input item-select">
+                        
+                        <select>
+                          <option>Blue</option>
+                          <option selected>Green</option>
+                          <option>Red</option>
+                        </select>
+                      </label>
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <input type="text" class="form-control" placeholder="First Name" ng-model="car.name" name="firstname" required="" ng-class="{ 'has-error': myForm.firstname.$invalid && myForm.firstname.$dirty }" autocomplete="off">
                         <span ng-show="userForm.firstname.$invalid &amp;&amp; !userForm.firstname.$pristine" class="help-block ng-hide">Your firstname is required.</span>
                     </label>
                     <label class="item item-input item-stacked-label">
-                        <input type="text" class="form-control" placeholder="Last Name" ng-model="car.model" name="lastname" required="" ng-class="{ 'has-error': myForm.lastname.$invalid && myForm.lastname.$dirty }" ionic-autocomplete="{items: items, onSelect:onSelect}" autocomplete="off">
+                        <input type="text" class="form-control" placeholder="Last Name" ng-model="car.model" name="lastname" required="" ng-class="{ 'has-error': myForm.lastname.$invalid && myForm.lastname.$dirty }" autocomplete="off">
                         <span ng-show="userForm.lastname.$invalid &amp;&amp; !userForm.lastname.$pristine" class="help-block ng-hide">Your lastname is required.</span>
                     </label>
                     <label class="item item-input item-stacked-label">

@@ -8,7 +8,7 @@ app.controller('ViewPropertiesCtrl', ['$scope', '$location', '$rootScope', '$aut
 		/* body... */ 
 		$scope.carArray = JSON.parse(JSON.stringify(list));
 
-
+        $scope.$apply()
 	}, function (error) {
 		 /* body... */
 		 console.log(error); 
