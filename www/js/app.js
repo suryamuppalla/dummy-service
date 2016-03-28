@@ -91,12 +91,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
 
-    .state('app.car-problem', {
-        url: '/car-problem',
+    .state('app.vehicle-problem', {
+        url: '/vehicle-problem',
         views: {
             'menuContent': {
-                templateUrl: 'templates/car-problem.html',
-                controller: 'CarProblemCtrl',
+                templateUrl: 'templates/vehicle-problem.html',
+                controller: 'VehicleProblemCtrl',
                 resolve: {
                     authenticated: function($location, $auth) {
                         if (!$auth.isAuthenticated()) {

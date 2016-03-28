@@ -1,4 +1,4 @@
-app.controller('CarProblemCtrl', ['$scope', function ($scope) {
+app.controller('VehicleProblemCtrl', ['$scope', function ($scope) {
 	$scope.items = [
         {display: 'Hello'},
         {display: 'Baha'},
