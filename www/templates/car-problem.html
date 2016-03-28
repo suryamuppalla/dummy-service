@@ -4,20 +4,27 @@
   left: 5%
 }
 </style>
-<ion-view view-title="Car problem">
+<ion-view view-title="Vehicle problem">
     <ion-content>
+        <div class="row">
+          <div class="col text-center">
+              <h4>
+                  Vehicle problem
+              </h4>
+          </div>
+        </div>
         <div class="row pad-mar"> <!-- row start -->
             <div class="col pad-mar"> <!-- col start -->
                 <form name="userForm">
                   <div class="list">
                       <label class="item item-input item-stacked-label">
-                          <input type="text" class="form-control" placeholder="Car Name" ng-model="car.name" name="carname" required="" ng-class="{ 'has-error': myForm.carname.$invalid && myForm.carname.$dirty }" ionic-autocomplete="{items: items, onSelect:onSelect}" autocomplete="off">
-                          <span ng-show="userForm.carname.$invalid &amp;&amp; !userForm.carname.$pristine" class="help-block ng-hide">Car name is required.</span>
-                      </label>
-                      <label class="item item-input item-stacked-label">
-                          <input type="text" class="form-control" placeholder="Car Model" ng-model="car.model" name="carmodel" required="" ng-class="{ 'has-error': myForm.carmodel.$invalid && myForm.carmodel.$dirty }" ionic-autocomplete="{items: items, onSelect:onSelect}" autocomplete="off">
-                          <span ng-show="userForm.carmodel.$invalid &amp;&amp; !userForm.carmodel.$pristine" class="help-block ng-hide">Car model is required.</span>
-                      </label>
+                        <input type="text" class="form-control" placeholder="Vehicle Name" ng-model="vehicle.name" name="vehiclename" required="" ng-class="{ 'has-error': myForm.vehiclename.$invalid && myForm.vehiclename.$dirty }" autocomplete="off">
+                        <span ng-show="userForm.vehiclename.$invalid &amp;&amp; !userForm.vehiclename.$pristine" class="help-block ng-hide">vehicle name is required.</span>
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <input type="text" class="form-control" placeholder="Vehicle Model" ng-model="vehicle.model" name="vehiclemodel" required="" ng-class="{ 'has-error': myForm.vehiclemodel.$invalid && myForm.vehiclemodel.$dirty }" autocomplete="off">
+                        <span ng-show="userForm.vehiclemodel.$invalid &amp;&amp; !userForm.vehiclemodel.$pristine" class="help-block ng-hide">Vehicle model is required.</span>
+                    </label>
                       <label class="item item-input item-stacked-label">
                           <textarea placeholder="Description" name"description" ng-model="car.description" ng-class="{ 'has-error': userForm.description.$invalid && userForm.description.$dirty }" autocomplete="off" required=""></textarea>
                           <span ng-show="userForm.description.$invalid &amp;&amp; !userForm.description.$pristine" class="help-block ng-hide">Description is required.</span>
