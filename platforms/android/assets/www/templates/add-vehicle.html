@@ -1,0 +1,69 @@
+<style>
+.loading-container .loading{
+    padding: 0px;
+}
+.backdrop{
+    background: none;
+}
+.list a.item{
+    padding: 10px;
+    margin: 0px;
+    min-height: 0px;
+}
+.item-select select{
+    position: relative !important;
+    direction: initial;
+    padding:8px 0px;
+    color: #aaa;
+}
+</style>
+<ion-view view-title="Add vehicle">
+    <ion-content class="im-wrapper2">
+        <div class="row">
+            <div class="col text-center">
+                <h4>
+                    Add vehicle information
+                </h4>
+            </div>
+        </div>
+        <!-- directive call -->
+        <!--  ionic-autocomplete="{items: items, onSelect:onSelect}" -->
+        <div class="row pad"> <!-- row start -->
+            <div class="col pad"> <!-- col start -->
+                <form name="userForm" ng-submit="addCar()">
+                <div class="list">
+                    <label class="item item-input item-stacked-label item-select">
+                        <select ng-init="vehicle.type = 'car'" ng-model="vehicle.type">
+                            <option value="truck">Truck</option>
+                            <option value="car">Car</option>
+                            <option value="bus">Bus</option>
+                            <option value="bike">Bike</option>
+                        </select>
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <input type="text" class="form-control" placeholder="Vehicle Name" ng-model="vehicle.name" name="vehiclename" required="" ng-class="{ 'has-error': myForm.vehiclename.$invalid && myForm.vehiclename.$dirty }" autocomplete="off">
+                        <span ng-show="userForm.vehiclename.$invalid &amp;&amp; !userForm.vehiclename.$pristine" class="help-block ng-hide">vehicle name is required.</span>
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <input type="text" class="form-control" placeholder="Vehicle Model" ng-model="vehicle.model" name="vehiclemodel" required="" ng-class="{ 'has-error': myForm.vehiclemodel.$invalid && myForm.vehiclemodel.$dirty }" autocomplete="off">
+                        <span ng-show="userForm.vehiclemodel.$invalid &amp;&amp; !userForm.vehiclemodel.$pristine" class="help-block ng-hide">Vehicle model is required.</span>
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <input type="date" class="form-control" placeholder="Phone No" ng-model="car.manufactured" name="phone" required="" ng-minlength="10" ng-maxlength="14">
+                        <span ng-show="userForm.phone.$error.required" class="help-block ng-hide">Your phone Number is required.</span>
+                        <p ng-show="userForm.phone.$error.minlength" class="help-block ng-hide">Your phone Number must be minimum 10 characters</p>
+                        <p ng-show="userForm.phone.$error.maxlength" class="help-block ng-hide">Sorry You are Exceeding the Limit</p>
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <input type="date" class="form-control" placeholder="Address line1" ng-model="car.lastService" name="address1" required="">
+                        <span ng-show="userForm.address1.$invalid &amp;&amp; !userForm.address1.$pristine" class="help-block ng-hide">Your address line1 is required.</span>
+                    </label>
+                </div>
+                    <button type="submit" class="button button-small button-royal btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">
+                        Save
+                    </button>
+                </form>
+            </div> <!-- col end -->
+        </div> <!-- row end -->
+    </ion-content>
+</ion-view>

@@ -1,0 +1,49 @@
+<style>
+.tooltipster-base{
+    margin: 15px 0px 0px -5px;
+}
+.tooltipster-default{
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #0866c6 !important;
+}
+.tooltipster-default .tooltipster-content{
+    font-size: 12px;
+    padding: 3px 10px;
+}
+.item-thumbnail-left .item-content .item-image, .item-thumbnail-left .item-content>img:first-child, .item-thumbnail-left .item-image, .item-thumbnail-left>img:first-child {
+    border-radius: 0%;
+}
+</style>
+<ion-view view-title="View vehicles">
+    <ion-content class="im-wrapper">
+        <div class="row input-row pad-mar" ng-if="carArray.length"> <!-- row start -->
+            <div class="col pad-mar"> <!-- col start -->
+                <input type="hidden" ng-model="searchText" type="text" placeholder="Search Properties ..." class="input-pay-rent"/>
+
+
+                <input ng-model="$parent.searchText" type="text" class="input-pay-rent" placeholder="Search vehicle..">
+            </div> <!-- col end -->
+        </div> <!-- row end -->
+
+        <div ng-repeat="car in carArray | filter:searchText | orderBy: 'name'" style="border-bottom: 1px solid #ddd;">
+            <div class="row pad-mar">
+                <div class="col pad-mar">
+                    <div class="list">
+
+                        <a style="min-height: 100px;" class="item item-thumbnail-left" href="#/app/view-vehicle">
+                            <img src="http://www.prestige-car-leasing.co.uk/images/special_offers/Audi_A3_Cabriolet.JPG">
+                            <h2>
+                                {{ car.name }}
+                            </h2>
+                            <p>
+                                {{ car.model }}
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,47 @@
+<style type="text/css">
+.help-block{
+  top: 30%;
+  left: 5%
+}
+.item-select select{
+    position: relative !important;
+    direction: initial;
+    padding:8px 0px;
+    color: #aaa;
+}
+</style>
+<ion-view view-title="Vehicle problem">
+    <ion-content>
+        <div class="row">
+          <div class="col text-center">
+              <h4>
+                  Vehicle problem
+              </h4>
+          </div>
+        </div>
+        <div class="row pad-mar"> <!-- row start -->
+            <div class="col pad-mar"> <!-- col start -->
+                <form name="userForm" ng-submit="sendProblem()">
+                  <div class="list">
+                      <label class="item item-input item-stacked-label item-select">
+                        <select ng-init="vehicle.type = ''" ng-model="vehicle.type">
+                            <option selected="selected" value="">Select vehicle</option>
+                            <option ng-repeat="data in vehicles" value="{{ data.objectId }}">
+                              {{ data.name }}
+                            </option>
+                            
+                        </select>
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                          <textarea placeholder="Description" name"description" ng-model="vehicle.description" ng-class="{ 'has-error': userForm.description.$invalid && userForm.description.$dirty }" autocomplete="off" required=""></textarea>
+                          <span ng-show="userForm.description.$invalid &amp;&amp; !userForm.description.$pristine" class="help-block ng-hide">Description is required.</span>
+                      </label>
+                  </div>
+                    <button type="submit" class="button button-small button-royal btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">
+                        Send request
+                    </button>
+                </form>
+            </div> <!-- col end -->
+        </div> <!-- row end -->
+    </ion-content>
+</ion-view>

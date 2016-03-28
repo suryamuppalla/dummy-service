@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic', 'ionic-material','ionic.rating','satellizer', 'ionic-toast','chart.js']);
+var app = angular.module('starter', ['ionic', 'ionic-material','ionic.rating','satellizer', 'ionic-toast']);
 
 app.run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -23,7 +23,7 @@ app.config(function($ionicConfigProvider) {
 })
 // parse initialization
 app.run(function($rootScope) {
-    $rootScope.Parse = Parse.initialize("Y7wJNJuOzAxtB7EIVvT1Db0QO2aALBGZhilpyo4m", "z0yTOvwZKlBw6Yyvs92t8aTiTzTPxiRHLvQEe9qo");;
+    $rootScope.Parse = Parse.initialize("NnGUQnFBGpBZKvrJpGbmD72J1IgThJgE61CJX92f", "My3u99rElpcHlIeczfqd3HAfB5Hw6BM5Un3D84Vl");;
 })
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -35,15 +35,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         controller: 'AppCtrl'
     })
 
-    .state('app.property-details', {
-        url: '/property-details/:tpId',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/property-details.html',
-                controller: 'PropertyCtrl'
-            }
-        }
-    })
+
 
     .state('app.login', {
         url: '/login',
@@ -55,7 +47,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     authenticated: function($location, $auth) {
                         if ($auth.isAuthenticated()) {
                 
-                            return $location.path('/app/view-properties');
+                            return $location.path('/app/view-vehicle');
                         }
                     }
                 }
@@ -73,7 +65,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     authenticated: function($location, $auth) {
                         if ($auth.isAuthenticated()) {
                 
-                            return $location.path('/app/view-properties');
+                            return $location.path('/app/view-vehicle');
                         }
                     }
                 }
@@ -81,12 +73,30 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
 
-    .state('app.edit-profile', {
-        url: '/edit-profile',
+    .state('app.add-vehicle', {
+        url: '/add-vehicle',
         views: {
             'menuContent': {
-                templateUrl: 'templates/edit-profile.html',
-                controller: 'EditProfileCtrl',
+                templateUrl: 'templates/add-vehicle.html',
+                controller: 'addVehicleCtrl',
+                resolve: {
+                    authenticated: function($location, $auth) {
+                        if (!$auth.isAuthenticated()) {
+                
+                            return $location.path('/app/login');
+                        }
+                    }
+                }
+            }
+        }
+    })
+
+    .state('app.vehicle-problem', {
+        url: '/vehicle-problem',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/vehicle-problem.html',
+                controller: 'VehicleProblemCtrl',
                 resolve: {
                     authenticated: function($location, $auth) {
                         if (!$auth.isAuthenticated()) {
@@ -117,29 +127,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
 
-    .state('app.emergency', {
-        url: '/emergency',
+    .state('app.view-vehicle', {
+        url: '/view-vehicle',
         views: {
             'menuContent': {
-                templateUrl: 'templates/emergency.html',
-                controller: 'EmergencyCtrl',
-                resolve: {
-                    authenticated: function($location, $auth) {
-                        if (!$auth.isAuthenticated()) {
-                
-                            return $location.path('/app/login');
-                        }
-                    }
-                }
-            }
-        }
-    })
-
-    .state('app.mypayment', {
-        url: '/mypayment',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/mypayment.html',
+                templateUrl: 'templates/view-vehicle.html',
                 controller: 'ViewPropertiesCtrl',
                 resolve: {
                     authenticated: function($location, $auth) {
@@ -153,77 +145,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
 
-    .state('app.property-payment-dates', {
-        url: '/property-payment-dates/:tpId',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/property-payment-dates.html',
-                controller: 'propertyPaymentDatesCtrl',
-                resolve: {
-                    authenticated: function($location, $auth) {
-                        if (!$auth.isAuthenticated()) {
-                
-                            return $location.path('/app/login');
-                        }
-                    }
-                }
-            }
-        }
-    })
-
-    .state('app.bill-rent', {
-        url: '/bill-rent/:tpId/:paymentRowId',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/bill-rent.html',
-                controller: 'BillRentCtrl',
-                resolve: {
-                    authenticated: function($location, $auth) {
-                        if (!$auth.isAuthenticated()) {
-                
-                            return $location.path('/app/login');
-                        }
-                    }
-                }
-            }
-        }
-    })
-
-    .state('app.view-properties', {
-        url: '/view-properties',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/view-properties.html',
-                controller: 'ViewPropertiesCtrl',
-                resolve: {
-                    authenticated: function($location, $auth) {
-                        if (!$auth.isAuthenticated()) {
-                
-                            return $location.path('/app/login');
-                        }
-                    }
-                }
-            }
-        }
-    })
-
-    .state('app.payment', {
-        url: '/payment/:tpId/:paymentRowId',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/payment.html',
-                controller: 'BillRentCtrl', 
-                resolve: {
-                    authenticated: function($location, $auth) {
-                        if (!$auth.isAuthenticated()) {
-                
-                            return $location.path('/app/login');
-                        }
-                    }
-                }
-            }
-        }
-    })
 
     .state('app.rating', {
         url: '/rating',
@@ -231,24 +152,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             'menuContent': {
                 templateUrl: 'templates/rating.html',
                 controller: 'RatingCtrl',
-                resolve: {
-                    authenticated: function($location, $auth) {
-                        if (!$auth.isAuthenticated()) {
-                
-                            return $location.path('/app/login');
-                        }
-                    }
-                }
-            }
-        }
-    })
-
-    .state('app.paymenthistory', {
-        url: '/paymenthistory',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/paymenthistory.html',
-                controller: 'PaymenthistoryCtrl',
                 resolve: {
                     authenticated: function($location, $auth) {
                         if (!$auth.isAuthenticated()) {
@@ -315,29 +218,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
 
-    .state('app.prty-fut-dts', {
-        url: '/prty-fut-dts/:tpId',
+    .state('app.service-req', {
+        url: '/service-req',
         views: {
             'menuContent': {
-                templateUrl: 'templates/prty-fut-dts.html',
-                controller: 'PropertyFutureDetailsCtrl',
-                resolve: {
-                    authenticated: function($location, $auth) {
-                        if (!$auth.isAuthenticated()) {
-                
-                            return $location.path('/app/login');
-                        }
-                    }
-                }
-            }
-        }
-    })
-    .state('app.my-rent', {
-        url: '/my-rent',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/my-rent.html',
-                controller: 'ViewPropertiesCtrl',
+                templateUrl: 'templates/service-req.html',
+                controller: 'ServiceReqCtrl',
                 resolve: {
                     authenticated: function($location, $auth) {
                         if (!$auth.isAuthenticated()) {
