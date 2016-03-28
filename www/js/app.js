@@ -55,7 +55,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     authenticated: function($location, $auth) {
                         if ($auth.isAuthenticated()) {
                 
-                            return $location.path('/app/view-cars');
+                            return $location.path('/app/view-vehicle');
                         }
                     }
                 }
@@ -73,7 +73,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     authenticated: function($location, $auth) {
                         if ($auth.isAuthenticated()) {
                 
-                            return $location.path('/app/view-cars');
+                            return $location.path('/app/view-vehicle');
                         }
                     }
                 }
@@ -207,11 +207,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
 
-    .state('app.view-cars', {
-        url: '/view-cars',
+    .state('app.view-vehicle', {
+        url: '/view-vehicle',
         views: {
             'menuContent': {
-                templateUrl: 'templates/view-cars.html',
+                templateUrl: 'templates/view-vehicle.html',
                 controller: 'ViewPropertiesCtrl',
                 resolve: {
                     authenticated: function($location, $auth) {
