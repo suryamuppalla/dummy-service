@@ -3,18 +3,19 @@ app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$ti
     '$rootScope', '$window', '$q', 'ionicToast','$ionicLoading' ,'$ionicHistory', 'CarService', function($scope, $state, $location, $auth, $timeout, 
     $rootScope, $window, $q, ionicToast,$ionicLoading, $ionicHistory, CarService) {
 
-      console.log('add car controller');
+      console.log('add Vehicle controller');
 
-      var Cars = Parse.Object.extend("Cars");
-      var query = new Cars();
+      var Vehicle = Parse.Object.extend("Vehicle");
+      var query = new Vehicle();
       console.log(query)
 
       $scope.addCar = function () {
          /* body... */ 
-         query.set('name', this.car.name.toLowerCase());
-         query.set('model', this.car.model.toLowerCase());
-         query.set('manufactured', this.car.manufactured);
-         query.set('lastService', this.car.lastService);
+         query.set('type', this.vehicle.type.toLowerCase());
+         query.set('name', this.vehicle.name.toLowerCase());
+         query.set('model', this.vehicle.model.toLowerCase());
+         query.set('manufactured', this.vehicle.manufactured);
+         query.set('lastService', this.vehicle.lastService);
          query.set('userPointer', Parse.User.current())
          query.save().then(function (success) {
             /* body... */ 
@@ -22,14 +23,14 @@ app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$ti
                 $ionicHistory.nextViewOptions({
                     disableBack: true
                 });
-                $state.go('app.view-cars')
+                $state.go('app.view-vehicle')
             }, 1000);
          }, function (error) {
             /* body... */ 
             console.log('error', error)
          })
 
-         console.log(this.car)
+         console.log(this.vehicle)
       }
 }]);
 

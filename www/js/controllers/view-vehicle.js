@@ -1,8 +1,8 @@
 app.controller('ViewPropertiesCtrl', ['$scope', '$location', '$rootScope', '$auth', '$q','$ionicHistory', '$filter', '$timeout',
 	function ($scope, $location, $rootScope, $auth, $q,$ionicHistory, $filter, $timeout) {
 
-	var Cars = Parse.Object.extend("Cars");
-	var query = new Parse.Query(Cars);
+	var Vehicle = Parse.Object.extend("Vehicle");
+	var query = new Parse.Query(Vehicle);
 	
 	query.find().then(function (list) {
 		/* body... */ 
