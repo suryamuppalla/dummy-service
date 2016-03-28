@@ -81,12 +81,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
 
-    .state('app.add-car', {
-        url: '/add-car',
+    .state('app.add-vehicle', {
+        url: '/add-vehicle',
         views: {
             'menuContent': {
-                templateUrl: 'templates/add-car.html',
-                controller: 'EditProfileCtrl',
+                templateUrl: 'templates/add-vehicle.html',
+                controller: 'addVehicleCtrl',
                 resolve: {
                     authenticated: function($location, $auth) {
                         if (!$auth.isAuthenticated()) {

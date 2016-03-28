@@ -1,4 +1,4 @@
-app.controller('EditProfileCtrl', ['$scope', '$state', '$location', '$auth', '$timeout', 
+app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$timeout', 
 
     '$rootScope', '$window', '$q', 'ionicToast','$ionicLoading' ,'$ionicHistory', 'CarService', function($scope, $state, $location, $auth, $timeout, 
     $rootScope, $window, $q, ionicToast,$ionicLoading, $ionicHistory, CarService) {
@@ -15,6 +15,7 @@ app.controller('EditProfileCtrl', ['$scope', '$state', '$location', '$auth', '$t
          query.set('model', this.car.model.toLowerCase());
          query.set('manufactured', this.car.manufactured);
          query.set('lastService', this.car.lastService);
+         query.set('userPointer', Parse.User.current())
          query.save().then(function (success) {
             /* body... */ 
             $timeout(function() {
