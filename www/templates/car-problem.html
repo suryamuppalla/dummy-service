@@ -1,0 +1,33 @@
+<style type="text/css">
+.help-block{
+  top: 30%;
+  left: 5%
+}
+</style>
+<ion-view view-title="Car problem">
+    <ion-content>
+        <div class="row pad-mar"> <!-- row start -->
+            <div class="col pad-mar"> <!-- col start -->
+                <form name="userForm">
+                  <div class="list">
+                      <label class="item item-input item-stacked-label">
+                          <input type="text" class="form-control" placeholder="Car Name" ng-model="car.name" name="carname" required="" ng-class="{ 'has-error': myForm.carname.$invalid && myForm.carname.$dirty }" ionic-autocomplete="{items: items, onSelect:onSelect}" autocomplete="off">
+                          <span ng-show="userForm.carname.$invalid &amp;&amp; !userForm.carname.$pristine" class="help-block ng-hide">Car name is required.</span>
+                      </label>
+                      <label class="item item-input item-stacked-label">
+                          <input type="text" class="form-control" placeholder="Car Model" ng-model="car.model" name="carmodel" required="" ng-class="{ 'has-error': myForm.carmodel.$invalid && myForm.carmodel.$dirty }" ionic-autocomplete="{items: items, onSelect:onSelect}" autocomplete="off">
+                          <span ng-show="userForm.carmodel.$invalid &amp;&amp; !userForm.carmodel.$pristine" class="help-block ng-hide">Car model is required.</span>
+                      </label>
+                      <label class="item item-input item-stacked-label">
+                          <textarea placeholder="Description" name"description" ng-model="car.description" ng-class="{ 'has-error': userForm.description.$invalid && userForm.description.$dirty }" autocomplete="off" required=""></textarea>
+                          <span ng-show="userForm.description.$invalid &amp;&amp; !userForm.description.$pristine" class="help-block ng-hide">Description is required.</span>
+                      </label>
+                  </div>
+                    <button type="submit" class="button button-small button-royal btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">
+                        Save
+                    </button>
+                </form>
+            </div> <!-- col end -->
+        </div> <!-- row end -->
+    </ion-content>
+</ion-view>

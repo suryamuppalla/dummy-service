@@ -99,6 +99,24 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
 
+    .state('app.car-problem', {
+        url: '/car-problem',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/car-problem.html',
+                controller: 'CarProblemCtrl',
+                resolve: {
+                    authenticated: function($location, $auth) {
+                        if (!$auth.isAuthenticated()) {
+                
+                            return $location.path('/app/login');
+                        }
+                    }
+                }
+            }
+        }
+    })
+
     .state('app.change-password', {
         url: '/change-password',
         views: {
@@ -332,12 +350,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     })
-    .state('app.my-rent', {
-        url: '/my-rent',
+    .state('app.service-req', {
+        url: '/service-req',
         views: {
             'menuContent': {
-                templateUrl: 'templates/my-rent.html',
-                controller: 'ViewPropertiesCtrl',
+                templateUrl: 'templates/service-req.html',
+                controller: 'ServiceReqCtrl',
                 resolve: {
                     authenticated: function($location, $auth) {
                         if (!$auth.isAuthenticated()) {
