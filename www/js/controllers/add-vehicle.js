@@ -1,7 +1,9 @@
 app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$timeout', 
 
-    '$rootScope', '$window', '$q', 'ionicToast','$ionicLoading' ,'$ionicHistory', 'VehicleService', function($scope, $state, $location, $auth, $timeout, 
-    $rootScope, $window, $q, ionicToast,$ionicLoading, $ionicHistory, VehicleService) {
+    '$rootScope', '$window', '$q', 'ionicToast','$ionicLoading' ,
+    '$ionicHistory', 'VehicleService', '$ionicModal', 
+    function($scope, $state, $location, $auth, $timeout, 
+    $rootScope, $window, $q, ionicToast,$ionicLoading, $ionicHistory, VehicleService, $ionicModal) {
 
       console.log('add Vehicle controller');
 
@@ -10,7 +12,7 @@ app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$ti
       console.log(query)
 
       $scope.addCar = function () {
-
+        $scope.loginDisable = true;
         console.log('cropped image is ->>>', this.myCroppedImage)
         //upload profile picture first
         ////console.log($scope.fileName, $scope.myCroppedImage, $scope.imageExtension)
@@ -39,14 +41,16 @@ app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$ti
                         $state.go('app.view-vehicle')
                     }, 1000);
                 }, function (error) {
+                  $scope.loginDisable = false;
                 /* body... */ 
                 console.log('error', error);
                 })
             }, function(error){
-               
+               $scope.loginDisable = false;
                ionicToast.show('something went wrong', 'top', false, 2500)
             })
         }else{
+            $scope.loginDisable = false;
             ionicToast.show('Please upload an image!', 'top', false, 2500)
         }
 
@@ -67,7 +71,6 @@ app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$ti
       reader.onload = function (evt) {
         $scope.$apply(function($scope){
           $scope.myImage=evt.target.result;
-          
           $(".cropArea").show();
           $(".src-image").show();
         });
