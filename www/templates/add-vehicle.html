@@ -22,6 +22,12 @@
     height: 100px;
     margin: auto;
 }
+input {
+    color: #989898 !important;
+}
+#fileInput {
+    color: #fff !important;
+}
 </style>
 <ion-view view-title="Add vehicle">
     <ion-content class="im-wrapper2">
@@ -35,7 +41,7 @@
         <!-- directive call -->
         <!--  ionic-autocomplete="{items: items, onSelect:onSelect}" -->
         <div class="row pad"> <!-- row start -->
-            <div class="col pad"> <!-- col start -->
+            <div class="col pad">
                 <form name="userForm" ng-submit="addCar()">
                 <div class="list list-all">
                     <label class="item item-input item-stacked-label item-select">
@@ -55,34 +61,38 @@
                         <span ng-show="userForm.vehiclemodel.$invalid &amp;&amp; !userForm.vehiclemodel.$pristine" class="help-block ng-hide">Vehicle model is required.</span>
                     </label>
                     <label class="item item-input item-stacked-label">
-                        <input type="date" class="form-control" placeholder="Phone No" ng-model="vehicle.manufactured" name="phone" required="" ng-minlength="10" ng-maxlength="14">
+                        <input type="date" class="form-control" placeholder="Manufacturing date" ng-model="vehicle.manufactured" name="phone" required="" ng-minlength="10" ng-maxlength="14">
                         <span ng-show="userForm.phone.$error.required" class="help-block ng-hide">Your phone Number is required.</span>
                         <p ng-show="userForm.phone.$error.minlength" class="help-block ng-hide">Your phone Number must be minimum 10 characters</p>
                         <p ng-show="userForm.phone.$error.maxlength" class="help-block ng-hide">Sorry You are Exceeding the Limit</p>
                     </label>
                     <label class="item item-input item-stacked-label">
-                        <input type="date" class="form-control" placeholder="Address line1" ng-model="vehicle.lastService" name="address1" required="">
+                        <input type="date" class="form-control" placeholder="Last service date" ng-model="vehicle.lastService" name="address1" required="">
                         <span ng-show="userForm.address1.$invalid &amp;&amp; !userForm.address1.$pristine" class="help-block ng-hide">Your address line1 is required.</span>
                     </label>
                     <label class="item item-input item-stacked-label">
                         <input type="file" id="fileInput" class="custom-file-input"/>
                     </label>
+
+                    <label class="item item-input item-stacked-label">
+                        <!-- ng crop image code start here -->
+                        <div class="row cropArea src-image-all" style="display:none;">
+                            <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                        </div>
+                        <!-- <div class="row src-image" style="display:none;">
+                            <div class="col">
+                               <img ng-src="{{myCroppedImage}}"/>
+                            </div>
+                        </div> -->
+                        <!-- ng crop image code end here -->
+
+                        <button style="width: 100%; margin-top: 5px;" type="submit" class="button button-small button-royal btn-block btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">
+                            Save
+                        </button>
+                    </label>
                 </div>
 
-                    <!-- ng crop image code start here -->
-                    <div class="row cropArea src-image-all" style="display:none;">
-                        <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
-                    </div>
-                    <div class="row src-image" style="display:none;">
-                        <div class="col">
-                           <img ng-src="{{myCroppedImage}}"/>
-                        </div>
-                    </div>
-                    <!-- ng crop image code end here -->
-
-                    <button type="submit" class="button button-small button-royal btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">
-                        Save
-                    </button>
+                    
                 </form>
             </div> <!-- col end -->
         </div> <!-- row end -->
