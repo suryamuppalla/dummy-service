@@ -10,27 +10,47 @@ app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$ti
       console.log(query)
 
       $scope.addCar = function () {
-         /* body... */ 
-         query.set('type', this.vehicle.type.toLowerCase());
-         query.set('name', this.vehicle.name.toLowerCase());
-         query.set('model', this.vehicle.model.toLowerCase());
-         query.set('manufactured', this.vehicle.manufactured);
-         query.set('lastService', this.vehicle.lastService);
-         query.set('userPointer', Parse.User.current())
-         query.save().then(function (success) {
-            /* body... */ 
-            $timeout(function() {
-                $ionicHistory.nextViewOptions({
-                    disableBack: true
-                });
-                $state.go('app.view-vehicle')
-            }, 1000);
-         }, function (error) {
-            /* body... */ 
-            console.log('error', error)
-         })
 
-         console.log(this.vehicle)
+        console.log('cropped image is ->>>', this.myCroppedImage)
+        //upload profile picture first
+        ////console.log($scope.fileName, $scope.myCroppedImage, $scope.imageExtension)
+        if($scope.imageExtension){
+         // saving base64 file into parse then after we can make reference that
+         // file into user table
+         var profiePic = new Parse.File('sample.'+ $scope.imageExtension,
+                      { base64: this.myCroppedImage.split(",")[1]})
+         $scope.vehicle = this.vehicle;
+         profiePic.save().then(function(savedProfilePic){
+            console.log($scope.vehicle)
+            /* body... */
+            query.set('type', $scope.vehicle.type.toLowerCase());
+            query.set('name', $scope.vehicle.name.toLowerCase());
+            query.set('model', $scope.vehicle.model.toLowerCase());
+            query.set('manufactured', $scope.vehicle.manufactured);
+            query.set('lastService', $scope.vehicle.lastService);
+            query.set('userPointer', Parse.User.current())
+            query.set('photo', savedProfilePic);
+            query.save().then(function (success) {
+                /* body... */ 
+                    $timeout(function() {
+                        $ionicHistory.nextViewOptions({
+                            disableBack: true
+                        });
+                        $state.go('app.view-vehicle')
+                    }, 1000);
+                }, function (error) {
+                /* body... */ 
+                console.log('error', error);
+                })
+            }, function(error){
+               
+               ionicToast.show('something went wrong', 'top', false, 2500)
+            })
+        }else{
+            ionicToast.show('Please upload an image!', 'top', false, 2500)
+        }
+
+        console.log(this.vehicle)
       }
 
 
@@ -40,10 +60,14 @@ app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$ti
 
     var handleFileSelect=function(evt) {
       var file=evt.currentTarget.files[0];
+      $scope.fileName=file.name;
+
+      $scope.imageExtension = $scope.fileName.split('.').pop();
       var reader = new FileReader();
       reader.onload = function (evt) {
         $scope.$apply(function($scope){
           $scope.myImage=evt.target.result;
+          
           $(".cropArea").show();
           $(".src-image").show();
         });
