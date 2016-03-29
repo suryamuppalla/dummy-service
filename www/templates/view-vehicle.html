@@ -56,12 +56,12 @@
 
 <script id="my-modal.html" type="text/ng-template">
   <ion-modal-view>
-    <ion-header-bar style="background: #0866c6 !important;
+    <ion-header-bar ng-click="modal.hide()" style="background: #0866c6 !important;
     border-color: #035FBC !important;">
     <h1 class="title title-modal" style="text-transform: capitalize;">
         {{openCar.name}} details
     </h1>
-    <div class="close-btn" ng-click="modal.hide()">
+    <div class="close-btn">
         <span class="icon ion-close"></span>
     </div>
     </ion-header-bar>
