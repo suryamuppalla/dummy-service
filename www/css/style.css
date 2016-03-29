@@ -904,3 +904,12 @@ a{
 .src-image-all{
   margin: 10px;
 }
+.title-modal{
+  color: #fff;
+}
+.close-btn{
+  position: absolute;
+  right: 7px;
+  top: 12px;
+  color: #fff;
+}
