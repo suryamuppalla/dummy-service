@@ -27,7 +27,7 @@
             </div> <!-- col end -->
         </div> <!-- row end -->
 
-        <div ng-repeat="car in carArray | filter:searchText | orderBy: 'name'" style="border-bottom: 1px solid #ddd;">
+        <div ng-repeat="car in carArray | filter:searchText | orderBy: 'name'" style="border-bottom: 1px solid #ddd;" ng-click="modal.show()">
             <div class="row pad-mar">
                 <div class="col pad-mar">
                     <div class="list">
@@ -47,3 +47,34 @@
         </div>
     </ion-content>
 </ion-view>
+
+<script id="my-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar style="background: #0866c6 !important;
+    border-color: #035FBC !important;">
+    <h1 class="title title-modal">View vehicles</h1>
+    <div class="close-btn" ng-click="modal.hide()">
+        <span class="icon ion-close"></span>
+    </div>
+    </ion-header-bar>
+    <ion-content class="text-center">
+      <div style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221);">
+            <div class="row pad-mar">
+                <div class="col pad-mar">
+                    <div class="list">
+                        <a style="min-height: 100px;" class="item item-thumbnail-left">
+                            <img src="http://www.prestige-car-leasing.co.uk/images/special_offers/Audi_A3_Cabriolet.JPG">
+                            <h2>
+                                audi
+                            </h2>
+                            <p>
+                                1837
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+  </ion-modal-view>
+</script>
