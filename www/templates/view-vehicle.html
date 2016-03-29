@@ -27,18 +27,24 @@
             </div> <!-- col end -->
         </div> <!-- row end -->
 
-        <div ng-repeat="car in carArray | filter:searchText | orderBy: 'name'" style="border-bottom: 1px solid #ddd;" ng-click="modal.show()">
+        <div ng-repeat="car in carArray | filter:searchText | orderBy: 'name'" style="border-bottom: 1px solid #ddd;" ng-click="openModal(car)">
             <div class="row pad-mar">
                 <div class="col pad-mar">
                     <div class="list">
 
                         <a style="min-height: 100px;" class="item item-thumbnail-left" href="#/app/view-vehicle">
-                            <img src="http://www.prestige-car-leasing.co.uk/images/special_offers/Audi_A3_Cabriolet.JPG">
-                            <h2>
+                            <img ng-src="{{ car.photo.url }}">
+                            <h2 style="text-transform: capitalize;">
                                 {{ car.name }}
                             </h2>
                             <p>
-                                {{ car.model }}
+                                Model is {{ car.model }}
+                            </p>
+                            <p>
+                            Manufactured on {{ car.manufactured.iso | date : 'MMM d yyyy' }}
+                            </p>
+                            <p>
+                            Last service on {{ car.lastService.iso | date : 'MMM d yyyy' }}
                             </p>
                         </a>
                     </div>
@@ -52,26 +58,30 @@
   <ion-modal-view>
     <ion-header-bar style="background: #0866c6 !important;
     border-color: #035FBC !important;">
-    <h1 class="title title-modal">View vehicles</h1>
+    <h1 class="title title-modal" style="text-transform: capitalize;">
+        {{openCar.name}} details
+    </h1>
     <div class="close-btn" ng-click="modal.hide()">
         <span class="icon ion-close"></span>
     </div>
     </ion-header-bar>
     <ion-content class="text-center">
       <div style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(221, 221, 221);">
-            <div class="row pad-mar">
-                <div class="col pad-mar">
-                    <div class="list">
-                        <a style="min-height: 100px;" class="item item-thumbnail-left">
-                            <img src="http://www.prestige-car-leasing.co.uk/images/special_offers/Audi_A3_Cabriolet.JPG">
-                            <h2>
-                                audi
-                            </h2>
-                            <p>
-                                1837
-                            </p>
-                        </a>
-                    </div>
+            <div class="row">
+                <div class="col">
+                     <img ng-src="{{ openCar.photo.url }}">
+                    <h4 style="text-align: left; text-transform: capitalize;">
+                        {{openCar.name}}
+                    </h4>
+                    <p style="text-align: left;">
+                        Model is <b>{{ openCar.model }}</b>
+                    </p>
+                    <p style="text-align: left;">
+                    Manufactured on <b>{{ openCar.manufactured.iso | date : 'MMM d yyyy' }}</b>
+                    </p>
+                    <p style="text-align: left;">
+                    Last service on <b>{{ openCar.lastService.iso | date : 'MMM d yyyy' }}</b>
+                    </p>
                 </div>
             </div>
         </div>
