@@ -37,13 +37,13 @@
                             <h2 style="text-transform: capitalize;">
                                 {{ car.name }}
                             </h2>
-                            <p>
+                            <p class="modal-p">
                                 Model is {{ car.model }}
                             </p>
-                            <p>
+                            <p class="modal-p">
                             Manufactured on {{ car.manufactured.iso | date : 'MMM d yyyy' }}
                             </p>
-                            <p>
+                            <p class="modal-p">
                             Last service on {{ car.lastService.iso | date : 'MMM d yyyy' }}
                             </p>
                         </a>
@@ -56,11 +56,8 @@
 
 <script id="my-modal.html" type="text/ng-template">
   <ion-modal-view>
-    <ion-header-bar ng-click="modal.hide()" style="background: #0866c6 !important;
-    border-color: #035FBC !important;">
-    <h1 class="title title-modal" style="text-transform: capitalize;">
-        {{openCar.name}} details
-    </h1>
+    <ion-header-bar ng-click="modal.hide()" class="bar-assertive">
+    <div class="title title-center header-item" style="left: 63px;right: 63px; transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">{{openCar.name}} details</div>
     <div class="close-btn">
         <span class="icon ion-close"></span>
     </div>
