@@ -18,8 +18,8 @@ app
             /* body... */
             def.resolve(JSON.parse(JSON.stringify(list)));
         }, function(error) {
-            console.log(error)
-            return def.reject(error)
+            console.log(error);
+            return def.reject(error);
         });
 
         return def.promise;
