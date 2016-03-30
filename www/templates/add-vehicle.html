@@ -70,11 +70,11 @@ input {
                     </label>
                     <label class="item item-input item-stacked-label">
                         <input type="date" class="form-control" placeholder="Manufacturing date" ng-model="vehicle.manufactured" name="firstdate" required="" >
-                        <span ng-show="userForm.firstdate.$invalid &amp;&amp; !userForm.firstdate.$pristine" class="help-block ng-hide">Starting date is required.</span>
+                        <span ng-show="userForm.firstdate.$invalid &amp;&amp; !userForm.firstdate.$pristine" class="help-block ng-hide">Manufacturing date is required.</span>
                     </label>
                     <label class="item item-input item-stacked-label">
                         <input type="date" class="form-control" placeholder="Last service date" ng-model="vehicle.lastService" name="endingdate" required="">
-                        <span ng-show="userForm.endingdate.$invalid &amp;&amp; !userForm.endingdate.$pristine" class="help-block ng-hide">Ending date is required.</span>
+                        <span ng-show="userForm.endingdate.$invalid &amp;&amp; !userForm.endingdate.$pristine" class="help-block ng-hide">Last service date is required.</span>
                     </label>
                     <label class="item item-input item-stacked-label">
                         <input type="file" id="fileInput" class="custom-file-input" ng-model="vehicle.imageupload" name="imageupload"/>
