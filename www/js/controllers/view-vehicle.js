@@ -7,8 +7,7 @@ app.controller('ViewPropertiesCtrl', ['$scope', '$location', '$rootScope', '$aut
 	query.find().then(function (list) {
 		/* body... */ 
 		$scope.carArray = JSON.parse(JSON.stringify(list));
-
-        $scope.$apply()
+    $scope.$apply()
 	}, function (error) {
 		 /* body... */
 		 console.log(error); 
@@ -21,7 +20,8 @@ app.controller('ViewPropertiesCtrl', ['$scope', '$location', '$rootScope', '$aut
       }).then(function(modal) {
         $scope.modal = modal;
       });
-      $scope.openModal = function() {
+      $scope.openModal = function(car) {
+        $scope.openCar = car;
         $scope.modal.show();
       };
       $scope.closeModal = function() {
