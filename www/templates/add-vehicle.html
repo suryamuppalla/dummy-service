@@ -80,17 +80,15 @@ input {
                         <input type="file" id="fileInput" class="custom-file-input" ng-model="vehicle.imageupload" name="imageupload"/>
                     </label>
 
-                    <label class="item item-input item-stacked-label">
-                        <!-- ng crop image code start here -->
-                        <div class="row cropArea src-image-all" style="display:none;">
-                            <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
-                        </div>
-                        <!-- ng crop image code end here -->
+                    <!-- ng crop image code start here -->
+                    <div class="row cropArea src-image-all" style="display:none;">
+                        <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                    </div>
+                    <!-- ng crop image code end here -->
 
-                        <button style="margin-top: 5px;" type="submit" class="button button-small button-royal btn-block btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">
-                            Save
-                        </button>
-                    </label>
+                    <button style="margin-top: 5px;" type="submit" class="button button-small button-royal btn-block btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">
+                        Save
+                    </button>
                 </div>
 
                     
