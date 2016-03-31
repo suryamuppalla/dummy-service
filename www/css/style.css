@@ -979,3 +979,15 @@ button.button.button-icon.button-clear.ion-navicon{
   font-size: 10px !important;
   color: #FFC601;
 }
+.btn-add-vew button{
+  width: auto !important;
+}
+.btn-add-vew{
+  margin: auto;
+  display: table;
+}
+/*.no-vehicle-found-row{
+  position: absolute;
+  top: 50%;
+  
+}*/
