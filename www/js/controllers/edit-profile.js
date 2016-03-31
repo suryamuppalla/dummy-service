@@ -44,7 +44,24 @@ app.controller('EditProfileCtrl', ['$scope', '$state', '$location', '$auth', '$t
           })
       }else{
           $scope.loginDisable = false;
-          ionicToast.show('Please upload an image!', 'top', false, 2500)
+          $scope.vehicle = this.user;
+          var current = Parse.User.current();
+          current.set('firstName', $scope.vehicle.firstName);
+          current.set('lastName', $scope.vehicle.lastName)
+          current.save().then(function (success) {
+             /* body... */
+                 $timeout(function() {
+                     ionicToast.show('Details updated!!', 'top', false, 2500)
+                     $ionicHistory.nextViewOptions({
+                         disableBack: true
+                     });
+                     $state.go('app.view-vehicle')
+                 }, 1000);
+             }, function (error) {
+               $scope.loginDisable = false;
+             /* body... */
+             console.log('error', error);
+           });
       }
     }; // end of the function
 

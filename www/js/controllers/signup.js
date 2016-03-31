@@ -4,7 +4,7 @@ app.controller('SignupCtrl', ['$scope', '$state', '$interval', '$timeout', 'ioni
     });*/
 	$scope.UserRegister = function(){
 		// console.log(this.email);
-		
+
 		$scope.load = true;
 		$scope.loginDisable = true;
 		var user = new Parse.User();
@@ -13,13 +13,13 @@ app.controller('SignupCtrl', ['$scope', '$state', '$interval', '$timeout', 'ioni
         user.set("autoPass", this.password);
         user.set('firstName', this.firstName);
         user.set('lastName', this.lastName);
-        user.set('phone', this.phone)
-        user.set('type', 'user');
+        user.set('phone', this.phone);
+        user.set('type', this.type);
 		user.signUp().then(function(response) {
         	ionicToast.show('Successfully registered', 'bottom', false, 4000);
 
 			$timeout(function () {$state.go('app.login');}, 2000)
-		
+
 		}, function (error) {
 			$scope.loginDisable = false;
 			console.log(error);
@@ -31,7 +31,7 @@ app.controller('SignupCtrl', ['$scope', '$state', '$interval', '$timeout', 'ioni
 	$scope.go_login = function () {
 		$state.go('app.login');
 	};
-	
+
 }]);
 
 app.directive('nxEqualEx', function() {
