@@ -36,6 +36,7 @@
     font-weight: bold;
     width: 100%;
 }
+
 </style>
 <ion-view view-title="View vehicles">
     <ion-content class="im-wrapper">
@@ -100,8 +101,8 @@
     <ion-content class="text-center">
       <div>
             <div class="row">
-                <div class="col">
-                     <img style="width: 100%;" ng-src="{{ openCar.photo.url }}">
+                <div class="col col-shadow">
+                     <img style="width: 100%;" ng-src="{{ openCar.photo.url }}" height="200">
                     <h4 style="text-align: left; text-transform: capitalize;">
                         {{openCar.name}}
                     </h4>
@@ -133,10 +134,10 @@
         <span class="icon ion-close"></span>
     </div>
     </ion-header-bar>
-    <ion-content class="text-center">
+    <ion-content class="">
       <div>
             <div class="row">
-                <div class="col">
+                <div class="col col-shadow">
                     <ion-slide-box on-slide-changed="slideHasChanged($index)">
                       <ion-slide>
                         <div class="slides">
@@ -154,6 +155,18 @@
                         </div>
                       </ion-slide>
                     </ion-slide-box>
+                    <h4 style="text-align: left; text-transform: capitalize;">
+                                slide3
+                    </h4>
+                    <p>
+                        Model is fz
+                    </p>
+                    <p>
+                    Manufactured on mm/date/year
+                    </p>
+                    <p>
+                    Last service on mm/date/year
+                    </p>
                 </div>
             </div>
         </div>
