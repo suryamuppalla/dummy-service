@@ -99,6 +99,9 @@ p {
 .menu-bottom{
   color: #FFC601 !important;
 }
+.menu-bottom span{
+  color: #FFC601 !important;
+}
 .menu-bottom-right{
   color: #FFC601 !important;
 }

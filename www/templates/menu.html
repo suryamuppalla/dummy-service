@@ -27,7 +27,7 @@
         <ion-header-bar class="expanded">
             <img ng-src="{{ user.image.url }}" class="avatar motion spin fade">
             <div class="menu-bottom">
-                {{ user.firstName }} {{ user.lastName }}
+                <span style="text-transform: capitalize;">{{ user.firstName }}</span> {{ user.lastName }}
             </div>
             <div class="menu-bottom-right" ng-click="logout()">
                 Logout
@@ -36,16 +36,16 @@
         <ion-content class="stable-bg has-expanded-header">
             <ion-list>
                 <ion-item nav-clear menu-close ng-href="#/app/view-vehicle">
-                <i class="ion-android-home icon-mn"></i>View vehicles
+                <i class="ion-eye icon-mn"></i>View vehicles
                 </ion-item>
-                <ion-item nav-clear menu-close ng-href="#/app/view-request">
-                <i class="ion-eye icon-mn"></i>View request
-                </ion-item>
+                <!-- <ion-item nav-clear menu-close ng-href="#/app/view-request">
+                <i class="ion-eye icon-mn"></i>View requests
+                </ion-item> -->
                 <ion-item nav-clear menu-close href="#/app/add-vehicle">
                 <i class="ion-plus icon-mn"></i>Add vehicle
                 </ion-item>
                 <ion-item nav-clear menu-close href="#/app/service-req">
-                <i class="ion-ionic icon-mn"></i>Service request
+                <i class="ion-ionic icon-mn"></i>Service requests
                 </ion-item>
                 <ion-item nav-clear menu-close href="#/app/edit-profile">
                 <i class="ion-edit icon-mn"></i>Edit profile

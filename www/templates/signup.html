@@ -51,11 +51,12 @@ a {
             <div class="col"> <!-- first col start -->
                 <form name="myForm" ng-submit="UserRegister()" autocomplete="off"> <!-- login form start -->
                     <div class="list"> <!-- list start -->
-                        <label class="item item-input item-sin-cmn item-log-txt">
-                            <input name="civilid" type="text" class="form-control filds-inputs border-field" id="civilid" placeholder="Civilid" ng-model="civilid" ng-minlength="3" ng-pattern="/[A-z0-9]*$/" required auto ng-class="{ 'has-error': myForm.civilid.$invalid && myForm.civilid.$dirty }">
-                            <span ng-show="myForm.civilid.$error.required && myForm.civilid.$dirty" class="error-msg">Required</span>
-                            <span ng-show="!myForm.civilid.$error.minLength && !myForm.civilid.$error.maxLength && myForm.civilid.$error.pattern && myForm.civilid.$dirty" class="error-msg">Must start with a letter</span>
-                            <span ng-show="!myForm.civilid.$error.required && (myForm.civilid.$error.minlength || myForm.civilid.$error.maxlength) && myForm.civilid.$dirty" class="error-msg">Atleast 3 characters.</span>
+                        <label class="item item-input item-sin-cmn item-log-pas item-select">
+                            <select ng-model="type" ng-init="type = ''">
+                                <option selected="selected" value="">Select</option>
+                                <option value="service">Service provider</option>
+                                <option value="user">User</option>
+                            </select>
                         </label>
                         <label class="item item-input item-sin-cmn">
                             <input autocomplete="off" name="firstname" type="text" class="form-control filds-inputs comman-field" id="firstname" placeholder="First name" ng-model="firstname" ng-minlength="3" ng-maxlength="20" required ng-class="{ 'has-error': myForm.firstname.$invalid && myForm.firstname.$dirty }">
@@ -91,18 +92,7 @@ a {
                             <span class="error-msg" ng-show="myForm.verify.$error.required && myForm.verify.$dirty">Required!</span>
                             <span class="error-msg" ng-show="myForm.verify.$error.nxEqualEx">Passwords do not match.</span>
                         </label>
-                        <label class="item item-input item-sin-cmn item-log-pas">
-                            <input name="companyname" type="text" class="form-control filds-inputs border-bottom-field" placeholder="Company name" ng-model="companyname" ng-minlength="3" ng-maxlength="20" required ng-class="{ 'has-error': myForm.companyname.$invalid && myForm.companyname.$dirty }">
-                            <span ng-show="myForm.companyname.$error.required && myForm.companyname.$dirty" class="error-msg">Required</span>
-                            <span ng-show="!myForm.companyname.$error.required && (myForm.companyname.$error.minlength || myForm.companyname.$error.maxlength) && myForm.companyname.$dirty" class="error-msg" class="error-msg">Must be 3 to 20 characters.</span>
-                        </label>
-                        <label class="item item-input item-sin-cmn item-log-pas item-select">
-                            <select>
-                                <option selected="selected" value="">Select</option>
-                                <option value="">Service</option>
-                                <option value="">Customer</option>
-                            </select>
-                        </label>
+                        
                         <button type="submit" style="margin-bottom: 0px;" class="button button-small btn-login" ng-disabled="!myForm.$valid || loginDisable">
                             Sign Up
                         </button>
