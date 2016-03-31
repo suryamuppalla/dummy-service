@@ -218,6 +218,24 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
 
+    .state('app.subscribenow', {
+        url: '/subscribenow',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/subscribenow.html',
+                controller: 'SubscribeNowCtrl',
+                resolve: {
+                    authenticated: function($location, $auth) {
+                        if (!$auth.isAuthenticated()) {
+                
+                            return $location.path('/app/login');
+                        }
+                    }
+                }
+            }
+        }
+    })
+
     .state('app.service-req', {
         url: '/service-req',
         views: {

@@ -1,0 +1,87 @@
+<style>
+.tooltipster-base{
+    margin: 15px 0px 0px -5px;
+}
+.tooltipster-default{
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #0866c6 !important;
+}
+.tooltipster-default .tooltipster-content{
+    font-size: 12px;
+    padding: 3px 10px;
+}
+.item-thumbnail-left .item-content .item-image, .item-thumbnail-left .item-content>img:first-child, .item-thumbnail-left .item-image, .item-thumbnail-left>img:first-child {
+    border-radius: 0%;
+}
+</style>
+<ion-view view-title="View request">
+    <ion-content class="im-wrapper">
+        <div class="row input-row pad-mar" ng-if="carArray.length"> <!-- row start -->
+            <div class="col pad-mar"> <!-- col start -->
+                <input type="hidden" ng-model="searchText" type="text" placeholder="Search Properties ..." class="input-pay-rent"/>
+
+
+                <input ng-model="$parent.searchText" type="text" class="input-pay-rent" placeholder="Search vehicle..">
+            </div> <!-- col end -->
+        </div> <!-- row end -->
+
+        <div ng-repeat="car in carArray | filter:searchText | orderBy: 'name'" style="border-bottom: 1px solid #ddd;" ng-click="openModal(car)">
+            <div class="row pad-mar">
+                <div class="col pad-mar">
+                    <div class="list">
+
+                        <a style="min-height: 100px;" class="item item-thumbnail-left" href="#/app/view-vehicle">
+                            <img ng-src="{{ car.photo.url }}">
+                            <h2 style="text-transform: capitalize;">
+                                {{ car.name }}
+                            </h2>
+                            <p class="modal-p">
+                                Model is {{ car.model }}
+                            </p>
+                            <p class="modal-p">
+                            Manufactured on {{ car.manufactured.iso | date : 'MMM d yyyy' }}
+                            </p>
+                            <p class="modal-p">
+                            Last service on {{ car.lastService.iso | date : 'MMM d yyyy' }}
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+
+<script id="my-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar ng-click="modal.hide()" class="bar-assertive">
+    <div class="title title-center header-item" style="left: 63px;right: 63px; transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">{{openCar.name}} details</div>
+    <div class="close-btn">
+        <span class="icon ion-close"></span>
+    </div>
+    </ion-header-bar>
+    <ion-content class="text-center">
+      <div>
+            <div class="row">
+                <div class="col">
+                     <img style="width: 100%;" ng-src="{{ openCar.photo.url }}">
+                    <h4 style="text-align: left; text-transform: capitalize;">
+                        {{openCar.name}}
+                    </h4>
+                    <p style="text-align: left;">
+                        Model is <b>{{ openCar.model }}</b>
+                    </p>
+                    <p style="text-align: left;">
+                    Manufactured on <b>{{ openCar.manufactured.iso | date : 'MMM d yyyy' }}</b>
+                    </p>
+                    <p style="text-align: left;">
+                    Last service on <b>{{ openCar.lastService.iso | date : 'MMM d yyyy' }}</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+  </ion-modal-view>
+</script>
