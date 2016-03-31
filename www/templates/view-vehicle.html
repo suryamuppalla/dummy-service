@@ -15,6 +15,13 @@
 .item-thumbnail-left .item-content .item-image, .item-thumbnail-left .item-content>img:first-child, .item-thumbnail-left .item-image, .item-thumbnail-left>img:first-child {
     border-radius: 0%;
 }
+.button-small {
+  padding: 2px 4px 1px !important;
+  min-width: 28px;
+  min-height: 30px;
+  font-size: 12px;
+  font-size: 11px !important;
+}
 </style>
 <ion-view view-title="View vehicles">
     <ion-content class="im-wrapper">
@@ -27,7 +34,7 @@
             </div> <!-- col end -->
         </div> <!-- row end -->
 
-        <div ng-repeat="car in carArray | filter:searchText | orderBy: 'name'" style="border-bottom: 1px solid #ddd;" ng-click="openModal(car)">
+        <div ng-repeat="car in carArray | filter:searchText | orderBy: 'name'" style="border-bottom: 1px solid #ddd;">
             <div class="row pad-mar">
                 <div class="col pad-mar">
                     <div class="list">
@@ -45,7 +52,17 @@
                             <p class="modal-p">
                             Last service on {{ car.lastService.iso | date : 'MMM d yyyy' }}
                             </p>
+                            <div style="height: 10px; width: 100%;"></div>
+                            <div style="width: 100%;">
+                              <button ng-click="openModal(car)" class="button button-small button-assertive">
+                                Show details
+                              </button>
+                              <button ng-click="requestModal(car)" class="button button-small button-positive">
+                                View requests
+                              </button>
+                            </div>
                         </a>
+
                     </div>
                 </div>
             </div>
@@ -80,6 +97,30 @@
                     <p style="text-align: left;">
                     Last service on <b>{{ openCar.lastService.iso | date : 'MMM d yyyy' }}</b>
                     </p>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+
+<!-- for request modal -->
+<script id="request-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar ng-click="modal1.hide()" class="bar-assertive">
+    <div class="title title-center header-item" style="left: 63px;right: 63px; text-transform: capitalize; transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+      {{openCar.name}} details
+    </div>
+    <div class="close-btn">
+        <span class="icon ion-close"></span>
+    </div>
+    </ion-header-bar>
+    <ion-content class="text-center">
+      <div>
+            <div class="row">
+                <div class="col">
+                     <h1>Surya muppalla</h1>
                 </div>
             </div>
         </div>
