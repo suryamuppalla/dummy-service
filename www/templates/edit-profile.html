@@ -50,25 +50,24 @@ input {
         <!--  ionic-autocomplete="{items: items, onSelect:onSelect}" -->
         <div class="row pad"> <!-- row start -->
             <div class="col pad">
-                <form name="userForm" ng-submit="addCar()">
+                <form name="userForm" ng-submit="uploadNewInfo()">
                 <div class="list list-all">
+                    <div>
+                      <img ng-src="{{ user.image.url }}" />
+                    </div>
                     <label class="item item-input item-stacked-label">
-                        <input type="text" class="form-control" placeholder="First Name" ng-model="vehicle.firstname" name="firstname" required="" ng-class="{ 'has-error': myForm.firstname.$invalid && myForm.firstname.$dirty }" autocomplete="off">
+                        <input type="text" class="form-control" placeholder="First Name" ng-model="user.firstName" name="firstname" required="" ng-class="{ 'has-error': myForm.firstname.$invalid && myForm.firstname.$dirty }" autocomplete="off">
                         <span ng-show="userForm.firstname.$invalid &amp;&amp; !userForm.firstname.$pristine" class="help-block ng-hide">First name is required.</span>
                     </label>
                     <label class="item item-input item-stacked-label">
-                        <input type="text" class="form-control" placeholder="Last name" ng-model="vehicle.lastname" name="lastname" required="" ng-class="{ 'has-error': myForm.lastname.$invalid && myForm.lastname.$dirty }" autocomplete="off">
+                        <input type="text" class="form-control" placeholder="Last name" ng-model="user.lastName" name="lastname" required="" ng-class="{ 'has-error': myForm.lastname.$invalid && myForm.lastname.$dirty }" autocomplete="off">
                         <span ng-show="userForm.lastname.$invalid &amp;&amp; !userForm.lastname.$pristine" class="help-block ng-hide">Last name is required.</span>
                     </label>
                     <label class="item item-input item-stacked-label">
-                        <input type="email" class="form-control" placeholder="Email" ng-model="vehicle.email" name="email" required="" ng-class="{ 'has-error': myForm.email.$invalid && myForm.email.$dirty }" autocomplete="off" readonly=""/>
+                        <input type="email" class="form-control" placeholder="Email" ng-model="user.username" name="email" required="" ng-class="{ 'has-error': myForm.email.$invalid && myForm.email.$dirty }" autocomplete="off" readonly=""/>
                     </label>
                     <label class="item item-input item-stacked-label">
-                        <input type="password" class="form-control" placeholder="password" ng-model="vehicle.password" name="password" required="" ng-class="{ 'has-error': myForm.password.$invalid && myForm.password.$dirty }" autocomplete="off">
-                        <span ng-show="userForm.password.$invalid &amp;&amp; !userForm.password.$pristine" class="help-block ng-hide">Password is required.</span>
-                    </label>
-                    <label class="item item-input item-stacked-label">
-                        <input type="file" id="fileInput" class="custom-file-input" ng-model="vehicle.imageupload" name="imageupload" multiple/>
+                        <input type="file" id="fileInput" class="custom-file-input" ng-model="user.imageupload" name="imageupload" multiple/>
                     </label>
 
                     <!-- ng crop image code start here -->
@@ -82,7 +81,7 @@ input {
                     </button>
                 </div>
 
-                    
+
                 </form>
             </div> <!-- col end -->
         </div> <!-- row end -->
