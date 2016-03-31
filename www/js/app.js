@@ -234,6 +234,42 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         }
+    })
+
+    .state('app.edit-profile', {
+        url: '/edit-profile',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/edit-profile.html',
+                controller: 'EditProfileCtrl',
+                resolve: {
+                    authenticated: function($location, $auth) {
+                        if (!$auth.isAuthenticated()) {
+                
+                            return $location.path('/app/login');
+                        }
+                    }
+                }
+            }
+        }
+    })
+
+    .state('app.view-request', {
+        url: '/view-request',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/view-request.html',
+                controller: 'ViewReqCtrl',
+                resolve: {
+                    authenticated: function($location, $auth) {
+                        if (!$auth.isAuthenticated()) {
+                
+                            return $location.path('/app/login');
+                        }
+                    }
+                }
+            }
+        }
     });
 
     // if none of the above states are matched, use this as the fallback
