@@ -1,12 +1,13 @@
 app.controller('ViewPropertiesCtrl', ['$scope', '$location', '$rootScope', '$auth', '$q','$ionicHistory', '$filter', '$timeout','$ionicModal',
 	function ($scope, $location, $rootScope, $auth, $q,$ionicHistory, $filter, $timeout, $ionicModal) {
 
+	var rawList = [];
 	var Vehicle = Parse.Object.extend("Vehicle");
 	var query = new Parse.Query(Vehicle);
 	query.equalTo('userPointer', Parse.User.current());
 	query.find().then(function (list) {
 		/* body... */
-		console.log(list);
+		rawList = list;
 		$scope.carArray = JSON.parse(JSON.stringify(list));
     $scope.$apply()
 	}, function (error) {
@@ -50,8 +51,21 @@ app.controller('ViewPropertiesCtrl', ['$scope', '$location', '$rootScope', '$aut
 	        $scope.modal1 = modal;
 	      });
 	      $scope.requestModal = function(car) {
-	        $scope.openCar = car;
-	        $scope.modal1.show();
+					$scope.requests = [];
+	        $.each(rawList, function(i) {
+						if (car.objectId == rawList[i].id) {
+							var ServiceRequest = Parse.Object.extend('ServiceRequest');
+							var service = new Parse.Query(ServiceRequest);
+							service.equalTo('vehiclePointer', rawList[i]);
+							service.find().then(function (r) {
+								console.log(r);
+								$scope.requests = JSON.parse(JSON.stringify(r));
+							}, function (error) {
+								console.log('error', error);
+							});
+							$scope.modal1.show();
+						};
+					});
 	      };
 	      //Cleanup the modal when we're done with it!
 	      $scope.$on('$destroy', function() {
