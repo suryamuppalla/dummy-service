@@ -25,9 +25,9 @@
     </ion-side-menu-content>
     <ion-side-menu side="left" ng-if="isAuthenticated()">
         <ion-header-bar class="expanded">
-            <!-- <img src="img/logo.png" class="avatar motion spin fade"> -->
+            <img ng-src="{{ user.image.url }}" class="avatar motion spin fade">
             <div class="menu-bottom">
-                {{ user.username }}
+                {{ user.firstName }} {{ user.lastName }}
             </div>
             <div class="menu-bottom-right" ng-click="logout()">
                 Logout
