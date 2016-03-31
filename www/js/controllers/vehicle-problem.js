@@ -71,6 +71,7 @@ app.controller('VehicleProblemCtrl', ['$scope', 'VehicleService', 'ionicToast', 
                 request.set('files', fileList);
                 request.save().then(function (success) {
                      /* body... */
+                     ionicToast.show('Request saved successfully!', 'top', false, 2500)
                      console.log('after final upload of all the deatails -->>>', JSON.parse(JSON.stringify(success)));
                      $ionicHistory.nextViewOptions({
                         disableBack: true
