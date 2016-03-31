@@ -956,3 +956,6 @@ button.button.button-icon.button-clear.ion-navicon{
 .item-select select{
   right: 5px;
 }
+.slides img{
+  width: 100%;
+}

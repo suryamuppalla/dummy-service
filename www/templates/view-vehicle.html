@@ -137,9 +137,23 @@
       <div>
             <div class="row">
                 <div class="col">
-                     <pre>
-                     {{ requests | json }}
-                     </pre>
+                    <ion-slide-box on-slide-changed="slideHasChanged($index)">
+                      <ion-slide>
+                        <div class="slides">
+                            <img src="https://forums.digitalpoint.com/proxy/V%2FlNRoM4xHkS5Fc61NFQppB0NbSe9TmPGqmLBupoFuqe79%2FDyg0YFPkqDpPoxFSYkuz06biHsrvUECmiMrdqcnEl9nHHQTzweow1yLTDpilqVPsr709vAUQvcg%3D%3D/image.png" alt="slide1" height="200"/>
+                        </div>
+                      </ion-slide>
+                      <ion-slide>
+                        <div class="slides">
+                            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTFgaj7ZC5FZUmdIvJguUWd5lGcj5SanQkxbS9caDsIjQkdZK1Z" alt="slide2" height="200"/>
+                        </div>
+                      </ion-slide>
+                      <ion-slide>
+                        <div class="slides">
+                            <img src="https://forums.digitalpoint.com/proxy/V%2FlNRoM4xHkS5Fc61NFQppB0NbSe9TmPGqmLBupoFuqe79%2FDyg0YFPkqDpPoxFSYkuz06biHsrvUECmiMrdqcnEl9nHHQTzweow1yLTDpilqVPsr709vAUQvcg%3D%3D/image.png" alt="slide3" height="200"/>
+                        </div>
+                      </ion-slide>
+                    </ion-slide-box>
                 </div>
             </div>
         </div>
