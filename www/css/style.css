@@ -955,6 +955,7 @@ button.button.button-icon.button-clear.ion-navicon{
 }
 .modal-p{
   opacity: 0.6;
+  font-size: 12px !important;
 }
 .item-select select{
   right: 5px;
@@ -973,4 +974,8 @@ button.button.button-icon.button-clear.ion-navicon{
     height: 120px;
     border-radius: 50%;
     margin-bottom: 10px;
+}
+.ion-record{
+  font-size: 10px !important;
+  color: #FFC601;
 }

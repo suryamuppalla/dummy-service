@@ -60,6 +60,7 @@ app.controller('ViewPropertiesCtrl', ['$scope', '$location', '$rootScope', '$aut
 							service.find().then(function (r) {
 								$scope.requests = JSON.parse(JSON.stringify(r));
 								console.log('requests is ---???', $scope.requests);
+                $scope.$apply($scope.requests);
 							}, function (error) {
 								console.log('error', error);
 							});
