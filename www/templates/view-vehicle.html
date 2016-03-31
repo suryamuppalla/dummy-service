@@ -85,6 +85,17 @@
                 </div>
             </div>
         </div>
+
+        <div class="row no-vehicle-found-row" ng-if="!carArray.length">
+            <div class="col">
+                <h4 class="text-center">No vehicles found.!</h4>
+                <a href="#/app/add-vehicle" class="btn-add-vew">
+                    <button class="button button-small button-assertive btn-view">
+                    Add new vehicle
+                    </button>
+                </a>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
 
@@ -149,6 +160,16 @@
                       {{ data.description }}
                     </p>
                 </div>
+            </div>
+        </div>
+        <div class="row no-vehicle-found-row" ng-if="!requests.length">
+            <div class="col">
+                <h4 class="text-center">No requests found.!</h4>
+                <a href="#/app/vehicle-problem" class="btn-add-vew">
+                    <button class="button button-small button-assertive btn-view">
+                    Add new request
+                    </button>
+                </a>
             </div>
         </div>
     </ion-content>
