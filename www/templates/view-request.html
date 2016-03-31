@@ -40,12 +40,12 @@
                             <p class="modal-p">
                                 Model is {{ car.model }}
                             </p>
-                            <p class="modal-p">
+                            <!-- <p class="modal-p">
                             Manufactured on {{ car.manufactured.iso | date : 'MMM d yyyy' }}
                             </p>
                             <p class="modal-p">
                             Last service on {{ car.lastService.iso | date : 'MMM d yyyy' }}
-                            </p>
+                            </p> -->
                         </a>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
     </ion-content>
 </ion-view>
 
-<script id="my-modal.html" type="text/ng-template">
+<script id="show-service-request.html" type="text/ng-template">
   <ion-modal-view>
     <ion-header-bar ng-click="modal.hide()" class="bar-assertive">
     <div class="title title-center header-item" style="left: 63px;right: 63px; transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">{{openCar.name}} details</div>

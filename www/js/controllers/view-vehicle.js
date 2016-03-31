@@ -3,14 +3,15 @@ app.controller('ViewPropertiesCtrl', ['$scope', '$location', '$rootScope', '$aut
 
 	var Vehicle = Parse.Object.extend("Vehicle");
 	var query = new Parse.Query(Vehicle);
-	
+	query.equalTo('userPointer', Parse.User.current());
 	query.find().then(function (list) {
-		/* body... */ 
+		/* body... */
+		console.log(list);
 		$scope.carArray = JSON.parse(JSON.stringify(list));
     $scope.$apply()
 	}, function (error) {
 		 /* body... */
-		 console.log(error); 
+		 console.log(error);
 	})
 
     // modal start code
@@ -39,6 +40,23 @@ app.controller('ViewPropertiesCtrl', ['$scope', '$location', '$rootScope', '$aut
       $scope.$on('modal.removed', function() {
         // Execute action
       });
+
+			// for request-modal
+			// modal start code
+	    $ionicModal.fromTemplateUrl('request-modal.html', {
+	        scope: $scope,
+	        animation: 'slide-in-up'
+	      }).then(function(modal) {
+	        $scope.modal1 = modal;
+	      });
+	      $scope.requestModal = function(car) {
+	        $scope.openCar = car;
+	        $scope.modal1.show();
+	      };
+	      //Cleanup the modal when we're done with it!
+	      $scope.$on('$destroy', function() {
+	        $scope.modal1.remove();
+	      });
 }])
 
 app.directive('tooltip', function () {
