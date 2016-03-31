@@ -58,8 +58,8 @@ app.controller('ViewPropertiesCtrl', ['$scope', '$location', '$rootScope', '$aut
 							var service = new Parse.Query(ServiceRequest);
 							service.equalTo('vehiclePointer', rawList[i]);
 							service.find().then(function (r) {
-								console.log(r);
 								$scope.requests = JSON.parse(JSON.stringify(r));
+								console.log('requests is ---???', $scope.requests);
 							}, function (error) {
 								console.log('error', error);
 							});
