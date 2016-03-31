@@ -31,7 +31,6 @@
             <div class="row pad-mar">
                 <div class="col pad-mar">
                     <div class="list">
-
                         <a style="min-height: 100px;" class="item item-thumbnail-left" href="#/app/view-vehicle">
                             <img ng-src="{{ car.photo.url }}">
                             <h2 style="text-transform: capitalize;">
@@ -57,7 +56,9 @@
 <script id="my-modal.html" type="text/ng-template">
   <ion-modal-view>
     <ion-header-bar ng-click="modal.hide()" class="bar-assertive">
-    <div class="title title-center header-item" style="left: 63px;right: 63px; transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">{{openCar.name}} details</div>
+    <div class="title title-center header-item" style="left: 63px;right: 63px; text-transform: capitalize; transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+      {{openCar.name}} details
+    </div>
     <div class="close-btn">
         <span class="icon ion-close"></span>
     </div>
