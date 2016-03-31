@@ -128,44 +128,25 @@
   <ion-modal-view>
     <ion-header-bar ng-click="modal1.hide()" class="bar-assertive">
     <div class="title title-center header-item" style="left: 63px;right: 63px; text-transform: capitalize; transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
-      {{openCar.name}} details
+      Viewing service requests
     </div>
     <div class="close-btn">
         <span class="icon ion-close"></span>
     </div>
     </ion-header-bar>
     <ion-content class="">
-      <div>
+      <div ng-repeat="data in requests | orderBy: 'createdAt': reverse">
             <div class="row">
                 <div class="col col-shadow">
                     <ion-slide-box on-slide-changed="slideHasChanged($index)">
-                      <ion-slide>
+                      <ion-slide ng-repeat="file in data.files">
                         <div class="slides">
-                            <img src="https://forums.digitalpoint.com/proxy/V%2FlNRoM4xHkS5Fc61NFQppB0NbSe9TmPGqmLBupoFuqe79%2FDyg0YFPkqDpPoxFSYkuz06biHsrvUECmiMrdqcnEl9nHHQTzweow1yLTDpilqVPsr709vAUQvcg%3D%3D/image.png" alt="slide1" height="200"/>
-                        </div>
-                      </ion-slide>
-                      <ion-slide>
-                        <div class="slides">
-                            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTFgaj7ZC5FZUmdIvJguUWd5lGcj5SanQkxbS9caDsIjQkdZK1Z" alt="slide2" height="200"/>
-                        </div>
-                      </ion-slide>
-                      <ion-slide>
-                        <div class="slides">
-                            <img src="https://forums.digitalpoint.com/proxy/V%2FlNRoM4xHkS5Fc61NFQppB0NbSe9TmPGqmLBupoFuqe79%2FDyg0YFPkqDpPoxFSYkuz06biHsrvUECmiMrdqcnEl9nHHQTzweow1yLTDpilqVPsr709vAUQvcg%3D%3D/image.png" alt="slide3" height="200"/>
+                            <img ng-src="{{ file.url }}" alt="slide1" height="200"/>
                         </div>
                       </ion-slide>
                     </ion-slide-box>
-                    <h4 style="text-align: left; text-transform: capitalize;">
-                                slide3
-                    </h4>
                     <p>
-                        Model is fz
-                    </p>
-                    <p>
-                    Manufactured on mm/date/year
-                    </p>
-                    <p>
-                    Last service on mm/date/year
+                      {{ data.description }}
                     </p>
                 </div>
             </div>
