@@ -26,6 +26,12 @@ a {
     text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
     font-size: 15px;
 }
+.item-select select{
+    position: relative !important;
+    direction: initial;
+    padding:8px 5px;
+    color: #aaa;
+}
 </style>
 <ion-view class="main-wraper" view-title="Signup">
 
@@ -89,6 +95,13 @@ a {
                             <input name="companyname" type="text" class="form-control filds-inputs border-bottom-field" placeholder="Company name" ng-model="companyname" ng-minlength="3" ng-maxlength="20" required ng-class="{ 'has-error': myForm.companyname.$invalid && myForm.companyname.$dirty }">
                             <span ng-show="myForm.companyname.$error.required && myForm.companyname.$dirty" class="error-msg">Required</span>
                             <span ng-show="!myForm.companyname.$error.required && (myForm.companyname.$error.minlength || myForm.companyname.$error.maxlength) && myForm.companyname.$dirty" class="error-msg" class="error-msg">Must be 3 to 20 characters.</span>
+                        </label>
+                        <label class="item item-input item-sin-cmn item-log-pas item-select">
+                            <select>
+                                <option selected="selected" value="">Select</option>
+                                <option value="">Service</option>
+                                <option value="">Customer</option>
+                            </select>
                         </label>
                         <button type="submit" style="margin-bottom: 0px;" class="button button-small btn-login" ng-disabled="!myForm.$valid || loginDisable">
                             Sign Up
