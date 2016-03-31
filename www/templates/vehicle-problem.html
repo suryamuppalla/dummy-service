@@ -36,6 +36,9 @@
                           <textarea placeholder="Description" name"description" ng-model="vehicle.description" ng-class="{ 'has-error': userForm.description.$invalid && userForm.description.$dirty }" autocomplete="off" required=""></textarea>
                           <span ng-show="userForm.description.$invalid &amp;&amp; !userForm.description.$pristine" class="help-block ng-hide">Description is required.</span>
                       </label>
+                      <label class="item item-input item-stacked-label">
+                        <input type="file" class="custom-file-input" multiple/>
+                    </label>
                   </div>
                     <button type="submit" class="button button-small button-royal btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">
                         Send request
