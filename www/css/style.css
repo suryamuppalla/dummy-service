@@ -953,3 +953,6 @@ button.button.button-icon.button-clear.ion-navicon{
 .modal-p{
   opacity: 0.6;
 }
+.item-select select{
+  right: 5px;
+}
