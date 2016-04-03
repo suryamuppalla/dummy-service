@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic', 'ionic-material','ionic.rating','satellizer', 'ionic-toast']);
+var app = angular.module('starter', ['ionic', 'ionic-material','ionic.rating','satellizer', 'ionic-toast','ngImgCrop']);
 
 app.run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -218,12 +218,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
 
-    .state('app.subscribenow', {
-        url: '/subscribenow',
+    .state('app.service-req', {
+        url: '/service-req',
         views: {
             'menuContent': {
-                templateUrl: 'templates/subscribenow.html',
-                controller: 'SubscribeNowCtrl',
+                templateUrl: 'templates/service-req.html',
+                controller: 'ServiceReqCtrl',
                 resolve: {
                     authenticated: function($location, $auth) {
                         if (!$auth.isAuthenticated()) {
@@ -236,12 +236,30 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
 
-    .state('app.service-req', {
-        url: '/service-req',
+    .state('app.edit-profile', {
+        url: '/edit-profile',
         views: {
             'menuContent': {
-                templateUrl: 'templates/service-req.html',
-                controller: 'ServiceReqCtrl',
+                templateUrl: 'templates/edit-profile.html',
+                controller: 'EditProfileCtrl',
+                resolve: {
+                    authenticated: function($location, $auth) {
+                        if (!$auth.isAuthenticated()) {
+                
+                            return $location.path('/app/login');
+                        }
+                    }
+                }
+            }
+        }
+    })
+
+    .state('app.view-request', {
+        url: '/view-request',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/view-request.html',
+                controller: 'ViewReqCtrl',
                 resolve: {
                     authenticated: function($location, $auth) {
                         if (!$auth.isAuthenticated()) {

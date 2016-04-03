@@ -25,9 +25,9 @@
     </ion-side-menu-content>
     <ion-side-menu side="left" ng-if="isAuthenticated()">
         <ion-header-bar class="expanded">
-            <!-- <img src="img/logo.png" class="avatar motion spin fade"> -->
+            <img ng-src="{{ user.image.url }}" class="avatar motion spin fade">
             <div class="menu-bottom">
-                {{ user.username }}
+                <span style="text-transform: capitalize;">{{ user.firstName }}</span> {{ user.lastName }}
             </div>
             <div class="menu-bottom-right" ng-click="logout()">
                 Logout
@@ -36,37 +36,34 @@
         <ion-content class="stable-bg has-expanded-header">
             <ion-list>
                 <ion-item nav-clear menu-close ng-href="#/app/view-vehicle">
-                <i class="ion-android-home"></i>&nbsp;
-                    View vehicles
+                <i class="ion-eye icon-mn"></i>View vehicles
                 </ion-item>
-
+                <!-- <ion-item nav-clear menu-close ng-href="#/app/view-request">
+                <i class="ion-eye icon-mn"></i>View requests
+                </ion-item> -->
                 <ion-item nav-clear menu-close href="#/app/add-vehicle">
-                <i class="ion-edit"></i>&nbsp;
-                    Add vehicle
+                <i class="ion-plus icon-mn"></i>Add vehicle
                 </ion-item>
                 <ion-item nav-clear menu-close href="#/app/service-req">
-                <i class="ion-ionic"></i>&nbsp;
-                    Service request
+                <i class="ion-ionic icon-mn"></i>Service requests
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/edit-profile">
+                <i class="ion-edit icon-mn"></i>Edit profile
                 </ion-item>
                 <ion-item nav-clear menu-close href="#/app/change-password">
-                <i class="ion-ios-unlocked"></i>&nbsp;
-                    Change Password
+                <i class="ion-ios-unlocked icon-mn"></i> Change Password
                 </ion-item>
                 <ion-item nav-clear menu-close href="#/app/aboutus">
-                <i class="ion-clipboard"></i>&nbsp;
-                    About Us
+                <i class="ion-clipboard icon-mn"></i> About Us
                 </ion-item>
                 <ion-item nav-clear menu-close href="#/app/contactus">
-                <i class="ion-android-contact"></i>&nbsp;
-                    Contact Us
+                <i class="ion-android-contact icon-mn"></i> Contact Us
                 </ion-item>
                 <ion-item nav-clear menu-close href="#/app/rating">
-                <i class="ion-ios-star"></i>&nbsp;
-                    Rate the App
+                <i class="ion-ios-star icon-mn"></i> Rate the App
                 </ion-item>
                 <ion-item nav-clear menu-close href="#/app/subscribenow">
-                <i class="ion-thumbsup"></i>&nbsp;
-                    Subscribe now
+                <i class="ion-thumbsup icon-mn"></i> Subscribe now
                 </ion-item>
             </ion-list>
         </ion-content>

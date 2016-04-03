@@ -12,24 +12,23 @@ app.controller('ChangePasswordCtrl', ['$scope', '$state', '$location', '$auth', 
 		C_User.set("autoPass", $scope.cdata.password);
 		C_User.save()
 		.then(function(user) {
-		    return user.fetch();
-		  }
-		)
-		.then(
-		  function(user) {
-		  	console.log(user);
-		  	var token = user.getSessionToken();						
-			$auth.setToken(token);
-		    $timeout(function() {$scope.load = false}, 1000);
-    		ionicToast.show('Password has been changed successfully...!', 'top', false, 5000);
-    		$scope.loginDisable = false;
-              $ionicHistory.nextViewOptions({
-                  disableBack: true
-              });
-		    $state.go('app.view-properties');
-		}, function(err) {
-			console.log('err');
-		});
+            console.log(JSON.parse(JSON.stringify(user.fetch())))
+		    var data = user.fetch();
+            $timeout(function() {
+                $scope.load = false;
+                $auth.getToken(data.getSessionToken());
+                ionicToast.show('Password has been changed successfully...!', 'top', false, 5000);
+                $scope.loginDisable = false;
+                  $ionicHistory.nextViewOptions({
+                      disableBack: true
+                  });
+                $state.go('app.view-vehicle');
+            }, 1000);
+            
+		}, function (error) {
+               /* body... */
+            console.log(error);
+        });
 	};
 }]);
 

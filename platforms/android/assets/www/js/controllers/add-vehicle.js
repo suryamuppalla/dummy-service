@@ -1,7 +1,9 @@
 app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$timeout', 
 
-    '$rootScope', '$window', '$q', 'ionicToast','$ionicLoading' ,'$ionicHistory', 'VehicleService', function($scope, $state, $location, $auth, $timeout, 
-    $rootScope, $window, $q, ionicToast,$ionicLoading, $ionicHistory, VehicleService) {
+    '$rootScope', '$window', '$q', 'ionicToast','$ionicLoading' ,
+    '$ionicHistory', 'VehicleService', '$ionicModal', 
+    function($scope, $state, $location, $auth, $timeout, 
+    $rootScope, $window, $q, ionicToast,$ionicLoading, $ionicHistory, VehicleService, $ionicModal) {
 
       console.log('add Vehicle controller');
 
@@ -10,28 +12,73 @@ app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$ti
       console.log(query)
 
       $scope.addCar = function () {
-         /* body... */ 
-         query.set('type', this.vehicle.type.toLowerCase());
-         query.set('name', this.vehicle.name.toLowerCase());
-         query.set('model', this.vehicle.model.toLowerCase());
-         query.set('manufactured', this.vehicle.manufactured);
-         query.set('lastService', this.vehicle.lastService);
-         query.set('userPointer', Parse.User.current())
-         query.save().then(function (success) {
-            /* body... */ 
-            $timeout(function() {
-                $ionicHistory.nextViewOptions({
-                    disableBack: true
-                });
-                $state.go('app.view-vehicle')
-            }, 1000);
-         }, function (error) {
-            /* body... */ 
-            console.log('error', error)
-         })
+        $scope.loginDisable = true;
+        console.log('cropped image is ->>>', this.myCroppedImage)
+        //upload profile picture first
+        ////console.log($scope.fileName, $scope.myCroppedImage, $scope.imageExtension)
+        if($scope.imageExtension){
+         // saving base64 file into parse then after we can make reference that
+         // file into user table
+         var profiePic = new Parse.File('sample.'+ $scope.imageExtension,
+                      { base64: this.myCroppedImage.split(",")[1]})
+         $scope.vehicle = this.vehicle;
+         profiePic.save().then(function(savedProfilePic){
+            console.log($scope.vehicle)
+            /* body... */
+            query.set('type', $scope.vehicle.type.toLowerCase());
+            query.set('name', $scope.vehicle.name.toLowerCase());
+            query.set('model', $scope.vehicle.model.toLowerCase());
+            query.set('manufactured', $scope.vehicle.manufactured);
+            query.set('lastService', $scope.vehicle.lastService);
+            query.set('userPointer', Parse.User.current())
+            query.set('photo', savedProfilePic);
+            query.save().then(function (success) {
+                /* body... */ 
+                    $timeout(function() {
+                        $ionicHistory.nextViewOptions({
+                            disableBack: true
+                        });
+                        $state.go('app.view-vehicle')
+                    }, 1000);
+                }, function (error) {
+                  $scope.loginDisable = false;
+                /* body... */ 
+                console.log('error', error);
+                })
+            }, function(error){
+               $scope.loginDisable = false;
+               ionicToast.show('something went wrong', 'top', false, 2500)
+            })
+        }else{
+            $scope.loginDisable = false;
+            ionicToast.show('Please upload an image!', 'top', false, 2500)
+        }
 
-         console.log(this.vehicle)
+        console.log(this.vehicle)
       }
+
+
+    // image upload code start
+    $scope.myImage='';
+    $scope.myCroppedImage='';
+
+    var handleFileSelect=function(evt) {
+      var file=evt.currentTarget.files[0];
+      $scope.fileName=file.name;
+
+      $scope.imageExtension = $scope.fileName.split('.').pop();
+      var reader = new FileReader();
+      reader.onload = function (evt) {
+        $scope.$apply(function($scope){
+          $scope.myImage=evt.target.result;
+          $(".cropArea").show();
+          $(".src-image").show();
+        });
+      };
+      reader.readAsDataURL(file);
+    };
+    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+    
 }]);
 
 app.directive('ionicAutocomplete',
