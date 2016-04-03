@@ -57,6 +57,7 @@
                             <img ng-src="{{ car.photo.url }}">
                             <h2 style="text-transform: capitalize;">
                                 {{ car.name }}
+                                <i ng-click="serviceRequest()" class="ion-information-circled text-right" style="float: right; color: #FFC601 !important;"></i>
                             </h2>
                             <p class="modal-p">
                                 Model is {{ car.model }}
@@ -139,7 +140,7 @@
   <ion-modal-view>
     <ion-header-bar ng-click="modal1.hide()" class="bar-assertive">
     <div class="title title-center header-item" style="left: 63px;right: 63px; text-transform: capitalize; transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
-      Viewing service requests
+      {{ requests[0].vehiclePointer.name }} service requests
     </div>
     <div class="close-btn">
         <span class="icon ion-close"></span>
@@ -174,4 +175,30 @@
         </div>
     </ion-content>
   </ion-modal-view>
+</script>
+
+
+<!-- for add request modal -->
+<script id="service-request.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar ng-click="modal2.hide()" class="bar-assertive">
+            <div class="title title-center header-item" style="left: 63px;right: 63px; text-transform: capitalize; transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+                Requesting service
+            </div>
+            <div class="close-btn">
+                <span class="icon ion-close"></span>
+            </div>
+        </ion-header-bar>
+        <ion-content class="text-center">
+            <div class="im-wrapper">
+                <div class="row">
+                    <div class="col">
+                        <h3>
+                            Surya muppalla
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+    </ion-modal-view>
 </script>

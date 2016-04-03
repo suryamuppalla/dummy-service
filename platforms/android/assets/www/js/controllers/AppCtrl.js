@@ -1,6 +1,6 @@
-﻿app.controller('AppCtrl', ['$scope', '$state', '$ionicScrollDelegate', '$ionicModal', '$ionicPopover', '$timeout', '$auth', '$window','$ionicHistory', 
+﻿app.controller('AppCtrl', ['$scope', '$state', '$ionicScrollDelegate', '$ionicModal', '$ionicPopover', '$timeout', '$auth', '$window','$ionicHistory',
     function ($scope, $state, $ionicScrollDelegate, $ionicModal, $ionicPopover, $timeout, $auth, $window, $ionicHistory) {
-    
+
     /*$ionicHistory.nextViewOptions({
         historyRoot: true
     });*/
@@ -16,7 +16,6 @@
     };
 
     $scope.isAuthenticated = function() {
-
         $scope.user = JSON.parse(JSON.stringify(Parse.User.current()));
         return $auth.isAuthenticated();
     };

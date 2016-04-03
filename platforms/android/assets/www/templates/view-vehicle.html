@@ -15,6 +15,28 @@
 .item-thumbnail-left .item-content .item-image, .item-thumbnail-left .item-content>img:first-child, .item-thumbnail-left .item-image, .item-thumbnail-left>img:first-child {
     border-radius: 0%;
 }
+.button-small {
+  padding: 2px 4px 1px !important;
+  min-width: 28px;
+  min-height: 30px;
+  font-size: 12px;
+  font-size: 11px !important;
+}
+.btn-view{
+    border-color: #FFC601 !important;
+    background-color: #FFC601 !important;
+    color: #272727 !important;
+    line-height: 0px !important;
+    padding: 0px 5px!important;
+    margin: 0px !important;
+    min-height: 0px !important;
+    height: 25px !important;
+    border-radius: 0px;
+    font-size: 10px !important;
+    font-weight: bold;
+    width: 100%;
+}
+
 </style>
 <ion-view view-title="View vehicles">
     <ion-content class="im-wrapper">
@@ -31,19 +53,125 @@
             <div class="row pad-mar">
                 <div class="col pad-mar">
                     <div class="list">
-
-                        <a style="min-height: 100px;" class="item item-thumbnail-left" href="#/app/view-vehicle">
-                            <img src="http://www.prestige-car-leasing.co.uk/images/special_offers/Audi_A3_Cabriolet.JPG">
-                            <h2>
+                        <a style="min-height: 100px;border-bottom: 0px;" class="item item-thumbnail-left" href="#/app/view-vehicle">
+                            <img ng-src="{{ car.photo.url }}">
+                            <h2 style="text-transform: capitalize;">
                                 {{ car.name }}
                             </h2>
-                            <p>
-                                {{ car.model }}
+                            <p class="modal-p">
+                                Model is {{ car.model }}
+                            </p>
+                            <p class="modal-p">
+                            Manufactured on {{ car.manufactured.iso | date : 'MMM d yyyy' }}
+                            </p>
+                            <p class="modal-p">
+                            Last service on {{ car.lastService.iso | date : 'MMM d yyyy' }}
                             </p>
                         </a>
+
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col col-50">
+                    <button ng-click="openModal(car)" class="button button-small button-assertive btn-view">
+                    Show details
+                    </button>
+                </div>
+                <div class="col col-50">
+                    <button ng-click="requestModal(car)" class="button button-small button-assertive btn-view">
+                    View requests
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row no-vehicle-found-row" ng-if="!carArray.length">
+            <div class="col">
+                <h4 class="text-center">No vehicles found.!</h4>
+                <a href="#/app/add-vehicle" class="btn-add-vew">
+                    <button class="button button-small button-assertive btn-view">
+                    Add new vehicle
+                    </button>
+                </a>
             </div>
         </div>
     </ion-content>
 </ion-view>
+
+<script id="my-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar ng-click="modal.hide()" class="bar-assertive">
+    <div class="title title-center header-item" style="left: 63px;right: 63px; text-transform: capitalize; transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+      {{openCar.name}} details
+    </div>
+    <div class="close-btn">
+        <span class="icon ion-close"></span>
+    </div>
+    </ion-header-bar>
+    <ion-content class="text-center">
+      <div>
+            <div class="row">
+                <div class="col col-shadow">
+                     <img style="width: 100%;" ng-src="{{ openCar.photo.url }}" height="200">
+                    <h4 style="text-align: left; text-transform: capitalize;">
+                        {{openCar.name}}
+                    </h4>
+                    <p style="text-align: left;">
+                        Model is <b>{{ openCar.model }}</b>
+                    </p>
+                    <p style="text-align: left;">
+                    Manufactured on <b>{{ openCar.manufactured.iso | date : 'MMM d yyyy' }}</b>
+                    </p>
+                    <p style="text-align: left;">
+                    Last service on <b>{{ openCar.lastService.iso | date : 'MMM d yyyy' }}</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+
+<!-- for request modal -->
+<script id="request-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar ng-click="modal1.hide()" class="bar-assertive">
+    <div class="title title-center header-item" style="left: 63px;right: 63px; text-transform: capitalize; transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+      {{ requests[0].vehiclePointer.name }} service requests
+    </div>
+    <div class="close-btn">
+        <span class="icon ion-close"></span>
+    </div>
+    </ion-header-bar>
+    <ion-content class="">
+      <div ng-repeat="data in requests | orderBy: 'createdAt': reverse">
+            <div class="row">
+                <div class="col col-shadow">
+                    <ion-slide-box on-slide-changed="slideHasChanged($index)">
+                      <ion-slide ng-repeat="file in data.files">
+                        <div class="slides">
+                            <img ng-src="{{ file.url }}" alt="slide1" height="200"/>
+                        </div>
+                      </ion-slide>
+                    </ion-slide-box>
+                    <p>
+                      {{ data.description }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row no-vehicle-found-row" ng-if="!requests.length">
+            <div class="col">
+                <h4 class="text-center">No requests found.!</h4>
+                <a href="#/app/vehicle-problem" class="btn-add-vew">
+                    <button class="button button-small button-assertive btn-view">
+                    Add new request
+                    </button>
+                </a>
+            </div>
+        </div>
+    </ion-content>
+  </ion-modal-view>
+</script>

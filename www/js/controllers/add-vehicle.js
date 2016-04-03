@@ -1,8 +1,8 @@
-app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$timeout', 
+app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$timeout',
 
     '$rootScope', '$window', '$q', 'ionicToast','$ionicLoading' ,
-    '$ionicHistory', 'VehicleService', '$ionicModal', 
-    function($scope, $state, $location, $auth, $timeout, 
+    '$ionicHistory', 'VehicleService', '$ionicModal',
+    function($scope, $state, $location, $auth, $timeout,
     $rootScope, $window, $q, ionicToast,$ionicLoading, $ionicHistory, VehicleService, $ionicModal) {
 
       console.log('add Vehicle controller');
@@ -33,7 +33,7 @@ app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$ti
             query.set('userPointer', Parse.User.current())
             query.set('photo', savedProfilePic);
             query.save().then(function (success) {
-                /* body... */ 
+                /* body... */
                     $timeout(function() {
                         $ionicHistory.nextViewOptions({
                             disableBack: true
@@ -42,7 +42,7 @@ app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$ti
                     }, 1000);
                 }, function (error) {
                   $scope.loginDisable = false;
-                /* body... */ 
+                /* body... */
                 console.log('error', error);
                 })
             }, function(error){
@@ -78,13 +78,13 @@ app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$ti
       reader.readAsDataURL(file);
     };
     angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
-    
+
 }]);
 
 app.directive('ionicAutocomplete',
     function ($ionicPopover) {
-        var popoverTemplate = 
-         '<ion-popover-view style="margin-top:5px">' + 
+        var popoverTemplate =
+         '<ion-popover-view style="margin-top:5px">' +
              '<ion-content>' +
                  '<div class="list">' +
                     '<a href="#" class="item" ng-repeat="item in items | filter:inputSearch" ng-click="selectItem(item)">{{item.display}}</a>' +
@@ -104,8 +104,6 @@ app.directive('ionicAutocomplete',
                 console.log('items is -->>>', $scope.items)
                 //Add autocorrect="off" so the 'change' event is detected when user tap the keyboard
                 $element.attr('autocorrect', 'off');
-
-
                 popover = $ionicPopover.fromTemplate(popoverTemplate, {
                     scope: $scope
                 });

@@ -14,18 +14,18 @@ app.controller('LoginCtrl', ['$scope', '$state', '$location', '$auth', '$timeout
 
       $scope.$apply($rootScope.firstname = user.get("firstName"));
 
-        if (user.get("emailVerified") == false){
+        /*if (user.get("emailVerified") == false){
             ionicToast.show('Please activate your account!', 'top', false, 5000);
         }
-        else{
+        else{*/
             
             var token = user.getSessionToken();
             $auth.setToken(token);
             $ionicHistory.nextViewOptions({
                 disableBack: true
             });
-            $state.go('app.view-cars');
-        }
+            $state.go('app.view-vehicle');
+        // }
 
     }, function (error) {
       $scope.loginDisable = false;

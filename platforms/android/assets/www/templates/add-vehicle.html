@@ -16,6 +16,26 @@
     padding:8px 0px;
     color: #aaa;
 }
+.cropArea {
+    background: #ddd;
+    width: 90%;
+    height: 100px;
+    margin: auto;
+}
+input {
+    color: #989898 !important;
+}
+#fileInput {
+    color: #fff !important;
+}
+.help-block, .error-msg{
+    color: #ef473a !important;
+    font-size: 9px !important;
+    margin-top: 22px !important;
+    position: absolute;
+    left: 6%;
+    top: 29%;
+}
 </style>
 <ion-view view-title="Add vehicle">
     <ion-content class="im-wrapper2">
@@ -29,9 +49,9 @@
         <!-- directive call -->
         <!--  ionic-autocomplete="{items: items, onSelect:onSelect}" -->
         <div class="row pad"> <!-- row start -->
-            <div class="col pad"> <!-- col start -->
+            <div class="col pad">
                 <form name="userForm" ng-submit="addCar()">
-                <div class="list">
+                <div class="list list-all">
                     <label class="item item-input item-stacked-label item-select">
                         <select ng-init="vehicle.type = 'car'" ng-model="vehicle.type">
                             <option value="truck">Truck</option>
@@ -49,19 +69,29 @@
                         <span ng-show="userForm.vehiclemodel.$invalid &amp;&amp; !userForm.vehiclemodel.$pristine" class="help-block ng-hide">Vehicle model is required.</span>
                     </label>
                     <label class="item item-input item-stacked-label">
-                        <input type="date" class="form-control" placeholder="Phone No" ng-model="car.manufactured" name="phone" required="" ng-minlength="10" ng-maxlength="14">
-                        <span ng-show="userForm.phone.$error.required" class="help-block ng-hide">Your phone Number is required.</span>
-                        <p ng-show="userForm.phone.$error.minlength" class="help-block ng-hide">Your phone Number must be minimum 10 characters</p>
-                        <p ng-show="userForm.phone.$error.maxlength" class="help-block ng-hide">Sorry You are Exceeding the Limit</p>
+                        <input type="date" class="form-control" placeholder="Manufacturing date" ng-model="vehicle.manufactured" name="firstdate" required="" >
+                        <span ng-show="userForm.firstdate.$invalid &amp;&amp; !userForm.firstdate.$pristine" class="help-block ng-hide">Manufacturing date is required.</span>
                     </label>
                     <label class="item item-input item-stacked-label">
-                        <input type="date" class="form-control" placeholder="Address line1" ng-model="car.lastService" name="address1" required="">
-                        <span ng-show="userForm.address1.$invalid &amp;&amp; !userForm.address1.$pristine" class="help-block ng-hide">Your address line1 is required.</span>
+                        <input type="date" class="form-control" placeholder="Last service date" ng-model="vehicle.lastService" name="endingdate" required="">
+                        <span ng-show="userForm.endingdate.$invalid &amp;&amp; !userForm.endingdate.$pristine" class="help-block ng-hide">Last service date is required.</span>
                     </label>
-                </div>
-                    <button type="submit" class="button button-small button-royal btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">
+                    <label class="item item-input item-stacked-label">
+                        <input type="file" id="fileInput" class="custom-file-input" ng-model="vehicle.imageupload" name="imageupload" multiple/>
+                    </label>
+
+                    <!-- ng crop image code start here -->
+                    <div class="row cropArea src-image-all" style="display:none;">
+                        <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                    </div>
+                    <!-- ng crop image code end here -->
+
+                    <button style="margin-top: 5px;" type="submit" class="button button-small button-royal btn-block btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">
                         Save
                     </button>
+                </div>
+
+                    
                 </form>
             </div> <!-- col end -->
         </div> <!-- row end -->
