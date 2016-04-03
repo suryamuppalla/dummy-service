@@ -23,7 +23,7 @@ app.controller('addVehicleCtrl', ['$scope', '$state', '$location', '$auth', '$ti
                       { base64: this.myCroppedImage.split(",")[1]})
          $scope.vehicle = this.vehicle;
          profiePic.save().then(function(savedProfilePic){
-            console.log($scope.vehicle)
+            console.log($scope.vehicle);
             /* body... */
             query.set('type', $scope.vehicle.type.toLowerCase());
             query.set('name', $scope.vehicle.name.toLowerCase());

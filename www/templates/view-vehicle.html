@@ -40,16 +40,15 @@
 </style>
 <ion-view view-title="View vehicles">
     <ion-content class="im-wrapper">
+        <ion-refresher on-refresh="doRefresh()"></ion-refresher>
         <div class="row input-row pad-mar" ng-if="carArray.length"> <!-- row start -->
             <div class="col pad-mar"> <!-- col start -->
                 <input type="hidden" ng-model="searchText" type="text" placeholder="Search Properties ..." class="input-pay-rent"/>
-
-
                 <input ng-model="$parent.searchText" type="text" class="input-pay-rent" placeholder="Search vehicle..">
             </div> <!-- col end -->
         </div> <!-- row end -->
 
-        <div ng-repeat="car in carArray | filter:searchText | orderBy: 'name'" style="border-bottom: 1px solid #ddd;">
+        <div on-hold="deleteVehicle()" ng-repeat="car in carArray | filter:searchText | orderBy: 'name'" style="border-bottom: 1px solid #ddd;">
             <div class="row pad-mar">
                 <div class="col pad-mar">
                     <div class="list">
@@ -87,12 +86,12 @@
             </div>
         </div>
 
-        <div class="row no-vehicle-found-row" ng-if="!carArray.length">
+        <div class="row no-vehicle-found-row" ng-if="noCarLength">
             <div class="col">
                 <h4 class="text-center">No vehicles found.!</h4>
                 <a href="#/app/add-vehicle" class="btn-add-vew">
                     <button class="button button-small button-assertive btn-view">
-                    Add new vehicle
+                    Add new vehicle {{ noCarLength }}
                     </button>
                 </a>
             </div>
@@ -140,7 +139,7 @@
   <ion-modal-view>
     <ion-header-bar ng-click="modal1.hide()" class="bar-assertive">
     <div class="title title-center header-item" style="left: 63px;right: 63px; text-transform: capitalize; transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
-      {{ requests[0].vehiclePointer.name }} service requests
+      Viewing service request
     </div>
     <div class="close-btn">
         <span class="icon ion-close"></span>
@@ -163,7 +162,7 @@
                 </div>
             </div>
         </div>
-        <div class="row no-vehicle-found-row" ng-if="!requests.length">
+        <div class="row no-vehicle-found-row" ng-if="noRequest">
             <div class="col">
                 <h4 class="text-center">No requests found.!</h4>
                 <a href="#/app/vehicle-problem" class="btn-add-vew">

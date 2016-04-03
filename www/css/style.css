@@ -645,7 +645,7 @@ ul.rating{
     background: #ff1919 !important;
     color: #fff !important;
     border: 1px solid #ff1919 !important;
-    border-radius: none !important;
+    border-radius: 0 !important;
     border-radius: 0px !important;
 }
 .check-col{
