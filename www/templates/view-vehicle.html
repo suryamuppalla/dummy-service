@@ -38,7 +38,7 @@
 }
 
 </style>
-<ion-view view-title="View vehicles">
+<ion-view view-title="Vehicle Garage">
     <ion-content class="im-wrapper">
         <ion-refresher on-refresh="doRefresh()"></ion-refresher>
         <div class="row input-row pad-mar" ng-if="carArray.length"> <!-- row start -->
@@ -48,15 +48,15 @@
             </div> <!-- col end -->
         </div> <!-- row end -->
 
-        <div on-hold="deleteVehicle()" ng-repeat="car in carArray | filter:searchText | orderBy: 'name'" style="border-bottom: 1px solid #ddd;">
+        <div ng-repeat="car in carArray | filter:searchText | orderBy: 'name'" style="border-bottom: 1px solid #ddd;">
             <div class="row pad-mar">
                 <div class="col pad-mar">
                     <div class="list">
-                        <a style="min-height: 100px;border-bottom: 0px;" class="item item-thumbnail-left" href="#/app/view-vehicle">
-                            <img ng-src="{{ car.photo.url }}">
+                        <a style="min-height: 100px;border-bottom: 0px;" class="item item-thumbnail-left">
+                            <img ng-click="go_to_vehicle_details(car.objectId)" on-hold="deleteVehicle()" ng-src="{{ car.photo.url }}">
                             <h2 style="text-transform: capitalize;">
                                 {{ car.name }}
-                                <i ng-click="serviceRequest()" class="ion-information-circled text-right" style="float: right; color: #FFC601 !important;"></i>
+                                <i ng-click="serviceRequest()" class="ion-ios-more text-right" style="float: right; color: #FFC601 !important;"></i>
                             </h2>
                             <p class="modal-p">
                                 Model is {{ car.model }}
@@ -68,13 +68,12 @@
                             Last service on {{ car.lastService.iso | date : 'MMM d yyyy' }}
                             </p>
                         </a>
-
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <!--<div class="row">
                 <div class="col col-50">
-                    <button ng-click="openModal(car)" class="button button-small button-assertive btn-view">
+                    <button class="button button-small button-assertive btn-view">
                     Show details
                     </button>
                 </div>
@@ -83,16 +82,27 @@
                     View requests
                     </button>
                 </div>
-            </div>
+            </div>-->
         </div>
-
-        <div class="row no-vehicle-found-row" ng-if="noCarLength">
+        <!-- -->
+        <div class="row no-vehicle-found-row" style="margin-top: 10px;">
             <div class="col">
-                <h4 class="text-center">No vehicles found.!</h4>
-                <a href="#/app/add-vehicle" class="btn-add-vew">
-                    <button class="button button-small button-assertive btn-view">
-                    Add new vehicle {{ noCarLength }}
-                    </button>
+                <style>
+                    .add-veh {
+                        color: rgba(0, 0, 0, 0.79);
+                        font-weight:bold;
+                        line-height: 25px;
+                    }
+                    .add-veh i {
+                        font-size: 30px;
+                        text-align: center;
+                        margin-left: 28px;
+                        color: #FFC601;
+                    }
+                </style>
+                <a href="#/app/add-vehicle" class="btn-add-vew add-veh">
+                    <i class="ion-plus-circled"></i> <br />
+                    <span>Add a Vehicle</span>
                 </a>
             </div>
         </div>
@@ -192,9 +202,29 @@
             <div class="im-wrapper">
                 <div class="row">
                     <div class="col">
-                        <h3>
-                            Surya muppalla
-                        </h3>
+                        <form name="userForm" ng-submit="sendProblem()">
+                            <div class="list">
+                                <label class="item item-input item-stacked-label item-select">
+                                    <select ng-init="vehicle.type = ''" ng-model="vehicle.type">
+                                        <option selected="selected" value="">Select vehicle</option>
+                                        <option ng-repeat="data in vehicles" value="{{ data.objectId }}">
+                                            {{ data.name }}
+                                        </option>
+
+                                    </select>
+                                </label>
+                                <label class="item item-input item-stacked-label">
+                                    <textarea placeholder="Description" name"description" ng-model="vehicle.description" ng-class="{ 'has-error': userForm.description.$invalid && userForm.description.$dirty }" autocomplete="off" required=""></textarea>
+                                    <span ng-show="userForm.description.$invalid &amp;&amp; !userForm.description.$pristine" class="help-block ng-hide">Description is required.</span>
+                                </label>
+                                <label class="item item-input item-stacked-label">
+                                    <input type="file" id="fileUpload" class="custom-file-input" multiple/>
+                                </label>
+                            </div>
+                            <button type="submit" class="button button-small button-royal btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">
+                                Send request
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

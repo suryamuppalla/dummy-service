@@ -604,10 +604,18 @@ ul.rating{
 .bar.bar-assertive .title{
     text-align: center !important;
 }
+.backdrop, .loading-container {
+    top: 44px !important;
+}
 .spinner svg{
-    width: 30%;
+    width: 12%;
     height: 120px;
-    display: table;
+    margin-top: 14em;
+}
+.loading-container .loading {
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 0px;
 }
 .icon-loder{
     position: absolute;
@@ -637,7 +645,7 @@ ul.rating{
     background: #ff1919 !important;
     color: #fff !important;
     border: 1px solid #ff1919 !important;
-    border-radius: none !important;
+    border-radius: 0 !important;
     border-radius: 0px !important;
 }
 .check-col{
