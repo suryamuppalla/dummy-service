@@ -1,84 +1,141 @@
+<style type="text/css">
+    .row {
+        padding: 10px 5px !important;
+    }
+    .active {
+        border-bottom: 2px solid #000;
+    }
+    div.content {
+        display: none;
+    }
+    div.content-active {
+        display: block;
+    }
+</style>
 <ion-view view-title=" {{ vehicle.name }} details">
-    <ion-content class="im-wrapper">
-        <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+    <div class="row" id="tabs" style="background: #FFC601; margin-top: 44px;">
+        <div rel="#1" class="tabe col col-25 active" ng-click="openDashBoard()">
+            <p>Dashboard</p> 
+        </div>
+        <div rel="#2" class="tabe col col-25">
+            <p>
+                Report issue
+            </p>  
+        </div>
+        <div rel="#3" class="tabe col col-25">
+            <p>
+                shops
+            </p>  
+        </div>
+        <div rel="#4" class="tabe col col-25">
+            <p>
+                Public
+            </p>  
+        </div>
+    </div>
+    <ion-content class="im-wrapper" style="top: 130px;">
         <!-- -->
-        <div class="row no-vehicle-found-row vie-det-img pad-mar">
-            <div class="col col-75 fst-col">
-                <img src="img/blockandwhite.jpg" width="80" height="80" >
-                <p>Today's Mileage</p>
-                <span>340,890<i class="ion-edit"></i></span>
+        <div class="content content-active" id="1">
+            <div class="row no-vehicle-found-row vie-det-img pad-mar">
+                <div class="col col-75 fst-col">
+                    <img src="img/blockandwhite.jpg" width="80" height="80" >
+                    <p>Today's Mileage</p>
+                    <span>340,890<i class="ion-edit"></i></span>
+                </div>
+                <div class="col col-25 sec-col">
+                    <i class="ion-clipboard"></i>
+                    <p class="pad-mar">Glovebox</p>
+                </div>
             </div>
-            <div class="col col-25 sec-col">
-                <i class="ion-clipboard"></i>
-                <p class="pad-mar">Glovebox</p>
-            </div>
-        </div>
-        <div class="border-bot"></div>
+            <div class="border-bot"></div>
 
-        <div class="row no-vehicle-found-row vie-det-img pad-mar">
-            <div class="col col-10 check">
-                <i class="ion-checkmark-round"></i>
+            <div class="row no-vehicle-found-row vie-det-img">
+                <div class="col col-10 check">
+                    <i class="ion-checkmark-round"></i>
+                </div>
+                <div class="col col-90 check2" style="margin-left:10px;">
+                    <p class="pad-mar">No Open Recalls Reported</p>
+                    <span>As of 03/04/2016</span>
+                </div>
             </div>
-            <div class="col col-90 check2" style="margin-left:10px;">
-                <p class="pad-mar">No Open Recalls Reported</p>
-                <span>As of 03/04/2016</span>
-            </div>
-        </div>
-        <div class="border-bot"></div>
+            <div class="border-bot"></div>
 
-        <div class="row no-vehicle-found-row vie-det-img pad-mar">
-            <div class="col col-10 check">
-                <i class="ion-compose"></i>
+            <div class="row no-vehicle-found-row vie-det-img">
+                <div class="col col-10 check">
+                    <i class="ion-compose"></i>
+                </div>
+                <div class="col col-70 check2" style="margin-left:10px;">
+                    <p class="pad-mar">Registration</p>
+                    <span>As of 03/04/2016</span>
+                </div>
+                <div class="col col-20 check3">
+                    <p class="pad-mar text-center twe-p">12</p>
+                    <span class="text-center">Month's Left</span>
+                </div>
             </div>
-            <div class="col col-70 check2" style="margin-left:10px;">
-                <p class="pad-mar">Registration</p>
-                <span>As of 03/04/2016</span>
-            </div>
-            <div class="col col-20 check3">
-                <p class="pad-mar text-center twe-p">12</p>
-                <span class="text-center">Month's Left</span>
-            </div>
-        </div>
-        <div class="border-bot"></div>
+            <div class="border-bot"></div>
 
-        <div class="row no-vehicle-found-row vie-det-img pad-mar">
-            <div class="col col-10 check">
-                <i class="ion-checkmark-round"></i>
+            <div class="row no-vehicle-found-row vie-det-img">
+                <div class="col col-10 check">
+                    <i class="ion-checkmark-round"></i>
+                </div>
+                <div class="col col-90 check2" style="margin-left:10px;">
+                    <p class="pad-mar yello-p">No Open Recalls Reported</p>
+                </div>
             </div>
-            <div class="col col-90 check2" style="margin-left:10px;">
-                <p class="pad-mar yello-p">No Open Recalls Reported</p>
-            </div>
-        </div>
-        <div class="border-bot"></div>
+            <div class="border-bot"></div>
 
-        <div class="row no-vehicle-found-row vie-det-img pad-mar">
-            <div class="col col-10 check">
-                <i class="ion-unlocked"></i>
+            <div class="row no-vehicle-found-row vie-det-img">
+                <div class="col col-10 check">
+                    <i class="ion-unlocked"></i>
+                </div>
+                <div class="col col-90 check2" style="margin-left:10px;">
+                    <p class="pad-mar yello-p">No Open Recalls Reported</p>
+                </div>
             </div>
-            <div class="col col-90 check2" style="margin-left:10px;">
-                <p class="pad-mar yello-p">No Open Recalls Reported</p>
-            </div>
-        </div>
-        <div class="border-bot"></div>
+            <div class="border-bot"></div>
 
-        <div class="row no-vehicle-found-row vie-det-img pad-mar">
-            <div class="col col-10 check">
-                <i class="ion-checkmark-round"></i>
+            <div class="row no-vehicle-found-row vie-det-img">
+                <div class="col col-10 check">
+                    <i class="ion-checkmark-round"></i>
+                </div>
+                <div class="col col-90 check2" style="margin-left:10px;">
+                    <p class="pad-mar yello-p">No Open Recalls Reported</p>
+                </div>
             </div>
-            <div class="col col-90 check2" style="margin-left:10px;">
-                <p class="pad-mar yello-p">No Open Recalls Reported</p>
-            </div>
-        </div>
-        <div class="border-bot"></div>
+            <div class="border-bot"></div>
 
-        <div class="row no-vehicle-found-row vie-det-img pad-mar">
-            <div class="col col-10 check">
-                <i class="ion-power"></i>
+            <div class="row no-vehicle-found-row vie-det-img">
+                <div class="col col-10 check">
+                    <i class="ion-power"></i>
+                </div>
+                <div class="col col-90 check2" style="margin-left:10px;">
+                    <p class="pad-mar yello-p">No Open Recalls Reported</p>
+                </div>
             </div>
-            <div class="col col-90 check2" style="margin-left:10px;">
-                <p class="pad-mar yello-p">No Open Recalls Reported</p>
+            <div class="border-bot"></div>
+        </div><!-- first tab end -->
+
+        <div class="content" id="2">
+            <div class="row">
+                <div class="col">
+                    <h1>2nd tab</h1>
+                </div>
             </div>
         </div>
-        <div class="border-bot"></div>
+        <div class="content" id="3">
+            <div class="row">
+                <div class="col">
+                    <h1>3nd tab</h1>
+                </div>
+            </div>
+        </div>
+        <div class="content" id="4">
+            <div class="row">
+                <div class="col">
+                    <h1>4nd tab</h1>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
