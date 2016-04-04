@@ -47,43 +47,12 @@
                 <input ng-model="$parent.searchText" type="text" class="input-pay-rent" placeholder="Search vehicle..">
             </div> <!-- col end -->
         </div> <!-- row end -->
-
-        <div ng-repeat="car in carArray | filter:searchText | orderBy: 'name'" style="border-bottom: 1px solid #ddd;">
-            <div class="row pad-mar">
-                <div class="col pad-mar">
-                    <div class="list">
-                        <a style="min-height: 100px;border-bottom: 0px;" class="item item-thumbnail-left">
-                            <img ng-click="go_to_vehicle_details(car.objectId)" on-hold="deleteVehicle()" ng-src="{{ car.photo.url }}">
-                            <h2 style="text-transform: capitalize;">
-                                {{ car.name }}
-                                <i ng-click="serviceRequest()" class="ion-ios-more text-right" style="float: right; color: #FFC601 !important;"></i>
-                            </h2>
-                            <p class="modal-p">
-                                Model is {{ car.model }}
-                            </p>
-                            <p class="modal-p">
-                                Manufactured on {{ car.manufactured.iso | date : 'MMM d yyyy' }}
-                            </p>
-                            <p class="modal-p">
-                                Last service on {{ car.lastService.iso | date : 'MMM d yyyy' }}
-                            </p>
-                        </a>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col col-33">
+                <img src="">
             </div>
-            <!--<div class="row">
-                <div class="col col-50">
-                    <button class="button button-small button-assertive btn-view">
-                    Show details
-                    </button>
-                </div>
-                <div class="col col-50">
-                    <button ng-click="requestModal(car)" class="button button-small button-assertive btn-view">
-                    View requests
-                    </button>
-                </div>
-            </div>-->
         </div>
+
         <!-- -->
         <div class="row no-vehicle-found-row" style="margin-top: 10px;">
             <div class="col">

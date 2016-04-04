@@ -5,6 +5,8 @@ app.controller('vehicleDetails', ['$scope', '$ionicLoading', '$location', '$root
     '$ionicHistory', '$filter', '$timeout','$ionicModal', '$ionicPopup', '$state', '$stateParams',
     function ($scope, $ionicLoading, $location, $rootScope, $auth, $q,$ionicHistory, $filter, $timeout,
               $ionicModal, $ionicPopup, $state, $stateParams) {
+        
+        var def = $q.defer();
         var vObject = {};
         var Vehicle = Parse.Object.extend("Vehicle");
         var query = new Parse.Query(Vehicle);
