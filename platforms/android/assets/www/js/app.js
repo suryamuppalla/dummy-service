@@ -1,30 +1,27 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic', 'ionic-material','ionic.rating','satellizer', 'ionic-toast','ngImgCrop']);
-
-app.run(function ($ionicPlatform) {
-    $ionicPlatform.ready(function () {
-        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-        // for form inputs)
-
-        if (window.cordova && window.cordova.plugins.Keyboard) {
-            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        }
-        if (window.StatusBar) {
-            StatusBar.styleDefault();
-        }
-    });
-})
+var db = null;
+var app = angular.module('starter', ['ionic', 'ionic-material','ionic.rating','satellizer', 
+    'ionic-toast','ngImgCrop', 'ngCordova']);
 app.config(function($ionicConfigProvider) {
   $ionicConfigProvider.views.maxCache(0);
-})
+});
+app.run(function($ionicPlatform, $cordovaSQLite) {
+    $ionicPlatform.ready(function() {
+        if(window.cordova && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        }
+        if(window.StatusBar) {
+            StatusBar.styleDefault();
+        }
+        db = window.sqlitePlugin.openDatabase({
+            name : "TestDB"
+        });
+        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
+    });
+});
 // parse initialization
 app.run(function($rootScope) {
     $rootScope.Parse = Parse.initialize("NnGUQnFBGpBZKvrJpGbmD72J1IgThJgE61CJX92f", "My3u99rElpcHlIeczfqd3HAfB5Hw6BM5Un3D84Vl");;
-})
+});
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
 
@@ -34,9 +31,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: 'templates/menu.html',
         controller: 'AppCtrl'
     })
-
-
-
     .state('app.login', {
         url: '/login',
         views: {
@@ -144,8 +138,22 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     })
-
-
+    .state('app.vehicle-details', {
+        url: '/view-vehicle/:objectId',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/vehicle-details.html',
+                controller: 'vehicleDetails',
+                resolve: {
+                    authenticated: function($location, $auth) {
+                        if (!$auth.isAuthenticated()) {
+                            return $location.path('/app/login');
+                        }
+                    }
+                }
+            }
+        }
+    })
     .state('app.rating', {
         url: '/rating',
         views: {

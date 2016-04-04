@@ -1,78 +1,34 @@
-app.controller('ViewPropertiesCtrl', ['$scope', '$location', '$rootScope', '$auth', '$q','$ionicHistory', '$filter', '$timeout','$ionicModal',
-	function ($scope, $location, $rootScope, $auth, $q,$ionicHistory, $filter, $timeout, $ionicModal) {
-
-	var rawList = [];
-	var Vehicle = Parse.Object.extend("Vehicle");
-	var query = new Parse.Query(Vehicle);
-	query.equalTo('userPointer', Parse.User.current());
-	query.find().then(function (list) {
-		/* body... */
-		rawList = list;
-		$scope.carArray = JSON.parse(JSON.stringify(list));
-    $scope.$apply()
-	}, function (error) {
-		 /* body... */
-		 console.log(error);
-	})
-
-    // modal start code
-    $ionicModal.fromTemplateUrl('my-modal.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-      }).then(function(modal) {
-        $scope.modal = modal;
-      });
-      $scope.openModal = function(car) {
-        $scope.openCar = car;
-        $scope.modal.show();
-      };
-      $scope.closeModal = function() {
-        $scope.modal.hide();
-      };
-      //Cleanup the modal when we're done with it!
-      $scope.$on('$destroy', function() {
-        $scope.modal.remove();
-      });
-      // Execute action on hide modal
-      $scope.$on('modal.hidden', function() {
-        // Execute action
-      });
-      // Execute action on remove modal
-      $scope.$on('modal.removed', function() {
-        // Execute action
-      });
-
-			// for request-modal
-			// modal start code
-	    $ionicModal.fromTemplateUrl('request-modal.html', {
-	        scope: $scope,
-	        animation: 'slide-in-up'
-	      }).then(function(modal) {
-	        $scope.modal1 = modal;
-	      });
-	      $scope.requestModal = function(car) {
-					$scope.requests = [];
-	        $.each(rawList, function(i) {
-						if (car.objectId == rawList[i].id) {
-							var ServiceRequest = Parse.Object.extend('ServiceRequest');
-							var service = new Parse.Query(ServiceRequest);
-							service.equalTo('vehiclePointer', rawList[i]);
-							service.find().then(function (r) {
-								$scope.requests = JSON.parse(JSON.stringify(r));
-								console.log('requests is ---???', $scope.requests);
-                $scope.$apply($scope.requests);
-							}, function (error) {
-								console.log('error', error);
-							});
-							$scope.modal1.show();
-						};
-					});
-	      };
-	      //Cleanup the modal when we're done with it!
-	      $scope.$on('$destroy', function() {
-	        $scope.modal1.remove();
-	      });
-}])
+app.controller('ViewPropertiesCtrl', ['$scope', '$ionicLoading', '$location', '$rootScope', '$auth', '$q',
+    '$ionicHistory', '$filter', '$timeout','$ionicModal', '$ionicPopup', '$state', '$stateParams', '$cordovaSQLite',
+    function ($scope, $ionicLoading, $location, $rootScope, $auth, $q,$ionicHistory, $filter, $timeout,
+              $ionicModal, $ionicPopup, $state, $stateParams, $cordovaSQLite) {
+        $scope.doRefresh = function() {
+            loadVehicles();
+            $scope.$broadcast('scroll.refreshComplete');
+        };
+        var rawList = [];
+        $scope.carArray = [];
+        function loadVehicles() {
+            $ionicLoading.show();
+            var Vehicle = Parse.Object.extend("Vehicle");
+            var query = new Parse.Query(Vehicle);
+            query.equalTo('userPointer', Parse.User.current());
+            query.find().then(function (list) {
+                rawList = list;
+                $scope.carArray = JSON.parse(JSON.stringify(list));
+                $ionicLoading.hide();
+                $scope.$apply()
+            }, function (error) {
+                /* body... */
+                console.log(error);
+            });
+        }
+        loadVehicles();
+        // goto vehicle details
+        $scope.go_to_vehicle_details = function (id) {
+            $state.go('app.vehicle-details', {objectId: id});
+        };
+    }]);
 
 app.directive('tooltip', function () {
     return {
