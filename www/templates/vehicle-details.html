@@ -1,9 +1,6 @@
 <style type="text/css">
-    .row {
-        padding: 10px 5px !important;
-    }
     .active {
-        border-bottom: 2px solid #000;
+        border-bottom: 2px solid #272727;
     }
     div.content {
         display: none;
@@ -11,32 +8,40 @@
     div.content-active {
         display: block;
     }
+    div.content2 {
+        display: none;
+    }
+    div.content-active2 {
+        display: block;
+    }
 </style>
 <ion-view view-title=" {{ vehicle.name }} details">
-    <div class="row" id="tabs" style="background: #FFC601; margin-top: 44px;">
+    <div class="row tabs-row" id="tabs" style="background: #FFC601; margin-top: 44px;">
         <div rel="#1" class="tabe col col-25 active" ng-click="openDashBoard()">
-            <p>Dashboard</p> 
+            <span>
+                <i class="ion-android-home"></i>
+            </span> 
         </div>
         <div rel="#2" class="tabe col col-25">
-            <p>
-                Report issue
-            </p>  
+            <span>
+                <i class="ion-scissors"></i>
+            </span>  
         </div>
         <div rel="#3" class="tabe col col-25">
-            <p>
-                shops
-            </p>  
+            <span>
+                <i class="ion-bag"></i>
+            </span>  
         </div>
         <div rel="#4" class="tabe col col-25">
-            <p>
-                Public
-            </p>  
+            <span>
+                <i class="ion-outlet"></i>
+            </span>  
         </div>
     </div>
-    <ion-content class="im-wrapper" style="top: 130px;">
+    <ion-content class="" style="top: 97px;">
         <!-- -->
         <div class="content content-active" id="1">
-            <div class="row no-vehicle-found-row vie-det-img pad-mar">
+            <div class="row no-vehicle-found-row vie-det-img pad-mar pad-10">
                 <div class="col col-75 fst-col">
                     <img src="img/blockandwhite.jpg" width="80" height="80" >
                     <p>Today's Mileage</p>
@@ -49,7 +54,7 @@
             </div>
             <div class="border-bot"></div>
 
-            <div class="row no-vehicle-found-row vie-det-img">
+            <div class="row no-vehicle-found-row vie-det-img pad-10">
                 <div class="col col-10 check">
                     <i class="ion-checkmark-round"></i>
                 </div>
@@ -60,7 +65,7 @@
             </div>
             <div class="border-bot"></div>
 
-            <div class="row no-vehicle-found-row vie-det-img">
+            <div class="row no-vehicle-found-row vie-det-img pad-10">
                 <div class="col col-10 check">
                     <i class="ion-compose"></i>
                 </div>
@@ -75,7 +80,7 @@
             </div>
             <div class="border-bot"></div>
 
-            <div class="row no-vehicle-found-row vie-det-img">
+            <div class="row no-vehicle-found-row vie-det-img pad-10">
                 <div class="col col-10 check">
                     <i class="ion-checkmark-round"></i>
                 </div>
@@ -85,7 +90,7 @@
             </div>
             <div class="border-bot"></div>
 
-            <div class="row no-vehicle-found-row vie-det-img">
+            <div class="row no-vehicle-found-row vie-det-img pad-10">
                 <div class="col col-10 check">
                     <i class="ion-unlocked"></i>
                 </div>
@@ -95,7 +100,7 @@
             </div>
             <div class="border-bot"></div>
 
-            <div class="row no-vehicle-found-row vie-det-img">
+            <div class="row no-vehicle-found-row vie-det-img pad-10">
                 <div class="col col-10 check">
                     <i class="ion-checkmark-round"></i>
                 </div>
@@ -105,7 +110,7 @@
             </div>
             <div class="border-bot"></div>
 
-            <div class="row no-vehicle-found-row vie-det-img">
+            <div class="row no-vehicle-found-row vie-det-img pad-10">
                 <div class="col col-10 check">
                     <i class="ion-power"></i>
                 </div>
@@ -117,23 +122,156 @@
         </div><!-- first tab end -->
 
         <div class="content" id="2">
-            <div class="row">
-                <div class="col">
-                    <h1>2nd tab</h1>
+            <div class="row pad-10">
+                <div class="col col-33">
+                    <span>04/19/2014</span>
+                    <br>
+                    <span>145,000</span>
+                </div>
+                <div class="col col-77">
+                    <p class="p-one">Illinois</p>
+                    <p class="p-sec pad-mar">Failed emissions inspection</p>
                 </div>
             </div>
+            <div class="border-bot"></div>
+
+            <div class="row pad-10">
+                <div class="col col-33">
+                    <span>04/19/2014</span>
+                    <br>
+                    <span>145,000</span>
+                </div>
+                <div class="col col-77">
+                    <p class="p-one">Illinois</p>
+                    <p class="p-sec pad-mar">Failed emissions inspection</p>
+                </div>
+            </div>
+            <div class="border-bot"></div>
+
+            <div class="row pad-10">
+                <div class="col col-33">
+                    <span>04/19/2014</span>
+                    <br>
+                    <span>145,000</span>
+                </div>
+                <div class="col col-77">
+                    <p class="p-one">Illinois</p>
+                    <p class="p-sec pad-mar">Failed emissions inspection</p>
+                </div>
+            </div>
+            <div class="border-bot"></div>
+
+            <div class="row pad-10">
+                <div class="col col-33">
+                    <span>04/19/2014</span>
+                    <br>
+                    <span>145,000</span>
+                </div>
+                <div class="col col-77">
+                    <p class="p-one">Illinois</p>
+                    <p class="p-sec pad-mar">Failed emissions inspection</p>
+                </div>
+            </div>
+            <div class="border-bot"></div>
+
+            <div class="row pad-10">
+                <div class="col col-33">
+                    <span>04/19/2014</span>
+                    <br>
+                    <span>145,000</span>
+                </div>
+                <div class="col col-77">
+                    <p class="p-one">Illinois</p>
+                    <p class="p-sec pad-mar">Failed emissions inspection</p>
+                </div>
+            </div>
+            <div class="border-bot"></div>
+
+            <div class="row pad-10">
+                <div class="col col-10 pad-mar">
+                    <img src="img/carfox.png" width="60" height="60">
+                </div>
+                <div class="col col-90 pad-mar">
+                    <h4 class="dont-h4">Dont't see records from your shop?</h4>
+                </div>
+            </div>
+
         </div>
         <div class="content" id="3">
-            <div class="row">
+            <div class="row search-box">
                 <div class="col">
-                    <h1>3nd tab</h1>
+                    <label class="item item-input">
+                        <i class="icon ion-search placeholder-icon"></i>
+                        <input type="text" placeholder="Search">
+                    </label>
+                </div>
+            </div>
+
+            <div class="row pad-mar">
+                <div class="col pad-mar">
+                    <div class="list card pad-mar list-cards">
+                        <a href="#" class="item item-icon-left">
+                            <i class="icon ion-home"></i>
+                            Enter home address
+                        </a>
+                        <a href="#" class="item item-icon-left">
+                            <i class="icon ion-ios-telephone"></i>
+                            Enter phone number
+                        </a>
+                        <a href="#" class="item item-icon-left">
+                            <i class="icon ion-wifi"></i>
+                            Enter wireless password
+                        </a>
+                        <a href="#" class="item item-icon-left">
+                            <i class="icon ion-card"></i>
+                            Enter card information
+                        </a>
+                        <a href="#" class="item item-icon-left">
+                            <i class="icon ion-ios-telephone"></i>
+                            Enter phone number
+                        </a>
+                        <a href="#" class="item item-icon-left">
+                            <i class="icon ion-wifi"></i>
+                            Enter wireless password
+                        </a>
+                        <a href="#" class="item item-icon-left">
+                            <i class="icon ion-card"></i>
+                            Enter card information
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="content" id="4">
             <div class="row">
                 <div class="col">
-                    <h1>4nd tab</h1>
+                    <div rel="#111" class="tabe2 col col-25 active">
+                        <span>
+                            
+                        </span> 
+                    </div>
+
+                    <div rel="#222" class="tabe2 col col-25">
+                        <span>
+                            <i class="ion-scissors"></i>
+                        </span>  
+                    </div>
+
+                    <div class="content2 content-active2" id="111">
+                        <div class="row">
+                            <div class="col">
+                                tab1
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content2" id="222">
+                        <div class="row">
+                            <div class="col">
+                                tab2
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
