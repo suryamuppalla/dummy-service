@@ -16,7 +16,7 @@
     }
 </style>
 <ion-view view-title=" {{ vehicle.name }} details">
-    <div class="row tabs-row" id="tabs" style="background: #FFC601; margin-top: 44px;">
+    <div class="row tabs-row" id="tabs">
         <div rel="#1" class="tabe col col-25 active" ng-click="openDashBoard()">
             <span>
                 <i class="ion-android-home"></i>
@@ -38,7 +38,7 @@
             </span>  
         </div>
     </div>
-    <ion-content class="" style="top: 97px;">
+    <ion-content class="" style="top: 96px;">
         <!-- -->
         <div class="content content-active" id="1">
             <div class="row no-vehicle-found-row vie-det-img pad-mar pad-10">
@@ -243,37 +243,113 @@
             </div>
         </div>
         <div class="content" id="4">
-            <div class="row">
-                <div class="col">
-                    <div rel="#111" class="tabe2 col col-25 active">
-                        <span>
-                            
-                        </span> 
-                    </div>
-
-                    <div rel="#222" class="tabe2 col col-25">
-                        <span>
-                            <i class="ion-scissors"></i>
-                        </span>  
-                    </div>
-
-                    <div class="content2 content-active2" id="111">
-                        <div class="row">
-                            <div class="col">
-                                tab1
-                            </div>
+            <div class="tabs-und-tab">
+                <div class="row pad-mar">
+                    <div class="col col-50 pad-mar">
+                        <div rel="#111" class="tabe2 active2">
+                            <p>
+                                Normal Schedule
+                            </p> 
                         </div>
                     </div>
-                    <div class="content2" id="222">
-                        <div class="row">
-                            <div class="col">
-                                tab2
-                            </div>
+                    <div class="col col-50 pad-mar">
+                        <div rel="#222" class="tabe2">
+                            <p>
+                              Severe Schedule  
+                            </p>  
                         </div>
                     </div>
-
                 </div>
             </div>
+
+
+            <div class="content2 content-active2" id="111">
+                <div class="row pad-mar nrm-sch" ng-click="toggleGroup(group)">
+                    <div class="col pad-mar col-90">
+                        <span class="span-rate-1">345,000</span>
+                        <span class="span-rate-2">Miles</span>
+                    </div>
+                    <div class="col pad-mar col-10">
+                        <i ng-class="isGroupShown(group) ? 'ion-chevron-down' : 'ion-chevron-up'" style="float:right"></i>
+                    </div>
+                </div>
+                <div class="row pad-mar nrm-sch-hide-div" ng-hide="isGroupShown(group)">
+                    <div class="col pad-mar">
+                        <div class="nrm-sch-col">
+                            <span>Replace</span>
+                            <ul>
+                                <li>
+                                    <i class="ion-ios-circle-filled dot-li"></i>Engine Oil Filter
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="nrm-sch-col">
+                            <span>Leak Inspection</span>
+                            <ul>
+                                <li>
+                                    <i class="ion-ios-circle-filled dot-li"></i>Cooling System
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="nrm-sch-col">
+                            <span>Inspect</span>
+                            <ul>
+                                <li>
+                                    <i class="ion-ios-circle-filled dot-li"></i>Axle Shaft Oil Seal
+                                </li>
+                                <li>
+                                    <i class="ion-ios-circle-filled dot-li"></i>Body Latches,Locks & Hingees
+                                </li>
+                                <li>
+                                    <i class="ion-ios-circle-filled dot-li"></i>Engine Oil Filter
+                                </li>
+                                <li>
+                                    <i class="ion-ios-circle-filled dot-li"></i>Engine Latches,Locks & Hingees
+                                </li>
+                                <li>
+                                    <i class="ion-ios-circle-filled dot-li"></i>Axle Shaft Oil Seal
+                                </li>
+                                <li>
+                                    <i class="ion-ios-circle-filled dot-li"></i>Body Latches,Locks & Hingees
+                                </li>
+                                <li>
+                                    <i class="ion-ios-circle-filled dot-li"></i>Engine Oil Filter
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="nrm-sch-col">
+                            <span>Replace</span>
+                            <ul>
+                                <li>
+                                    <i class="ion-ios-circle-filled dot-li"></i>Engine Oil Filter
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row pad-10">
+                    <div class="col col-10 pad-mar">
+                        <img src="img/carfox.png" width="60" height="60">
+                    </div>
+                    <div class="col col-90 pad-mar">
+                        <h4 class="dont-h4">Not sure which maintenance schedule to follow ?</h4>
+                    </div>
+                </div>
+
+            </div>
+            <div class="content2" id="222">
+                <div class="row">
+                    <div class="col">
+                        tab2
+                    </div>
+                </div>
+            </div>
+
         </div>
     </ion-content>
 </ion-view>
