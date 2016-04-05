@@ -32,4 +32,15 @@ app.controller('vehicleDetails', ['$scope', '$ionicLoading', '$location', '$root
             // Add the 'content' class to the associated tab contents.
             $($(this).attr("rel")).addClass('content-active');
         });
+
+        $('.tabe2').click(function(event) {
+            event.preventDefault();
+            /* Act on the event */
+            $('.tabe2').removeClass('active');
+            $(this).addClass('active');
+            // Remove the 'content' class from the visible tab contents.
+            $('.content2').removeClass('content-active2');
+            // Add the 'content' class to the associated tab contents.
+            $($(this).attr("rel")).addClass('content-active2');
+        });
     }]);
