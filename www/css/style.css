@@ -1070,6 +1070,10 @@ button.button.button-icon.button-clear.ion-navicon{
 }
 .tabs-row {
     padding: 10px 0px 0px 5px !important;
+    background: #FFC601;
+    margin-top: 44px;
+    position: relative;
+    z-index: 9999;
 }
 .search-box{
   background: #ddd;
@@ -1094,4 +1098,61 @@ button.button.button-icon.button-clear.ion-navicon{
 }
 .pad-10{
   padding: 10px !important;
+}
+.active2{
+  background: #FFC601;
+  color: #272727;
+}
+.tabs-und-tab{
+  padding: 20px 10px;
+}
+.tabs-und-tab .row{
+  border: 1px solid #FFC601;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 1px 0px #FFC601;
+  -moz-box-shadow: 0px 0px 1px 0px #FFC601;
+  box-shadow: 0px 0px 1px 0px #FFC601;
+  text-align: center;
+}
+.tabs-und-tab .row .col p{
+  padding: 4px !important;
+  margin: 0px !important;
+  color: #272727;
+}
+.span-rate-1{
+  font-size: 18px;
+}
+.span-rate-2{
+  margin-left: 3px;
+  color: gray;
+  font-size: 18px;
+}
+.nrm-sch{
+  padding: 15px 10px;
+}
+.nrm-sch-hide-div{
+  padding: 10px !important;
+  background: #ddd;
+}
+.nrm-sch-col{
+  margin: 5px 0px !important;
+}
+.nrm-sch-col span{
+  font-size: 12px;
+  color: #272727;
+}
+.nrm-sch-col ul{
+  margin-left: 10px;
+}
+.nrm-sch-col ul li{
+  font-size: 12px;
+  color: #888;
+  list-style-type: 
+}
+.dot-li{
+  color: #888;
+  font-size: 6px;
+  position: relative;
+  bottom: 1px;
+  margin-right: 3px;
 }
