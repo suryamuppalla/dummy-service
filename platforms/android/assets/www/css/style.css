@@ -999,3 +999,54 @@ button.button.button-icon.button-clear.ion-navicon{
   top: 50%;
   
 }*/
+.vie-det-img .fst-col img{
+  float: left;
+}
+.vie-det-img .fst-col p{
+  float: left;
+  margin: 20px 0px 0px 10px;
+}
+.vie-det-img .fst-col span{
+  margin: 20px 0px 0px 10px;
+  font-size: 19px;
+  color: #272727;
+}
+.vie-det-img .fst-col span i{
+  color: #272727;
+  margin-left: 20px;
+}
+.vie-det-img .sec-col i{
+  color: #272727;
+}
+.vie-det-img .sec-col i:before{
+  margin:20px 0px 0px 20px;
+  font-size: 30px;
+}
+.border-bot{
+  border-bottom: 1px solid #ddd;
+}
+.vie-det-img .check i{
+  font-size: 30px;
+}
+.vie-det-img .check2 span{
+  font-size: 10px;
+  color: #272727;
+}
+.vie-det-img .check2 p{
+  color: #272727;
+}
+.twe-p{
+  font-size: 25px !important;
+  color: #272727;
+}
+.vie-det-img .check3 span{
+  font-size: 10px;
+  color: #272727;
+}
+.vie-det-img .check3{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+.yello-p{
+  color: #FFC601 !important;
+}

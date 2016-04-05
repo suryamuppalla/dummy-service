@@ -19,5 +19,17 @@ app.controller('vehicleDetails', ['$scope', '$ionicLoading', '$location', '$root
             console.log($scope.vehicle)
         }, function (error) {
             console.log(error)
-        })
+        });
+
+        /* =========== code for tabs concept ========== */
+        $('.tabe').click(function(event) {
+            event.preventDefault();
+            /* Act on the event */
+            $('.tabe').removeClass('active');
+            $(this).addClass('active');
+            // Remove the 'content' class from the visible tab contents.
+            $('.content').removeClass('content-active');
+            // Add the 'content' class to the associated tab contents.
+            $($(this).attr("rel")).addClass('content-active');
+        });
     }]);

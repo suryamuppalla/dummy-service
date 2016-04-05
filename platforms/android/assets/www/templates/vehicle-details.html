@@ -1,202 +1,141 @@
-<style>
-    .tooltipster-base{
-        margin: 15px 0px 0px -5px;
+<style type="text/css">
+    .row {
+        padding: 10px 5px !important;
     }
-    .tooltipster-default{
-        border-radius: 5px;
-        border: 1px solid #ddd;
-        background: #fff;
-        color: #0866c6 !important;
+    .active {
+        border-bottom: 2px solid #000;
     }
-    .tooltipster-default .tooltipster-content{
-        font-size: 12px;
-        padding: 3px 10px;
+    div.content {
+        display: none;
     }
-    .item-thumbnail-left .item-content .item-image, .item-thumbnail-left .item-content>img:first-child, .item-thumbnail-left .item-image, .item-thumbnail-left>img:first-child {
-        border-radius: 0%;
+    div.content-active {
+        display: block;
     }
-    .button-small {
-        padding: 2px 4px 1px !important;
-        min-width: 28px;
-        min-height: 30px;
-        font-size: 12px;
-        font-size: 11px !important;
-    }
-    .btn-view{
-        border-color: #FFC601 !important;
-        background-color: #FFC601 !important;
-        color: #272727 !important;
-        line-height: 0px !important;
-        padding: 0px 5px!important;
-        margin: 0px !important;
-        min-height: 0px !important;
-        height: 25px !important;
-        border-radius: 0px;
-        font-size: 10px !important;
-        font-weight: bold;
-        width: 100%;
-    }
-
 </style>
 <ion-view view-title=" {{ vehicle.name }} details">
-    <ion-content class="im-wrapper">
-        <ion-refresher on-refresh="doRefresh()"></ion-refresher>
-        <div class="row input-row pad-mar" ng-if="carArray.length"> <!-- row start -->
-            <div class="col pad-mar"> <!-- col start -->
-                <input type="hidden" ng-model="searchText" type="text" placeholder="Search Properties ..." class="input-pay-rent"/>
-                <input ng-model="$parent.searchText" type="text" class="input-pay-rent" placeholder="Search vehicle..">
-            </div> <!-- col end -->
-        </div> <!-- row end -->
-        <div class="row">
-            <div class="col col-33">
-                <img src="">
+    <div class="row" id="tabs" style="background: #FFC601; margin-top: 44px;">
+        <div rel="#1" class="tabe col col-25 active" ng-click="openDashBoard()">
+            <p>Dashboard</p> 
+        </div>
+        <div rel="#2" class="tabe col col-25">
+            <p>
+                Report issue
+            </p>  
+        </div>
+        <div rel="#3" class="tabe col col-25">
+            <p>
+                shops
+            </p>  
+        </div>
+        <div rel="#4" class="tabe col col-25">
+            <p>
+                Public
+            </p>  
+        </div>
+    </div>
+    <ion-content class="im-wrapper" style="top: 130px;">
+        <!-- -->
+        <div class="content content-active" id="1">
+            <div class="row no-vehicle-found-row vie-det-img pad-mar">
+                <div class="col col-75 fst-col">
+                    <img src="img/blockandwhite.jpg" width="80" height="80" >
+                    <p>Today's Mileage</p>
+                    <span>340,890<i class="ion-edit"></i></span>
+                </div>
+                <div class="col col-25 sec-col">
+                    <i class="ion-clipboard"></i>
+                    <p class="pad-mar">Glovebox</p>
+                </div>
+            </div>
+            <div class="border-bot"></div>
+
+            <div class="row no-vehicle-found-row vie-det-img">
+                <div class="col col-10 check">
+                    <i class="ion-checkmark-round"></i>
+                </div>
+                <div class="col col-90 check2" style="margin-left:10px;">
+                    <p class="pad-mar">No Open Recalls Reported</p>
+                    <span>As of 03/04/2016</span>
+                </div>
+            </div>
+            <div class="border-bot"></div>
+
+            <div class="row no-vehicle-found-row vie-det-img">
+                <div class="col col-10 check">
+                    <i class="ion-compose"></i>
+                </div>
+                <div class="col col-70 check2" style="margin-left:10px;">
+                    <p class="pad-mar">Registration</p>
+                    <span>As of 03/04/2016</span>
+                </div>
+                <div class="col col-20 check3">
+                    <p class="pad-mar text-center twe-p">12</p>
+                    <span class="text-center">Month's Left</span>
+                </div>
+            </div>
+            <div class="border-bot"></div>
+
+            <div class="row no-vehicle-found-row vie-det-img">
+                <div class="col col-10 check">
+                    <i class="ion-checkmark-round"></i>
+                </div>
+                <div class="col col-90 check2" style="margin-left:10px;">
+                    <p class="pad-mar yello-p">No Open Recalls Reported</p>
+                </div>
+            </div>
+            <div class="border-bot"></div>
+
+            <div class="row no-vehicle-found-row vie-det-img">
+                <div class="col col-10 check">
+                    <i class="ion-unlocked"></i>
+                </div>
+                <div class="col col-90 check2" style="margin-left:10px;">
+                    <p class="pad-mar yello-p">No Open Recalls Reported</p>
+                </div>
+            </div>
+            <div class="border-bot"></div>
+
+            <div class="row no-vehicle-found-row vie-det-img">
+                <div class="col col-10 check">
+                    <i class="ion-checkmark-round"></i>
+                </div>
+                <div class="col col-90 check2" style="margin-left:10px;">
+                    <p class="pad-mar yello-p">No Open Recalls Reported</p>
+                </div>
+            </div>
+            <div class="border-bot"></div>
+
+            <div class="row no-vehicle-found-row vie-det-img">
+                <div class="col col-10 check">
+                    <i class="ion-power"></i>
+                </div>
+                <div class="col col-90 check2" style="margin-left:10px;">
+                    <p class="pad-mar yello-p">No Open Recalls Reported</p>
+                </div>
+            </div>
+            <div class="border-bot"></div>
+        </div><!-- first tab end -->
+
+        <div class="content" id="2">
+            <div class="row">
+                <div class="col">
+                    <h1>2nd tab</h1>
+                </div>
             </div>
         </div>
-
-        <!-- -->
-        <div class="row no-vehicle-found-row" style="margin-top: 10px;">
-            <div class="col">
-                <style>
-                    .add-veh {
-                        color: rgba(0, 0, 0, 0.79);
-                        font-weight:bold;
-                        line-height: 25px;
-                    }
-                    .add-veh i {
-                        font-size: 30px;
-                        text-align: center;
-                        margin-left: 28px;
-                        color: #FFC601;
-                    }
-                </style>
-                <a href="#/app/add-vehicle" class="btn-add-vew add-veh">
-                    <i class="ion-plus-circled"></i> <br />
-                    <span>Add a Vehicle</span>
-                </a>
+        <div class="content" id="3">
+            <div class="row">
+                <div class="col">
+                    <h1>3nd tab</h1>
+                </div>
+            </div>
+        </div>
+        <div class="content" id="4">
+            <div class="row">
+                <div class="col">
+                    <h1>4nd tab</h1>
+                </div>
             </div>
         </div>
     </ion-content>
 </ion-view>
-
-<script id="my-modal.html" type="text/ng-template">
-    <ion-modal-view>
-        <ion-header-bar ng-click="modal.hide()" class="bar-assertive">
-            <div class="title title-center header-item" style="left: 63px;right: 63px; text-transform: capitalize; transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
-                {{openCar.name}} details
-            </div>
-            <div class="close-btn">
-                <span class="icon ion-close"></span>
-            </div>
-        </ion-header-bar>
-        <ion-content class="text-center">
-            <div>
-                <div class="row">
-                    <div class="col col-shadow">
-                        <img style="width: 100%;" ng-src="{{ openCar.photo.url }}" height="200">
-                        <h4 style="text-align: left; text-transform: capitalize;">
-                            {{openCar.name}}
-                        </h4>
-                        <p style="text-align: left;">
-                            Model is <b>{{ openCar.model }}</b>
-                        </p>
-                        <p style="text-align: left;">
-                            Manufactured on <b>{{ openCar.manufactured.iso | date : 'MMM d yyyy' }}</b>
-                        </p>
-                        <p style="text-align: left;">
-                            Last service on <b>{{ openCar.lastService.iso | date : 'MMM d yyyy' }}</b>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </ion-content>
-    </ion-modal-view>
-</script>
-
-
-<!-- for request modal -->
-<script id="request-modal.html" type="text/ng-template">
-    <ion-modal-view>
-        <ion-header-bar ng-click="modal1.hide()" class="bar-assertive">
-            <div class="title title-center header-item" style="left: 63px;right: 63px; text-transform: capitalize; transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
-                Viewing service request
-            </div>
-            <div class="close-btn">
-                <span class="icon ion-close"></span>
-            </div>
-        </ion-header-bar>
-        <ion-content class="">
-            <div ng-repeat="data in requests | orderBy: 'createdAt': reverse">
-                <div class="row">
-                    <div class="col col-shadow">
-                        <ion-slide-box on-slide-changed="slideHasChanged($index)">
-                            <ion-slide ng-repeat="file in data.files">
-                                <div class="slides">
-                                    <img ng-src="{{ file.url }}" alt="slide1" height="200"/>
-                                </div>
-                            </ion-slide>
-                        </ion-slide-box>
-                        <p>
-                            {{ data.description }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="row no-vehicle-found-row" ng-if="noRequest">
-                <div class="col">
-                    <h4 class="text-center">No requests found.!</h4>
-                    <a href="#/app/vehicle-problem" class="btn-add-vew">
-                        <button class="button button-small button-assertive btn-view">
-                            Add new request
-                        </button>
-                    </a>
-                </div>
-            </div>
-        </ion-content>
-    </ion-modal-view>
-</script>
-
-
-<!-- for add request modal -->
-<script id="service-request.html" type="text/ng-template">
-    <ion-modal-view>
-        <ion-header-bar ng-click="modal2.hide()" class="bar-assertive">
-            <div class="title title-center header-item" style="left: 63px;right: 63px; text-transform: capitalize; transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
-                Requesting service
-            </div>
-            <div class="close-btn">
-                <span class="icon ion-close"></span>
-            </div>
-        </ion-header-bar>
-        <ion-content class="text-center">
-            <div class="im-wrapper">
-                <div class="row">
-                    <div class="col">
-                        <form name="userForm" ng-submit="sendProblem()">
-                            <div class="list">
-                                <label class="item item-input item-stacked-label item-select">
-                                    <select ng-init="vehicle.type = ''" ng-model="vehicle.type">
-                                        <option selected="selected" value="">Select vehicle</option>
-                                        <option ng-repeat="data in vehicles" value="{{ data.objectId }}">
-                                            {{ data.name }}
-                                        </option>
-
-                                    </select>
-                                </label>
-                                <label class="item item-input item-stacked-label">
-                                    <textarea placeholder="Description" name"description" ng-model="vehicle.description" ng-class="{ 'has-error': userForm.description.$invalid && userForm.description.$dirty }" autocomplete="off" required=""></textarea>
-                                    <span ng-show="userForm.description.$invalid &amp;&amp; !userForm.description.$pristine" class="help-block ng-hide">Description is required.</span>
-                                </label>
-                                <label class="item item-input item-stacked-label">
-                                    <input type="file" id="fileUpload" class="custom-file-input" multiple/>
-                                </label>
-                            </div>
-                            <button type="submit" class="button button-small button-royal btn-rm" ng-disabled="userForm.$invalid || loginDisable" disabled="disabled">
-                                Send request
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </ion-content>
-    </ion-modal-view>
-</script>

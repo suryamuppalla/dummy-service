@@ -3,7 +3,7 @@
     function ($scope, $state, $ionicScrollDelegate, $ionicModal, $ionicPopover, $timeout, $auth,
               $window, $ionicHistory, VehicleService, ionicToast) {
         /*$ionicHistory.nextViewOptions({
-         historyRoot: true
+            historyRoot: true
          });*/
         $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
         // Form data for the login modal
