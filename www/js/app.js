@@ -1,6 +1,6 @@
-var db = null;
+var db = new loki('dump.json');
 var app = angular.module('starter', ['ionic', 'ionic-material','ionic.rating','satellizer', 
-    'ionic-toast','ngImgCrop', 'ngCordova']);
+    'ionic-toast','ngImgCrop', 'ngCordova', 'lokijs']);
 app.config(function($ionicConfigProvider) {
   $ionicConfigProvider.views.maxCache(0);
 });
@@ -12,10 +12,6 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
         if(window.StatusBar) {
             StatusBar.styleDefault();
         }
-        db = window.sqlitePlugin.openDatabase({
-            name : "TestDB"
-        });
-        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
     });
 });
 // parse initialization
@@ -109,6 +105,23 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             'menuContent': {
                 templateUrl: 'templates/change-password.html',
                 controller: 'ChangePasswordCtrl',
+                resolve: {
+                    authenticated: function($location, $auth) {
+                        if (!$auth.isAuthenticated()) {
+                
+                            return $location.path('/app/login');
+                        }
+                    }
+                }
+            }
+        }
+    })
+    .state('app.find-shops', {
+        url: '/find-shops',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/find-shops.html',
+                controller: 'findShops',
                 resolve: {
                     authenticated: function($location, $auth) {
                         if (!$auth.isAuthenticated()) {

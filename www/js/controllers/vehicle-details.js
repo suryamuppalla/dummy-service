@@ -6,6 +6,7 @@ app.controller('vehicleDetails', ['$scope', '$ionicLoading', '$location', '$root
     function ($scope, $ionicLoading, $location, $rootScope, $auth, $q,$ionicHistory, $filter, $timeout,
               $ionicModal, $ionicPopup, $state, $stateParams) {
         
+        
         var def = $q.defer();
         var vObject = {};
         var Vehicle = Parse.Object.extend("Vehicle");
@@ -14,12 +15,37 @@ app.controller('vehicleDetails', ['$scope', '$ionicLoading', '$location', '$root
         query.equalTo('objectId', $stateParams.objectId);
         query.first().then(function (list) {
             vObject = list;
+
             $scope.vehicle = JSON.parse(JSON.stringify(list));
             $scope.$apply($scope.vehicle);
-            console.log($scope.vehicle)
+            console.log($scope.vehicle);
+
+            return list;
         }, function (error) {
-            console.log(error)
+            console.log(error);
+        }).then(function (object) {
+             /* body... */ 
+            var ServiceRequest = Parse.Object.extend('ServiceRequest');
+            var request = new Parse.Query(ServiceRequest);
+            $scope.request = [];
+            request.include('shopPointer')
+            request.equalTo('vehiclePointer', object);
+            request.find().then(function (service) {
+                 /* body... */ 
+                $scope.request = JSON.parse(JSON.stringify(service));
+                $scope.$apply($scope.request);
+                console.log('service request array is ->>', $scope.request);
+            }, function (error) {
+                 /* body... */
+                 console.log('error is -..>', error); 
+            })
+
+        }, function (error) {
+             /* body... */
+             console.log('error is -->>>', error) 
         });
+
+        // ======== vehicle service history
 
         /* =========== code for colsplble menus ======== */
 
@@ -56,4 +82,22 @@ app.controller('vehicleDetails', ['$scope', '$ionicLoading', '$location', '$root
             // Add the 'content' class to the associated tab contents.
             $($(this).attr("rel")).addClass('content-active2');
         });
+
+
+        // ======================= update vehicle information =========
+        $scope.updateVehicle = function (vehicle, key) {
+             /* body... */ 
+             console.log('vehicle is -->', vehicle)
+
+             vObject.set(key, vehicle);
+             vObject.save().then(function (success) {
+                  /* body... */ 
+                  console.log('after oil chage success', success);
+                  $scope.vehicle = JSON.parse(JSON.stringify(success))
+                  $scope.$apply();
+             }, function (error) {
+                  /* body... */
+                  console.log('error is -->>', error); 
+             })
+        }
     }]);

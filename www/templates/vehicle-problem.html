@@ -36,6 +36,16 @@
                           <textarea placeholder="Description" name"description" ng-model="vehicle.description" ng-class="{ 'has-error': userForm.description.$invalid && userForm.description.$dirty }" autocomplete="off" required=""></textarea>
                           <span ng-show="userForm.description.$invalid &amp;&amp; !userForm.description.$pristine" class="help-block ng-hide">Description is required.</span>
                       </label>
+                      <button ng-click="record()" class="button button-small button-royal btn-rm">
+                          Record audio
+                      </button>
+                      <button ng-if="sound.file" ng-click="play()">
+                        Play preview
+                      </button>
+
+                      <button ng-click="play()" class="button button-small button-royal btn-rm">
+                        Show me for lay button
+                      </button>
                       <label class="item item-input item-stacked-label">
                         <input type="file" id="fileUpload" class="custom-file-input" multiple/>
                     </label>
