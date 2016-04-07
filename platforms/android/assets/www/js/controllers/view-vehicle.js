@@ -1,33 +1,47 @@
 app.controller('ViewPropertiesCtrl', ['$scope', '$ionicLoading', '$location', '$rootScope', '$auth', '$q',
-    '$ionicHistory', '$filter', '$timeout','$ionicModal', '$ionicPopup', '$state', '$stateParams', '$cordovaSQLite',
+    '$ionicHistory', '$filter', '$timeout','$ionicModal', '$ionicPopup', '$state',
+     '$stateParams', '$cordovaSQLite', '$ionicPopover',
     function ($scope, $ionicLoading, $location, $rootScope, $auth, $q,$ionicHistory, $filter, $timeout,
-              $ionicModal, $ionicPopup, $state, $stateParams, $cordovaSQLite) {
-        $scope.doRefresh = function() {
-            loadVehicles();
-            $scope.$broadcast('scroll.refreshComplete');
-        };
+              $ionicModal, $ionicPopup, $state, $stateParams, $cordovaSQLite, $ionicPopover) {
+        
+        /* ========= popover code for menu =====*/
+        $ionicPopover.fromTemplateUrl('templates/popover.html', {
+            scope: $scope,
+        }).then(function(popover) {
+            $scope.popover = popover;
+        });
+        /* ========= end of code           =====*/
         var rawList = [];
         $scope.carArray = [];
         function loadVehicles() {
-            $ionicLoading.show();
+            // $ionicLoading.show();
             var Vehicle = Parse.Object.extend("Vehicle");
             var query = new Parse.Query(Vehicle);
             query.equalTo('userPointer', Parse.User.current());
             query.find().then(function (list) {
                 rawList = list;
                 $scope.carArray = JSON.parse(JSON.stringify(list));
-                $ionicLoading.hide();
+                // $ionicLoading.hide();
                 $scope.$apply()
             }, function (error) {
                 /* body... */
                 console.log(error);
             });
         }
+
         loadVehicles();
         // goto vehicle details
         $scope.go_to_vehicle_details = function (id) {
             $state.go('app.vehicle-details', {objectId: id});
         };
+
+        /*openReportIssue*/
+        $scope.openReportIssue = function () {
+             /* body... */ 
+             $scope.popover.hide();
+             $state.go('app.vehicle-problem');
+        }
+        console.log(db.getCollection('surya'), db)
     }]);
 
 app.directive('tooltip', function () {

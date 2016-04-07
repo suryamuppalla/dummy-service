@@ -24,7 +24,7 @@
         </div>
         <div rel="#2" class="tabe col col-25">
             <span>
-                <i class="ion-scissors"></i>
+                <i class="ion-flash-off"></i>
             </span>  
         </div>
         <div rel="#3" class="tabe col col-25">
@@ -42,14 +42,15 @@
         <!-- -->
         <div class="content content-active" id="1">
             <div class="row no-vehicle-found-row vie-det-img pad-mar pad-10">
-                <div class="col col-75 fst-col">
-                    <img src="img/blockandwhite.jpg" width="80" height="80" >
-                    <p>Today's Mileage</p>
-                    <span>340,890<i class="ion-edit"></i></span>
-                </div>
-                <div class="col col-25 sec-col">
-                    <i class="ion-clipboard"></i>
-                    <p class="pad-mar">Glovebox</p>
+                <div class="col fst-col">
+                    <img ng-src="{{ vehicle.photo.url }}" style="margin-right: 10px;" width="80" height="70" >
+                    <h4 style="margin-bottom: 5px;">
+                        {{ vehicle.name }}
+                    </h4>
+
+                    <p style="margin: 0;">
+                        {{ vehicle.model }}
+                    </p>
                 </div>
             </div>
             <div class="border-bot"></div>
@@ -59,23 +60,52 @@
                     <i class="ion-checkmark-round"></i>
                 </div>
                 <div class="col col-90 check2" style="margin-left:10px;">
-                    <p class="pad-mar">No Open Recalls Reported</p>
-                    <span>As of 03/04/2016</span>
+                    <p class="pad-mar">
+                        <b>No Open Recalls Reported</b>
+                    </p>
+                    <p class="pad-mar">As of {{ vehicle.updatedAt | date : 'dd MMM yyyy' }}</p>
                 </div>
             </div>
+
             <div class="border-bot"></div>
 
             <div class="row no-vehicle-found-row vie-det-img pad-10">
                 <div class="col col-10 check">
-                    <i class="ion-compose"></i>
+                    <i class="ion-funnel"></i>
                 </div>
-                <div class="col col-70 check2" style="margin-left:10px;">
-                    <p class="pad-mar">Registration</p>
-                    <span>As of 03/04/2016</span>
+                <div class="col check2" style="margin-left:10px;">
+                    <p class="pad-mar">
+                        <b ng-if="!vehicle.oilChange" style="color: red;">When {{ vehicle.name }} oil changed</b>
+                        <b ng-if="vehicle.oilChange">
+                            Oil change
+                        </b>
+                    </p>
+                    <p ng-if="!vehicle.oilChange" class="pad-mar">
+                        <input style="border: 1px solid #ddd; width: 100%; padding: 2px;" placeholder="enter last oil change date" type="date" class="" ng-model="oilChange" />
+
+                        <button class="button button-positive button-small" ng-click="updateVehicle(oilChange, 'oilChange')">Update</button>
+                    </p>
+                    <p ng-if="vehicle.oilChange" class="pad-mar">As of {{ vehicle.oilChange.iso | date : 'dd MMM yyyy' }}</p>
                 </div>
-                <div class="col col-20 check3">
-                    <p class="pad-mar text-center twe-p">12</p>
-                    <span class="text-center">Month's Left</span>
+            </div>
+
+
+            <div class="border-bot"></div>
+
+            <div class="row no-vehicle-found-row vie-det-img pad-10">
+                <div class="col col-10 check">
+                    <i class="ion-log-in"></i>
+                </div>
+                <div class="col check2" style="margin-left:10px;">
+                    <p class="pad-mar">
+                        <b>Registration date</b>
+                    </p>
+                    <p ng-if="!vehicle.registration" class="pad-mar">
+                        <input style="border: 1px solid #ddd; width: 100%; padding: 2px;" placeholder="enter last oil change date" type="date" class="" ng-model="registration" />
+
+                        <button class="button button-positive button-small" ng-click="updateVehicle(registration, 'registration')">Update</button>
+                    </p>
+                    <p ng-if="vehicle.registration" class="pad-mar">As of {{ vehicle.registration.iso | date : 'dd MMM yyyy' }}</p>
                 </div>
             </div>
             <div class="border-bot"></div>
@@ -121,81 +151,34 @@
             <div class="border-bot"></div>
         </div><!-- first tab end -->
 
+<!-- ======================= 2nd tab div ============ -->
         <div class="content" id="2">
-            <div class="row pad-10">
+            <!-- <div class="row">
+                <div class="col">
+                    <pre>
+                        {{ request | json }}
+                    </pre>
+                </div>
+            </div> -->
+            <div style="border-bottom: 1px solid #ddd;" ng-repeat="request in request" class="row pad-10">
                 <div class="col col-33">
-                    <span>04/19/2014</span>
+                    <span>
+                        {{ request.dateAfterServiceDone.iso | date : 'dd MMM yyyy' }}
+                    </span>
                     <br>
                     <span>145,000</span>
                 </div>
                 <div class="col col-77">
-                    <p class="p-one">Illinois</p>
+                    <p class="p-one" style="font-size: 15px;">
+                        <b>
+                            {{ request.shopPointer.name }}
+                        </b>
+                    </p>
                     <p class="p-sec pad-mar">Failed emissions inspection</p>
                 </div>
             </div>
-            <div class="border-bot"></div>
 
-            <div class="row pad-10">
-                <div class="col col-33">
-                    <span>04/19/2014</span>
-                    <br>
-                    <span>145,000</span>
-                </div>
-                <div class="col col-77">
-                    <p class="p-one">Illinois</p>
-                    <p class="p-sec pad-mar">Failed emissions inspection</p>
-                </div>
-            </div>
-            <div class="border-bot"></div>
-
-            <div class="row pad-10">
-                <div class="col col-33">
-                    <span>04/19/2014</span>
-                    <br>
-                    <span>145,000</span>
-                </div>
-                <div class="col col-77">
-                    <p class="p-one">Illinois</p>
-                    <p class="p-sec pad-mar">Failed emissions inspection</p>
-                </div>
-            </div>
-            <div class="border-bot"></div>
-
-            <div class="row pad-10">
-                <div class="col col-33">
-                    <span>04/19/2014</span>
-                    <br>
-                    <span>145,000</span>
-                </div>
-                <div class="col col-77">
-                    <p class="p-one">Illinois</p>
-                    <p class="p-sec pad-mar">Failed emissions inspection</p>
-                </div>
-            </div>
-            <div class="border-bot"></div>
-
-            <div class="row pad-10">
-                <div class="col col-33">
-                    <span>04/19/2014</span>
-                    <br>
-                    <span>145,000</span>
-                </div>
-                <div class="col col-77">
-                    <p class="p-one">Illinois</p>
-                    <p class="p-sec pad-mar">Failed emissions inspection</p>
-                </div>
-            </div>
-            <div class="border-bot"></div>
-
-            <div class="row pad-10">
-                <div class="col col-10 pad-mar">
-                    <img src="img/carfox.png" width="60" height="60">
-                </div>
-                <div class="col col-90 pad-mar">
-                    <h4 class="dont-h4">Dont't see records from your shop?</h4>
-                </div>
-            </div>
-
+            
         </div>
         <div class="content" id="3">
             <div class="row search-box">

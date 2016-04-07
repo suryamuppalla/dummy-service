@@ -21,6 +21,19 @@ app.controller('vehicleDetails', ['$scope', '$ionicLoading', '$location', '$root
             console.log(error)
         });
 
+        /* =========== code for colsplble menus ======== */
+
+        $scope.toggleGroup = function(group) {
+            if ($scope.isGroupShown(group)) {
+              $scope.shownGroup = null;
+            } else {
+              $scope.shownGroup = group;
+            }
+        };
+        $scope.isGroupShown = function(group) {
+            return $scope.shownGroup === group;
+        };
+
         /* =========== code for tabs concept ========== */
         $('.tabe').click(function(event) {
             event.preventDefault();
@@ -31,5 +44,16 @@ app.controller('vehicleDetails', ['$scope', '$ionicLoading', '$location', '$root
             $('.content').removeClass('content-active');
             // Add the 'content' class to the associated tab contents.
             $($(this).attr("rel")).addClass('content-active');
+        });
+
+        $('.tabe2').click(function(event) {
+            event.preventDefault();
+            /* Act on the event */
+            $('.tabe2').removeClass('active2');
+            $(this).addClass('active2');
+            // Remove the 'content' class from the visible tab contents.
+            $('.content2').removeClass('content-active2');
+            // Add the 'content' class to the associated tab contents.
+            $($(this).attr("rel")).addClass('content-active2');
         });
     }]);
